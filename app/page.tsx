@@ -14,47 +14,47 @@ const oswald = Oswald({ subsets: ["latin"] })
 const onboardingScreens = [
   {
     id: 1,
-    image: "/onboarding-1.jpg",
+    image: "onboarding-1.jpg",
     alt: "Solora main screen showing sunrise and sunset quality ratings with detailed day lights schedule",
   },
   {
     id: 2,
-    image: "/onboarding-2.jpg",
+    image: "onboarding-2.jpg",
     alt: "Forecasts Anywhere screen showing personalized weather summaries for Madrid and Reykjavik with aurora predictions",
   },
   {
     id: 3,
-    image: "/onboarding-3.jpg",
+    image: "onboarding-3.jpg",
     alt: "Celestial Trackers screen showing AR tracking of sun, moon, and Milky Way with map and sky visualization",
   },
   {
     id: 4,
-    image: "/onboarding-4.jpg",
+    image: "onboarding-4.jpg",
     alt: "Moon Phases screen showing lunar cycle tracking with interactive calendar and full moon details",
   },
   {
     id: 5,
-    image: "/onboarding-5.jpg",
+    image: "onboarding-5.jpg",
     alt: "Upcoming events screen showing astronomical events including supermoon, solar eclipse, and meteor shower",
   },
   {
     id: 6,
-    image: "/onboarding-6.jpg",
+    image: "onboarding-6.jpg",
     alt: "Milky Way Calendar screen showing visibility calendar and galactic center appearance details",
   },
   {
     id: 7,
-    image: "/onboarding-7.jpg",
+    image: "onboarding-7.jpg",
     alt: "Reminders screen showing smart notifications for magical sunset, supermoon, and aurora alerts",
   },
   {
     id: 8,
-    image: "/onboarding-8.jpg",
+    image: "onboarding-8.jpg",
     alt: "Widgets and Watch screen showing comprehensive forecast widgets and Barcelona weather summary",
   },
   {
     id: 9,
-    image: "/onboarding-9.jpg",
+    image: "onboarding-9.jpg",
     alt: "Aurora Forecasts screen showing KP index, probability metrics, and real-time northern lights prediction map",
   },
 ]
@@ -154,7 +154,7 @@ export default function SoloraLanding() {
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <div className="flex items-center gap-2 md:gap-3">
               <img
-                src="/solora-app-icon.png"
+                src="solora-app-icon.png"
                 alt="Solora App - Astronomical Events Tracker Icon"
                 className="w-8 h-8 md:w-10 md:h-10"
               />
@@ -265,7 +265,7 @@ export default function SoloraLanding() {
                               }`}
                             >
                               <img
-                                src={screen.image || "/placeholder.svg"}
+                                src={screen.image || "placeholder.svg"}
                                 alt={screen.alt}
                                 className="w-full h-full object-cover rounded-[1rem] md:rounded-[1.3rem]"
                                 loading={index === 0 ? "eager" : "lazy"}
@@ -432,7 +432,7 @@ export default function SoloraLanding() {
                     <div className="bg-black rounded-xl md:rounded-2xl p-1.5 md:p-2">
                       <div className="rounded-lg md:rounded-xl aspect-[9/16] overflow-hidden">
                         <img
-                          src={`/screenshot-${screenshot.id}.jpg`}
+                          src={`screenshot-${screenshot.id}.jpg`}
                           alt={screenshot.alt}
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -514,7 +514,7 @@ export default function SoloraLanding() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="solora-app-icon.png" alt="Solora App Icon" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>
