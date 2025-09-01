@@ -80,7 +80,7 @@ export default function SoloraLanding() {
             "@type": "WebPage",
             name: "Solora - Plan the Sky, Perfect the Moment",
             description: "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision",
-            url: "https://solora-app.com",
+            url: "https://solora.app",
             mainEntity: {
               "@type": "MobileApplication",
               name: "Solora - Atardecer & Amanecer",
@@ -110,7 +110,7 @@ export default function SoloraLanding() {
               datePublished: "2024-01-01",
               dateModified: "2024-12-19",
               inLanguage: "en-US",
-              screenshot: onboardingScreens.map((screen) => `https://solora-app.com${screen.image}`),
+              screenshot: onboardingScreens.map((screen) => `https://solora.app${screen.image}`),
               featureList: [
                 "AI Sky & Weather Forecasts",
                 "Golden Hour & Night Sky Planning",
@@ -130,7 +130,7 @@ export default function SoloraLanding() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://solora-app.com",
+                  item: "https://solora.app",
                 },
               ],
             },
@@ -246,7 +246,7 @@ export default function SoloraLanding() {
               </div>
 
               <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[300px] lg:max-w-xs xl:max-w-sm mx-auto lg:mx-0">
+                <div className="relative w-full max-w-[168px] sm:max-w-[196px] md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto lg:mx-0" style={{ maxHeight: '70vh' }}>
                   {/* Phone mockup with animated onboarding screens */}
                   <div className="bg-black rounded-[2rem] md:rounded-[2.5rem] p-1.5 md:p-2 shadow-2xl">
                     <div className="bg-black rounded-[1.5rem] md:rounded-[2rem] p-0.5 md:p-1">
@@ -428,9 +428,10 @@ export default function SoloraLanding() {
                     key={screenshot.id}
                     className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl md:rounded-3xl p-3 md:p-4 shadow-2xl"
                     role="listitem"
+                    style={{ maxHeight: '50vh' }}
                   >
                     <div className="bg-black rounded-xl md:rounded-2xl p-1.5 md:p-2">
-                      <div className="rounded-lg md:rounded-xl aspect-[9/16] overflow-hidden">
+                      <div className="rounded-lg md:rounded-xl aspect-[9/16] overflow-hidden h-full">
                         <img
                           src={`screenshot-${screenshot.id}.jpg`}
                           alt={screenshot.alt}

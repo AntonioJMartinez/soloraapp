@@ -17,7 +17,7 @@ const blogPosts = [
     category: "Photography",
     readTime: "8 min read",
     publishDate: "2024-12-15",
-    image: "/golden-hour-sunset-photography.png",
+    image: "golden-hour-sunset-photography.png",
     featured: true,
   },
   {
@@ -28,7 +28,7 @@ const blogPosts = [
     category: "Astronomy",
     readTime: "6 min read",
     publishDate: "2024-12-12",
-    image: "/moon-phases-night-sky-photography.png",
+    image: "moon-phases-night-sky-photography.png",
     featured: true,
   },
   {
@@ -39,7 +39,7 @@ const blogPosts = [
     category: "Aurora",
     readTime: "10 min read",
     publishDate: "2024-12-10",
-    image: "/northern-lights-aurora-borealis-photography.png",
+    image: "northern-lights-aurora-borealis-photography.png",
     featured: true,
   },
   {
@@ -50,7 +50,7 @@ const blogPosts = [
     category: "Weather",
     readTime: "7 min read",
     publishDate: "2024-12-08",
-    image: "/dramatic-storm-clouds-weather-photography.png",
+    image: "dramatic-storm-clouds-weather-photography.png",
     featured: false,
   },
   {
@@ -61,7 +61,7 @@ const blogPosts = [
     category: "Astronomy",
     readTime: "12 min read",
     publishDate: "2024-12-05",
-    image: "/solar-eclipse-astronomical-event.png",
+    image: "solar-eclipse-astronomical-event.png",
     featured: false,
   },
   {
@@ -72,7 +72,7 @@ const blogPosts = [
     category: "Photography",
     readTime: "15 min read",
     publishDate: "2024-12-01",
-    image: "/milky-way-galaxy-night-sky-photography.png",
+    image: "milky-way-galaxy-night-sky-photography.png",
     featured: false,
   },
 ]
@@ -92,13 +92,13 @@ export default function BlogPage() {
             name: "Solora Blog - Sky Photography & Astronomy Guides",
             description:
               "Expert guides on sky photography, astronomy, and weather forecasting. Learn to capture perfect sunsets, auroras, and celestial events.",
-            url: "https://solora-app.com/blog",
+            url: "https://solora.app/blog",
             publisher: {
               "@type": "Organization",
               name: "Solora",
               logo: {
                 "@type": "ImageObject",
-                url: "https://solora-app.com/solora-app-icon.png",
+                url: "https://solora.app/solora-app-icon.png",
               },
             },
             mainEntity: {
@@ -108,13 +108,13 @@ export default function BlogPage() {
                 position: index + 1,
                 headline: post.title,
                 description: post.excerpt,
-                url: `https://solora-app.com/blog/${post.id}`,
+                url: `https://solora.app/blog/${post.id}`,
                 datePublished: post.publishDate,
                 author: {
                   "@type": "Person",
                   name: "Antonio Jose Martinez Sanchez",
                 },
-                image: `https://solora-app.com${post.image}`,
+                image: `https://solora.app${post.image}`,
               })),
             },
           }),
@@ -126,7 +126,7 @@ export default function BlogPage() {
         <header className="w-full px-4 py-2 md:py-3 bg-black/20 backdrop-blur-md border-b border-white/10">
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
+              <img src="solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
               <span className="text-lg md:text-xl font-bold text-[#E6786E]">Solora</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -174,7 +174,7 @@ export default function BlogPage() {
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={post.image || "/placeholder.svg"}
+                      src={post.image || "placeholder.svg"}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -221,7 +221,7 @@ export default function BlogPage() {
                     <div className="grid md:grid-cols-4 gap-6 items-center">
                       <div className="aspect-video md:aspect-square overflow-hidden rounded-lg">
                         <img
-                          src={post.image || "/placeholder.svg"}
+                          src={post.image || "placeholder.svg"}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -285,7 +285,7 @@ export default function BlogPage() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="/solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>

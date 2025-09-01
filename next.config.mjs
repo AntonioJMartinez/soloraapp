@@ -10,8 +10,6 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
-  basePath: '/soloraapp',
-  assetPrefix: '/soloraapp',
   trailingSlash: true,
 }
 

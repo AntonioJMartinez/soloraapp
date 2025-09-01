@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://solora-app.com"),
+  metadataBase: new URL("https://solora.app"),
   alternates: {
     canonical: "/",
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Solora - Plan the Sky, Perfect the Moment",
     description:
       "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision. The ultimate astronomical app for photographers and astronomy enthusiasts.",
-    url: "https://solora-app.com",
+    url: "https://solora.app",
     siteName: "Solora",
     images: [
       {
@@ -169,10 +169,10 @@ export default function RootLayout({
               },
               downloadUrl: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
               screenshot: [
-                "https://solora-app.com/screenshot-1.jpg",
-                "https://solora-app.com/screenshot-2.jpg",
-                "https://solora-app.com/screenshot-3.jpg",
-                "https://solora-app.com/screenshot-4.jpg",
+                "https://solora.app/screenshot-1.jpg",
+                "https://solora.app/screenshot-2.jpg",
+                "https://solora.app/screenshot-3.jpg",
+                "https://solora.app/screenshot-4.jpg",
               ],
               featureList: [
                 "Global sunrise and sunset forecasts",

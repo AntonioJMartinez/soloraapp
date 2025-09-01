@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     description:
       "Master lunar eclipse photography with our complete guide to the September 7, 2025 partial lunar eclipse. Timing, settings, and techniques.",
     type: "article",
-    url: "https://solora-app.com/blog/partial-lunar-eclipse-september-2025",
+    url: "https://solora.app/blog/partial-lunar-eclipse-september-2025",
     images: [
       {
-        url: "https://solora-app.com/partial-lunar-eclipse-september-2025.png",
+        url: "https://solora.app/partial-lunar-eclipse-september-2025.png",
         width: 1200,
         height: 630,
         alt: "Partial lunar eclipse showing Earth's shadow crossing the moon",
@@ -57,7 +57,7 @@ export default function PartialLunarEclipseSeptember2025() {
             headline: "Partial Lunar Eclipse September 7, 2025: Photography Guide",
             description:
               "Complete guide to photographing the partial lunar eclipse on September 7, 2025. Timing, visibility maps, camera settings, and techniques.",
-            image: "https://solora-app.com/partial-lunar-eclipse-september-2025.png",
+            image: "https://solora.app/partial-lunar-eclipse-september-2025.png",
             author: {
               "@type": "Person",
               name: "Antonio Jose Martinez Sanchez",
@@ -67,14 +67,14 @@ export default function PartialLunarEclipseSeptember2025() {
               name: "Solora",
               logo: {
                 "@type": "ImageObject",
-                url: "https://solora-app.com/solora-app-icon.png",
+                url: "https://solora.app/solora-app-icon.png",
               },
             },
             datePublished: "2024-12-20T00:00:00.000Z",
             dateModified: "2024-12-20T00:00:00.000Z",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://solora-app.com/blog/partial-lunar-eclipse-september-2025",
+              "@id": "https://solora.app/blog/partial-lunar-eclipse-september-2025",
             },
             articleSection: "Astronomy",
             wordCount: 2900,
@@ -87,7 +87,7 @@ export default function PartialLunarEclipseSeptember2025() {
         <header className="w-full px-4 py-2 md:py-3 bg-black/20 backdrop-blur-md border-b border-white/10">
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
+              <img src="solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
               <span className="text-lg md:text-xl font-bold text-[#E6786E]">Solora</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -136,7 +136,7 @@ export default function PartialLunarEclipseSeptember2025() {
 
               <div className="aspect-video overflow-hidden rounded-2xl">
                 <img
-                  src="/partial-lunar-eclipse-september-2025.png"
+                  src="partial-lunar-eclipse-september-2025.png"
                   alt="Partial lunar eclipse showing Earth's shadow crossing the moon with reddish coloration"
                   className="w-full h-full object-cover"
                 />
@@ -522,7 +522,7 @@ export default function PartialLunarEclipseSeptember2025() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="/solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>

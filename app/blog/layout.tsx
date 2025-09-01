@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description:
       "Expert guides on sky photography, astronomy, and weather forecasting. Learn to capture perfect sunsets, auroras, and celestial events.",
     type: "website",
-    url: "https://solora-app.com/blog",
+    url: "https://solora.app/blog",
   },
   alternates: {
     canonical: "/blog",

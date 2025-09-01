@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     description:
       "Master aurora prediction with expert tips on KP index, solar wind data, and weather patterns for perfect northern lights photography.",
     type: "article",
-    url: "https://solora-app.com/blog/aurora-prediction-guide",
+    url: "https://solora.app/blog/aurora-prediction-guide",
     images: [
       {
-        url: "https://solora-app.com/northern-lights-aurora-borealis-photography.png",
+        url: "https://solora.app/northern-lights-aurora-borealis-photography.png",
         width: 1200,
         height: 630,
         alt: "Northern lights aurora borealis dancing across the night sky",
@@ -57,7 +57,7 @@ export default function AuroraPredictionGuide() {
             headline: "How to Predict Aurora Activity for Perfect Northern Lights Photos",
             description:
               "Learn to read KP index, solar wind data, and weather patterns to predict when and where you'll see the northern lights. Includes the best apps and tools.",
-            image: "https://solora-app.com/northern-lights-aurora-borealis-photography.png",
+            image: "https://solora.app/northern-lights-aurora-borealis-photography.png",
             author: {
               "@type": "Person",
               name: "Antonio Jose Martinez Sanchez",
@@ -74,7 +74,7 @@ export default function AuroraPredictionGuide() {
             dateModified: "2024-12-10T00:00:00.000Z",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://solora-app.com/blog/aurora-prediction-guide",
+              "@id": "https://solora.app/blog/aurora-prediction-guide",
             },
             articleSection: "Aurora",
             wordCount: 3000,
@@ -88,7 +88,7 @@ export default function AuroraPredictionGuide() {
         <header className="w-full px-4 py-2 md:py-3 bg-black/20 backdrop-blur-md border-b border-white/10">
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
+              <img src="solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
               <span className="text-lg md:text-xl font-bold text-[#E6786E]">Solora</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -140,7 +140,7 @@ export default function AuroraPredictionGuide() {
 
               <div className="aspect-video overflow-hidden rounded-2xl">
                 <img
-                  src="/northern-lights-aurora-borealis-photography.png"
+                  src="northern-lights-aurora-borealis-photography.png"
                   alt="Northern lights aurora borealis dancing across the night sky with green and purple colors"
                   className="w-full h-full object-cover"
                 />
@@ -425,7 +425,7 @@ export default function AuroraPredictionGuide() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="/solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>
