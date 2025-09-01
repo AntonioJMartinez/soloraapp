@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://solora-app.com/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://solora-app.com/cover.jpg</image:loc>
+      <image:title>Solora App Interface</image:title>
+      <image:caption>Solora app showing sunrise and sunset tracking with location-based quality ratings</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://solora-app.com/screenshot-1.jpg</image:loc>
+      <image:title>Solora Notifications and Widgets</image:title>
+      <image:caption>Smart notifications for celestial events and beautiful widgets</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://solora-app.com/screenshot-2.jpg</image:loc>
+      <image:title>Moon Phase Calendar</image:title>
+      <image:caption>Detailed moon phase calendar with supermoons and eclipses</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://solora-app.com/screenshot-3.jpg</image:loc>
+      <image:title>Milky Way Visibility</image:title>
+      <image:caption>Milky Way visibility tracking and astronomical conditions</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://solora-app.com/screenshot-4.jpg</image:loc>
+      <image:title>Aurora Forecasts</image:title>
+      <image:caption>Aurora forecast maps and Kp index tracking</image:caption>
+    </image:image>
+  </url>
+</urlset>

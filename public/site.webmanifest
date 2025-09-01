@@ -1,0 +1,32 @@
+{
+  "name": "Solora - Plan the Sky, Perfect the Moment",
+  "short_name": "Solora",
+  "description": "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/solora-app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#E6786E",
+  "background_color": "#190908",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "categories": ["utilities", "photography", "education"],
+  "lang": "en",
+  "dir": "ltr"
+}
