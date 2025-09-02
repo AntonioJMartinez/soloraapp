@@ -10,6 +10,17 @@ const oswald = Oswald({ subsets: ["latin"] })
 // Mock blog posts data - in real app, this would come from a CMS or database
 const blogPosts = [
   {
+    id: "total-lunar-eclipse-september-2025",
+    title: "Total Lunar Eclipse September 7, 2025: Your Complete Blood Moon Guide",
+    excerpt:
+      "Mark your calendars for September 7, 2025! Witness the spectacular total lunar eclipse visible across Asia, Europe, Africa, and Australia. Complete guide with viewing times, visibility maps, and photography tips for this 83-minute blood moon event.",
+    category: "Astronomy",
+    readTime: "10 min read",
+    publishDate: "2025-09-02",
+    image: "total-lunar-eclipse-september-2025.jpg",
+    featured: true,
+  },
+  {
     id: "golden-hour-photography-guide",
     title: "Ultimate Guide to Golden Hour Photography: Timing, Tips, and Techniques",
     excerpt:
@@ -40,7 +51,7 @@ const blogPosts = [
     readTime: "10 min read",
     publishDate: "2024-12-10",
     image: "northern-lights-aurora-borealis-photography.png",
-    featured: true,
+    featured: false,
   },
   {
     id: "weather-patterns-sky-photography",
@@ -126,7 +137,7 @@ export default function BlogPage() {
         <header className="w-full px-4 py-2 md:py-3 bg-black/20 backdrop-blur-md border-b border-white/10">
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <img src="solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
+              <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-8 h-8 md:w-10 md:h-10" />
               <span className="text-lg md:text-xl font-bold text-[#E6786E]">Solora</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -174,7 +185,7 @@ export default function BlogPage() {
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
-                      src={post.image || "placeholder.svg"}
+                      src={`/${post.image}` || "/placeholder.svg"}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -221,7 +232,7 @@ export default function BlogPage() {
                     <div className="grid md:grid-cols-4 gap-6 items-center">
                       <div className="aspect-video md:aspect-square overflow-hidden rounded-lg">
                         <img
-                          src={post.image || "placeholder.svg"}
+                          src={`/${post.image}` || "/placeholder.svg"}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -285,7 +296,7 @@ export default function BlogPage() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="/solora-app-icon.png" alt="Solora" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>

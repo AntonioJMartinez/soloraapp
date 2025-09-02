@@ -154,7 +154,7 @@ export default function SoloraLanding() {
           <div className="container mx-auto flex items-center justify-between max-w-7xl">
             <div className="flex items-center gap-2 md:gap-3">
               <img
-                src="solora-app-icon.png"
+                src="/solora-app-icon.png"
                 alt="Solora App - Astronomical Events Tracker Icon"
                 className="w-8 h-8 md:w-10 md:h-10"
               />
@@ -166,12 +166,6 @@ export default function SoloraLanding() {
               </Link>
               <Link href="/blog" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
                 Blog
-              </Link>
-              <Link
-                href="#screenshots"
-                className="text-white/80 hover:text-white transition-colors text-sm lg:text-base"
-              >
-                Screenshots
               </Link>
               <Link href="#download" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
                 Download
@@ -265,7 +259,7 @@ export default function SoloraLanding() {
                               }`}
                             >
                               <img
-                                src={screen.image || "placeholder.svg"}
+                                src={`/${screen.image}` || "/placeholder.svg"}
                                 alt={screen.alt}
                                 className="w-full h-full object-cover rounded-[1rem] md:rounded-[1.3rem]"
                                 loading={index === 0 ? "eager" : "lazy"}
@@ -307,6 +301,45 @@ export default function SoloraLanding() {
                   Advanced astronomical calculations, beautiful visualizations, and smart notifications to help you
                   capture nature's most spectacular moments
                 </p>
+              </div>
+
+              {/* Screenshots moved here - below Perfect Timing text */}
+              <div className="mb-16 md:mb-20">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" role="list">
+                  {[
+                    {
+                      id: 1,
+                      alt: "Solora App notifications and widgets interface showing smart alerts for celestial events",
+                    },
+                    { id: 2, alt: "Moon phase calendar in Solora App displaying detailed lunar cycles and supermoons" },
+                    {
+                      id: 3,
+                      alt: "Milky Way visibility tracking interface showing astronomical conditions and sky quality",
+                    },
+                    {
+                      id: 4,
+                      alt: "Aurora forecast maps in Solora App with Kp index tracking and northern lights predictions",
+                    },
+                  ].map((screenshot) => (
+                    <div
+                      key={screenshot.id}
+                      className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl md:rounded-3xl p-3 md:p-4 shadow-2xl"
+                      role="listitem"
+                      style={{ maxHeight: '75vh' }}
+                    >
+                      <div className="bg-black rounded-xl md:rounded-2xl p-1.5 md:p-2">
+                        <div className="rounded-lg md:rounded-xl aspect-[9/19.5] overflow-hidden h-full">
+                          <img
+                            src={`/screenshot-${screenshot.id}.jpg`}
+                            alt={screenshot.alt}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" role="list">
@@ -392,59 +425,6 @@ export default function SoloraLanding() {
             </div>
           </section>
 
-          {/* Screenshots Section */}
-          <section
-            id="screenshots"
-            className="container mx-auto px-4 py-12 sm:py-16 md:py-20"
-            aria-labelledby="screenshots-heading"
-          >
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center space-y-4 md:space-y-6 mb-12 md:mb-16">
-                <h2 id="screenshots-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-                  Beautiful Interface
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl text-white/70">
-                  Designed with elegance and functionality in mind
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" role="list">
-                {[
-                  {
-                    id: 1,
-                    alt: "Solora App notifications and widgets interface showing smart alerts for celestial events",
-                  },
-                  { id: 2, alt: "Moon phase calendar in Solora App displaying detailed lunar cycles and supermoons" },
-                  {
-                    id: 3,
-                    alt: "Milky Way visibility tracking interface showing astronomical conditions and sky quality",
-                  },
-                  {
-                    id: 4,
-                    alt: "Aurora forecast maps in Solora App with Kp index tracking and northern lights predictions",
-                  },
-                ].map((screenshot) => (
-                  <div
-                    key={screenshot.id}
-                    className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl md:rounded-3xl p-3 md:p-4 shadow-2xl"
-                    role="listitem"
-                    style={{ maxHeight: '50vh' }}
-                  >
-                    <div className="bg-black rounded-xl md:rounded-2xl p-1.5 md:p-2">
-                      <div className="rounded-lg md:rounded-xl aspect-[9/16] overflow-hidden h-full">
-                        <img
-                          src={`screenshot-${screenshot.id}.jpg`}
-                          alt={screenshot.alt}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* Download CTA Section */}
           <section
@@ -515,7 +495,7 @@ export default function SoloraLanding() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="flex items-center gap-3 md:gap-4">
-                <img src="solora-app-icon.png" alt="Solora App Icon" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="/solora-app-icon.png" alt="Solora App Icon" className="w-10 h-10 md:w-12 md:h-12" />
                 <div className="text-center md:text-left">
                   <span className="text-xl md:text-2xl font-bold text-[#E6786E] block">Solora</span>
                   <span className="text-white/60 text-xs md:text-sm">Plan the sky, perfect the moment</span>
