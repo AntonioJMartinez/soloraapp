@@ -323,18 +323,21 @@ export default function SoloraLanding() {
                   ].map((screenshot) => (
                     <div
                       key={screenshot.id}
-                      className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl md:rounded-3xl p-3 md:p-4 shadow-2xl"
                       role="listitem"
                       style={{ maxHeight: '75vh' }}
+                      className="w-full mx-auto"
                     >
-                      <div className="bg-black rounded-xl md:rounded-2xl p-1.5 md:p-2">
-                        <div className="rounded-lg md:rounded-xl aspect-[9/19.5] overflow-hidden h-full">
-                          <img
-                            src={`/screenshot-${screenshot.id}.jpg`}
-                            alt={screenshot.alt}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
+                      {/* Phone mockup with same styling as hero section */}
+                      <div className="bg-black rounded-[2rem] md:rounded-[2.5rem] p-1.5 md:p-2 shadow-2xl">
+                        <div className="bg-black rounded-[1.5rem] md:rounded-[2rem] p-0.5 md:p-1">
+                          <div className="bg-black rounded-[1.2rem] md:rounded-[1.5rem] aspect-[9/19.5] flex items-center justify-center overflow-hidden relative">
+                            <img
+                              src={`/screenshot-${screenshot.id}.jpg`}
+                              alt={screenshot.alt}
+                              className="w-full h-full object-cover rounded-[1rem] md:rounded-[1.3rem]"
+                              loading="lazy"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
