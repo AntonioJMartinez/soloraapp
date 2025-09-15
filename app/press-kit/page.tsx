@@ -62,38 +62,40 @@ export default function PressKitPage() {
           </p>
         </section>
 
+        {/* Large Bento Image */}
+        <section className="mb-16 md:mb-20">
+          <div className="text-center">
+            <img
+              src="/soloraBento.jpg"
+              alt="Solora app interface showcase featuring multiple screens and features"
+              className="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl"
+            />
+          </div>
+        </section>
+
         {/* App Summary */}
         <section className="mb-16 md:mb-20">
           <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-8 md:p-12">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div className="space-y-6">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white">
-                    About Solora
-                  </h2>
-                  <p className="text-lg text-white/80 leading-relaxed">
-                    Solora is the ultimate astronomical app that helps photographers, stargazers, and nature enthusiasts
-                    plan perfect moments under the sky. With advanced AI forecasts, precision timing, and beautiful
-                    visualizations, Solora transforms how you experience celestial events.
-                  </p>
-                  <p className="text-lg text-white/80 leading-relaxed">
-                    From sunrise and sunset quality ratings to aurora forecasts, moon phase tracking, and Milky Way
-                    visibility predictions, Solora provides comprehensive astronomical intelligence to ensure you never
-                    miss nature's most spectacular moments.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Astronomy</Badge>
-                    <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Photography</Badge>
-                    <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Weather</Badge>
-                    <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">AI Forecasts</Badge>
-                  </div>
-                </div>
-                <div className="flex justify-center lg:justify-end">
-                  <img
-                    src="/soloraBento.jpg"
-                    alt="Solora app interface showcase featuring multiple screens and features"
-                    className="w-full max-w-md rounded-2xl shadow-2xl"
-                  />
+              <div className="max-w-4xl mx-auto space-y-6 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
+                  About Solora
+                </h2>
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Solora is the ultimate astronomical app that helps photographers, stargazers, and nature enthusiasts
+                  plan perfect moments under the sky. With advanced AI forecasts, precision timing, and beautiful
+                  visualizations, Solora transforms how you experience celestial events.
+                </p>
+                <p className="text-lg text-white/80 leading-relaxed">
+                  From sunrise and sunset quality ratings to aurora forecasts, moon phase tracking, and Milky Way
+                  visibility predictions, Solora provides comprehensive astronomical intelligence to ensure you never
+                  miss nature's most spectacular moments.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Astronomy</Badge>
+                  <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Photography</Badge>
+                  <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">Weather</Badge>
+                  <Badge className="bg-[#E6786E]/20 text-[#E6786E] border-[#E6786E]/30">AI Forecasts</Badge>
                 </div>
               </div>
             </CardContent>
@@ -181,53 +183,6 @@ export default function PressKitPage() {
           </div>
         </section>
 
-        {/* Technical Highlights */}
-        <section className="mb-16 md:mb-20">
-          <Card className="bg-gradient-to-br from-[#E6786E]/10 to-[#D4695F]/10 border-[#E6786E]/20 backdrop-blur-sm">
-            <CardContent className="p-8 md:p-12">
-              <div className="text-center space-y-6 mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">
-                  Built for iOS 26
-                </h2>
-                <p className="text-lg text-white/80 max-w-3xl mx-auto">
-                  Solora leverages cutting-edge iOS 26 frameworks to deliver unparalleled performance and user experience.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#E6786E] to-[#D4695F] rounded-xl flex items-center justify-center mx-auto">
-                    <Sparkles className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Foundation Models Framework</h3>
-                  <p className="text-white/70">
-                    Direct access to Apple Intelligence with just three lines of code for lightning-fast, private AI processing.
-                  </p>
-                </div>
-
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#E6786E] to-[#D4695F] rounded-xl flex items-center justify-center mx-auto">
-                    <Bell className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">AlarmKit Integration</h3>
-                  <p className="text-white/70">
-                    System-level alarm capabilities with Live Activities, Dynamic Island, and Apple Watch support.
-                  </p>
-                </div>
-
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#E6786E] to-[#D4695F] rounded-xl flex items-center justify-center mx-auto">
-                    <Waves className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Liquid Glass UI</h3>
-                  <p className="text-white/70">
-                    Beautiful, fluid interface elements that enhance readability and create immersive experiences.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
 
         {/* Download Resources Section */}
         <section className="mb-16 md:mb-20">
@@ -249,11 +204,11 @@ export default function PressKitPage() {
                   className="bg-white/10 border-white/20 text-white hover:bg-white/20 p-6 h-auto flex-col space-y-2"
                   asChild
                 >
-                  <Link href="/solora-app-icon.png" download>
+                  <a href="/solora-app-icon.png" download="solora-app-icon.png">
                     <Download className="w-6 h-6" />
                     <span>App Icon (512x512)</span>
                     <span className="text-sm text-white/60">PNG Format</span>
-                  </Link>
+                  </a>
                 </Button>
 
                 <Button
@@ -262,11 +217,11 @@ export default function PressKitPage() {
                   className="bg-white/10 border-white/20 text-white hover:bg-white/20 p-6 h-auto flex-col space-y-2"
                   asChild
                 >
-                  <Link href="/soloraBento.jpg" download>
+                  <a href="/soloraBento.jpg" download="soloraBento.jpg">
                     <Download className="w-6 h-6" />
                     <span>Feature Showcase</span>
                     <span className="text-sm text-white/60">JPG Format</span>
-                  </Link>
+                  </a>
                 </Button>
 
                 <Button
@@ -275,11 +230,11 @@ export default function PressKitPage() {
                   className="bg-white/10 border-white/20 text-white hover:bg-white/20 p-6 h-auto flex-col space-y-2"
                   asChild
                 >
-                  <Link href="/screenshot-1.jpg" download>
+                  <a href="/screenshot-1.jpg" download="screenshot-1.jpg">
                     <Download className="w-6 h-6" />
                     <span>App Screenshots</span>
                     <span className="text-sm text-white/60">Multiple JPG Files</span>
-                  </Link>
+                  </a>
                 </Button>
               </div>
 
