@@ -167,6 +167,9 @@ export default function SoloraLanding() {
               <Link href="/blog" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
                 Blog
               </Link>
+              <Link href="/press-kit" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
+                Press Kit
+              </Link>
               <Link href="#download" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
                 Download
               </Link>
