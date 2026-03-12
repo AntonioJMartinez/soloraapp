@@ -1,5 +1,7 @@
 "use client"
 
+import { evergreenBlogPosts } from "@/lib/blog-posts"
+import { absoluteUrl, siteConfig } from "@/lib/site"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -78,22 +80,15 @@ export default function SoloraLanding() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Solora - Plan the Sky, Perfect the Moment",
-            description: "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision",
-            url: "https://solora.app",
+            name: siteConfig.title,
+            description: siteConfig.description,
+            url: siteConfig.url,
             mainEntity: {
               "@type": "MobileApplication",
-              name: "Solora - Atardecer & Amanecer",
+              name: siteConfig.name,
               applicationCategory: "UtilitiesApplication",
               operatingSystem: ["iOS", "iPadOS", "watchOS", "macOS"],
-              downloadUrl: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                ratingCount: "1000",
-                bestRating: "5",
-                worstRating: "1",
-              },
+              downloadUrl: siteConfig.appStoreUrl,
               offers: {
                 "@type": "Offer",
                 price: "0",
@@ -101,21 +96,25 @@ export default function SoloraLanding() {
               },
               author: {
                 "@type": "Person",
-                name: "Antonio Jose Martinez Sanchez",
+                name: siteConfig.author,
               },
               publisher: {
                 "@type": "Organization",
-                name: "Antonio Jose Martinez Sanchez",
+                name: siteConfig.name,
               },
               datePublished: "2024-01-01",
-              dateModified: "2024-12-19",
+              dateModified: "2026-03-12",
               inLanguage: "en-US",
-              screenshot: onboardingScreens.map((screen) => `https://solora.app${screen.image}`),
+              screenshot: onboardingScreens.map((screen) => absoluteUrl(`/${screen.image}`)),
               featureList: [
                 "AI Sky & Weather Forecasts",
+                "Sunrise and sunset planning",
+                "Golden hour and blue hour timing",
                 "Golden Hour & Night Sky Planning",
                 "Celestial Trackers with AR",
                 "Moon Phases & Calendar",
+                "Aurora forecast planning",
+                "Milky Way visibility planning",
                 "Astronomical Events Tracking",
                 "Smart Reminders & Alerts",
                 "Widgets & Apple Watch Support",
@@ -130,7 +129,7 @@ export default function SoloraLanding() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://solora.app",
+                  item: siteConfig.url,
                 },
               ],
             },
@@ -138,7 +137,7 @@ export default function SoloraLanding() {
               "@type": "DownloadAction",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
+                urlTemplate: siteConfig.appStoreUrl,
                 actionPlatform: ["http://schema.org/IOSPlatform", "http://schema.org/MacOSPlatform"],
               },
             },
@@ -195,8 +194,12 @@ export default function SoloraLanding() {
                   </h1>
 
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed">
-                    The best AI forecasts for sunsets, weathers, moons, night skies, milky way, northern lights, tides
-                    and more.
+                    Solora is a sunrise and sunset app, golden hour planner, moon phase calendar, aurora forecast
+                    tracker, and Milky Way planning tool built for photographers and sky watchers.
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-white/60 leading-relaxed max-w-2xl">
+                    Check cloud cover, visibility, moonlight, tides, meteor showers, eclipses, and night-sky
+                    conditions before you drive, hike, travel, or set up your camera.
                   </p>
                 </div>
 
@@ -276,6 +279,41 @@ export default function SoloraLanding() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-10 md:py-16" aria-labelledby="planning-heading">
+            <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-2">
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+                <CardContent className="p-6 md:p-8 space-y-4">
+                  <Badge variant="secondary" className="bg-white/10 text-white border-white/10">
+                    Who Solora Is For
+                  </Badge>
+                  <h2 id="planning-heading" className="text-2xl md:text-3xl font-bold text-white">
+                    Built for photographers, stargazers, aurora hunters, and outdoor planners
+                  </h2>
+                  <p className="text-white/75 leading-relaxed">
+                    Use Solora to plan sunrise shoots, sunset landscapes, moonrise compositions, northern lights trips,
+                    Milky Way nights, meteor shower sessions, eclipse viewing, and coastal photography with tide-aware
+                    timing.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+                <CardContent className="p-6 md:p-8 space-y-4">
+                  <Badge variant="secondary" className="bg-white/10 text-white border-white/10">
+                    What You Can Plan
+                  </Badge>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    One app for golden hour, moon phases, aurora forecasts, and major sky events
+                  </h2>
+                  <p className="text-white/75 leading-relaxed">
+                    Compare locations worldwide, track weather and visibility, preview solar and lunar paths, and get
+                    alerts for the moments that matter most to your next outdoor or astrophotography session.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </section>
 
@@ -424,6 +462,101 @@ export default function SoloraLanding() {
                       </div>
                       <h3 className="text-xl md:text-2xl font-bold text-white">{feature.title}</h3>
                       <p className="text-sm md:text-base text-white/70 leading-relaxed">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-12 md:py-20" aria-labelledby="clusters-heading">
+            <div className="max-w-7xl mx-auto space-y-8">
+              <div className="max-w-3xl space-y-4">
+                <Badge variant="secondary" className="bg-white/10 text-white border-white/10">
+                  Planning Guides
+                </Badge>
+                <h2 id="clusters-heading" className="text-3xl md:text-5xl font-bold text-white">
+                  Explore the core planning problems Solora solves
+                </h2>
+                <p className="text-white/70 text-lg">
+                  These pages target the practical searches people use before they download an astronomy planning app.
+                </p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {[
+                  {
+                    href: "/sunrise-sunset-app",
+                    title: "Sunrise & Sunset App",
+                    description: "Plan dawn and dusk shoots with timing, cloud cover, and visibility forecasts.",
+                  },
+                  {
+                    href: "/golden-hour-photography-app",
+                    title: "Golden Hour Photography App",
+                    description: "Track golden hour, blue hour, and the soft light windows photographers care about.",
+                  },
+                  {
+                    href: "/moon-phase-calendar-app",
+                    title: "Moon Phase Calendar App",
+                    description: "See lunar phases, moonrise, moonset, and illumination for night planning.",
+                  },
+                  {
+                    href: "/aurora-forecast-app",
+                    title: "Aurora Forecast App",
+                    description: "Use KP index, cloud cover, and alerts to improve northern lights timing.",
+                  },
+                  {
+                    href: "/milky-way-planner",
+                    title: "Milky Way Planner",
+                    description: "Find dark-sky windows, galactic center visibility, and moon-free nights.",
+                  },
+                ].map((item) => (
+                  <Card key={item.href} className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+                    <CardContent className="p-6 space-y-4">
+                      <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+                      <p className="text-white/70 leading-relaxed">{item.description}</p>
+                      <Link href={item.href} className="text-[#E6786E] font-medium inline-flex items-center gap-2">
+                        Explore this guide
+                        <ChevronRight className="w-4 h-4" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-12 md:py-20" aria-labelledby="blog-links-heading">
+            <div className="max-w-7xl mx-auto space-y-8">
+              <div className="space-y-4 max-w-3xl">
+                <Badge variant="secondary" className="bg-white/10 text-white border-white/10">
+                  Evergreen Content
+                </Badge>
+                <h2 id="blog-links-heading" className="text-3xl md:text-5xl font-bold text-white">
+                  Start with the guides that answer the biggest planning questions
+                </h2>
+                <p className="text-white/70 text-lg">
+                  Homepage links now point directly to Solora&apos;s strongest evergreen topics to pass internal
+                  authority into high-intent content.
+                </p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                {evergreenBlogPosts.map((post) => (
+                  <Card key={post.id} className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+                    <CardContent className="p-6 space-y-4">
+                      <Badge variant="outline" className="border-[#E6786E]/30 text-[#E6786E]">
+                        {post.category}
+                      </Badge>
+                      <h3 className="text-2xl font-bold text-white">{post.title}</h3>
+                      <p className="text-white/70 leading-relaxed">{post.excerpt}</p>
+                      <Link
+                        href={`/blog/${post.id}`}
+                        className="text-[#E6786E] font-medium inline-flex items-center gap-2"
+                      >
+                        Read the guide
+                        <ChevronRight className="w-4 h-4" />
+                      </Link>
                     </CardContent>
                   </Card>
                 ))}

@@ -1,3 +1,5 @@
+import { blogPosts, featuredBlogPosts } from "@/lib/blog-posts"
+import { absoluteUrl, siteConfig } from "@/lib/site"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -7,89 +9,8 @@ import { Oswald } from "next/font/google"
 
 const oswald = Oswald({ subsets: ["latin"] })
 
-// Mock blog posts data - in real app, this would come from a CMS or database
-const blogPosts = [
-  {
-    id: "total-lunar-eclipse-september-2025",
-    title: "Total Lunar Eclipse September 7, 2025: Your Complete Blood Moon Guide",
-    excerpt:
-      "Mark your calendars for September 7, 2025! Witness the spectacular total lunar eclipse visible across Asia, Europe, Africa, and Australia. Complete guide with viewing times, visibility maps, and photography tips for this 83-minute blood moon event.",
-    category: "Astronomy",
-    readTime: "10 min read",
-    publishDate: "2025-09-02",
-    image: "total-lunar-eclipse-september-2025.jpg",
-    featured: true,
-  },
-  {
-    id: "golden-hour-photography-guide",
-    title: "Ultimate Guide to Golden Hour Photography: Timing, Tips, and Techniques",
-    excerpt:
-      "Master the art of golden hour photography with our comprehensive guide. Learn the best times, camera settings, and composition techniques for stunning sunset and sunrise photos.",
-    category: "Photography",
-    readTime: "8 min read",
-    publishDate: "2024-12-15",
-    image: "golden-hour-sunset-photography.png",
-    featured: true,
-  },
-  {
-    id: "moon-phases-photography",
-    title: "Moon Phase Calendar 2025: Best Times for Night Photography",
-    excerpt:
-      "Discover the optimal moon phases for different types of night photography. From new moon for Milky Way shots to full moon for landscape illumination.",
-    category: "Astronomy",
-    readTime: "6 min read",
-    publishDate: "2024-12-12",
-    image: "moon-phases-night-sky-photography.png",
-    featured: true,
-  },
-  {
-    id: "aurora-prediction-guide",
-    title: "How to Predict Aurora Activity for Perfect Northern Lights Photos",
-    excerpt:
-      "Learn to read KP index, solar wind data, and weather patterns to predict when and where you'll see the northern lights. Includes the best apps and tools.",
-    category: "Aurora",
-    readTime: "10 min read",
-    publishDate: "2024-12-10",
-    image: "northern-lights-aurora-borealis-photography.png",
-    featured: false,
-  },
-  {
-    id: "weather-patterns-sky-photography",
-    title: "Weather Patterns Every Sky Photographer Should Know",
-    excerpt:
-      "Understanding cloud formations, atmospheric conditions, and weather systems that create the most dramatic and photogenic skies.",
-    category: "Weather",
-    readTime: "7 min read",
-    publishDate: "2024-12-08",
-    image: "dramatic-storm-clouds-weather-photography.png",
-    featured: false,
-  },
-  {
-    id: "astronomical-events-2025",
-    title: "Astronomical Events Calendar 2025: Don't Miss These Celestial Shows",
-    excerpt:
-      "Complete guide to 2025's most spectacular astronomical events including eclipses, meteor showers, planetary alignments, and supermoons.",
-    category: "Astronomy",
-    readTime: "12 min read",
-    publishDate: "2024-12-05",
-    image: "solar-eclipse-astronomical-event.png",
-    featured: false,
-  },
-  {
-    id: "milky-way-photography-beginners",
-    title: "Milky Way Photography: Complete Beginner's Guide",
-    excerpt:
-      "Everything you need to know to capture stunning Milky Way photos, from camera settings and equipment to the best locations and timing.",
-    category: "Photography",
-    readTime: "15 min read",
-    publishDate: "2024-12-01",
-    image: "milky-way-galaxy-night-sky-photography.png",
-    featured: false,
-  },
-]
-
 export default function BlogPage() {
-  const featuredPosts = blogPosts.filter((post) => post.featured)
+  const featuredPosts = featuredBlogPosts
   const regularPosts = blogPosts.filter((post) => !post.featured)
 
   return (
@@ -103,13 +24,13 @@ export default function BlogPage() {
             name: "Solora Blog - Sky Photography & Astronomy Guides",
             description:
               "Expert guides on sky photography, astronomy, and weather forecasting. Learn to capture perfect sunsets, auroras, and celestial events.",
-            url: "https://solora.app/blog",
+            url: `${siteConfig.url}/blog`,
             publisher: {
               "@type": "Organization",
-              name: "Solora",
+              name: siteConfig.name,
               logo: {
                 "@type": "ImageObject",
-                url: "https://solora.app/solora-app-icon.png",
+                url: absoluteUrl(siteConfig.icon),
               },
             },
             mainEntity: {
@@ -119,13 +40,13 @@ export default function BlogPage() {
                 position: index + 1,
                 headline: post.title,
                 description: post.excerpt,
-                url: `https://solora.app/blog/${post.id}`,
+                url: absoluteUrl(`/blog/${post.id}`),
                 datePublished: post.publishDate,
                 author: {
                   "@type": "Person",
-                  name: "Antonio Jose Martinez Sanchez",
+                  name: siteConfig.author,
                 },
-                image: `https://solora.app${post.image}`,
+                image: absoluteUrl(`/${post.image}`),
               })),
             },
           }),

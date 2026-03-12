@@ -4,6 +4,7 @@ import { Clock, ArrowLeft, Download } from "lucide-react"
 import Link from "next/link"
 import { Oswald } from "next/font/google"
 import type { Metadata } from "next"
+import { siteConfig } from "@/lib/site"
 
 const oswald = Oswald({ subsets: ["latin"] })
 
@@ -39,6 +40,14 @@ export const metadata: Metadata = {
     ],
     publishedTime: "2025-09-02T00:00:00.000Z",
     authors: ["Antonio Jose Martinez Sanchez"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Total Lunar Eclipse September 7, 2025: Your Complete Blood Moon Guide",
+    description:
+      "Viewing times, visibility maps, and practical blood moon photography advice for the September 7, 2025 eclipse.",
+    images: ["/total-lunar-eclipse-september-2025.jpg"],
+    creator: siteConfig.twitterHandle,
   },
   alternates: {
     canonical: "/blog/total-lunar-eclipse-september-2025",

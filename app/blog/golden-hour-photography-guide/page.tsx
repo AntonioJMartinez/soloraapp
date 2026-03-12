@@ -4,6 +4,7 @@ import { Clock, ArrowLeft, Download } from "lucide-react"
 import Link from "next/link"
 import { Oswald } from "next/font/google"
 import type { Metadata } from "next"
+import { siteConfig } from "@/lib/site"
 
 const oswald = Oswald({ subsets: ["latin"] })
 
@@ -39,6 +40,14 @@ export const metadata: Metadata = {
     ],
     publishedTime: "2024-12-15T00:00:00.000Z",
     authors: ["Antonio Jose Martinez Sanchez"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ultimate Guide to Golden Hour Photography: Timing, Tips, and Techniques",
+    description:
+      "Plan sunrise and sunset sessions with better golden hour timing, settings, and composition advice.",
+    images: ["/golden-hour-sunset-photography.png"],
+    creator: siteConfig.twitterHandle,
   },
   alternates: {
     canonical: "/blog/golden-hour-photography-guide",

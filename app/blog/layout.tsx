@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Solora Blog - Sky Photography & Astronomy Guides | Expert Tips & Tutorials",
@@ -24,7 +25,23 @@ export const metadata: Metadata = {
     description:
       "Expert guides on sky photography, astronomy, and weather forecasting. Learn to capture perfect sunsets, auroras, and celestial events.",
     type: "website",
-    url: "https://solora.app/blog",
+    url: `${siteConfig.url}/blog`,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1600,
+        height: 900,
+        alt: "Solora blog cover image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solora Blog - Sky Photography & Astronomy Guides",
+    description:
+      "Guides for golden hour, aurora forecasts, moon phases, eclipses, Milky Way planning, and weather-based photography.",
+    images: [siteConfig.ogImage],
+    creator: siteConfig.twitterHandle,
   },
   alternates: {
     canonical: "/blog",

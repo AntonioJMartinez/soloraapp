@@ -1,55 +1,58 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { absoluteUrl, siteConfig } from "@/lib/site"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Solora - Plan the Sky, Perfect the Moment | Sunrise, Sunset & Astronomical Events App",
-  description:
-    "The ultimate astronomical app for tracking sunrises, sunsets, moon phases, eclipses, and celestial events. Get precise timing, smart notifications, and beautiful visualizations for perfect photography moments.",
+  title: siteConfig.title,
+  description: siteConfig.description,
   keywords: [
     "sunrise app",
     "sunset tracker",
+    "sunrise sunset app",
+    "golden hour app",
     "astronomical calendar",
+    "moon phase calendar app",
     "moon phases",
+    "milky way planner",
+    "milky way visibility app",
+    "aurora forecast app",
     "eclipse tracker",
     "celestial events",
     "golden hour",
-    "photography app",
+    "meteor shower tracker",
+    "night photography planner",
+    "photography planning app",
     "astronomy app",
     "sky tracker",
     "solora",
-    "atardecer amanecer",
-    "aurora forecast",
-    "milky way visibility",
-    "astronomical calculations",
   ],
-  authors: [{ name: "Antonio Jose Martinez Sanchez" }],
-  creator: "Antonio Jose Martinez Sanchez",
-  publisher: "Antonio Jose Martinez Sanchez",
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  publisher: siteConfig.author,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://solora.app"),
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Solora - Plan the Sky, Perfect the Moment",
-    description:
-      "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision. The ultimate astronomical app for photographers and astronomy enthusiasts.",
-    url: "https://solora.app",
-    siteName: "Solora",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Solora App - Astronomical Events Tracker",
+        url: siteConfig.ogImage,
+        width: 1600,
+        height: 900,
+        alt: "Solora astronomical planning app preview",
       },
     ],
     locale: "en_US",
@@ -57,11 +60,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solora - Plan the Sky, Perfect the Moment",
+    title: siteConfig.title,
     description:
-      "Track sunrises, sunsets, moon phases, eclipses, and celestial events with precision. Available on iOS, watchOS, iPadOS, and macOS.",
-    images: ["/twitter-image.jpg"],
-    creator: "@solora_app",
+      "Plan sunrise, sunset, golden hour, moon phases, aurora forecasts, Milky Way visibility, and astronomical events on iPhone, iPad, Apple Watch, and Mac.",
+    images: [siteConfig.ogImage],
+    creator: siteConfig.twitterHandle,
   },
   robots: {
     index: true,
@@ -102,11 +105,6 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
   },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-    yahoo: "your-yahoo-verification-code",
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -127,7 +125,6 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#E6786E",
     "msapplication-config": "/browserconfig.xml",
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -146,9 +143,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "MobileApplication",
-              name: "Solora - Atardecer & Amanecer",
-              description:
-                "The ultimate astronomical app for tracking sunrises, sunsets, moon phases, eclipses, and celestial events with precision and beauty.",
+              name: siteConfig.name,
+              description: siteConfig.description,
               applicationCategory: "UtilitiesApplication",
               operatingSystem: ["iOS", "iPadOS", "watchOS", "macOS"],
               offers: {
@@ -156,23 +152,16 @@ export default function RootLayout({
                 price: "0",
                 priceCurrency: "USD",
               },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                ratingCount: "100",
-                bestRating: "5",
-                worstRating: "1",
-              },
               author: {
                 "@type": "Person",
-                name: "Antonio Jose Martinez Sanchez",
+                name: siteConfig.author,
               },
-              downloadUrl: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
+              downloadUrl: siteConfig.appStoreUrl,
               screenshot: [
-                "https://solora.app/screenshot-1.jpg",
-                "https://solora.app/screenshot-2.jpg",
-                "https://solora.app/screenshot-3.jpg",
-                "https://solora.app/screenshot-4.jpg",
+                absoluteUrl("/screenshot-1.jpg"),
+                absoluteUrl("/screenshot-2.jpg"),
+                absoluteUrl("/screenshot-3.jpg"),
+                absoluteUrl("/screenshot-4.jpg"),
               ],
               featureList: [
                 "Global sunrise and sunset forecasts",

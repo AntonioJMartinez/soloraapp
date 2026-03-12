@@ -1,17 +1,69 @@
-"use client"
-
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Download, Apple, Smartphone, Bell, Sparkles, Cpu, Eye, Waves } from "lucide-react"
 import Link from "next/link"
 import { Oswald } from "next/font/google"
+import { absoluteUrl, siteConfig } from "@/lib/site"
 
 const oswald = Oswald({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "Solora Press Kit",
+  description:
+    "Official Solora press kit with product summary, screenshots, brand assets, and platform features for media coverage.",
+  alternates: {
+    canonical: "/press-kit",
+  },
+  openGraph: {
+    title: "Solora Press Kit",
+    description:
+      "Official Solora press kit with product overview, feature highlights, screenshots, and download-ready assets.",
+    url: absoluteUrl("/press-kit"),
+    type: "website",
+    images: [
+      {
+        url: siteConfig.pressImage,
+        width: 1600,
+        height: 900,
+        alt: "Solora press kit feature image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solora Press Kit",
+    description: "Press resources, screenshots, and brand assets for Solora.",
+    images: [siteConfig.pressImage],
+    creator: siteConfig.twitterHandle,
+  },
+}
 
 export default function PressKitPage() {
   return (
     <div className={`min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14] ${oswald.className}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Solora Press Kit",
+            url: absoluteUrl("/press-kit"),
+            description:
+              "Official Solora press kit with product summary, screenshots, brand assets, and platform highlights.",
+            publisher: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              logo: {
+                "@type": "ImageObject",
+                url: absoluteUrl(siteConfig.icon),
+              },
+            },
+          }),
+        }}
+      />
       {/* Header */}
       <header className="w-full px-4 py-2 md:py-3 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto flex items-center justify-between max-w-7xl">
