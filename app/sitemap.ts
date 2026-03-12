@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next"
 import { blogPosts } from "@/lib/blog-posts"
 import { siteConfig } from "@/lib/site"
 
+export const dynamic = "force-static"
+
 const staticRoutes = [
   "/",
   "/blog",
