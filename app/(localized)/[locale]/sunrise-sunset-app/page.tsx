@@ -1,0 +1,14 @@
+import type { Metadata } from "next"
+
+import { assertLocale } from "@/lib/i18n"
+import { buildFeaturePageMetadata, renderFeaturePage } from "@/lib/feature-pages"
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale: rawLocale } = await params
+  return buildFeaturePageMetadata(assertLocale(rawLocale), "sunrise-sunset-app")
+}
+
+export default async function LocalizedSunriseSunsetPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: rawLocale } = await params
+  return renderFeaturePage(assertLocale(rawLocale), "sunrise-sunset-app")
+}

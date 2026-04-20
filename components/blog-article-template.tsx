@@ -4,6 +4,10 @@ import { ArrowLeft, Clock, Download } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { SiteFooter } from "@/components/site-footer"
+import { SiteHeader } from "@/components/site-header"
+import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
 type ArticleSection = {
@@ -13,6 +17,7 @@ type ArticleSection = {
 }
 
 type BlogArticleTemplateProps = {
+  locale: Locale
   title: string
   description: string
   category: string
@@ -32,6 +37,7 @@ type BlogArticleTemplateProps = {
 }
 
 export function BlogArticleTemplate({
+  locale,
   title,
   description,
   category,
@@ -49,7 +55,9 @@ export function BlogArticleTemplate({
   relatedLinks = [],
   extraHeaderContent,
 }: BlogArticleTemplateProps) {
-  const canonicalUrl = absoluteUrl(`/blog/${slug}`)
+  const canonicalUrl = localizedUrl(locale, `/blog/${slug}`)
+  const ui = getUiDictionary(locale)
+  const routePath = `/blog/${slug}`
 
   return (
     <>
@@ -88,30 +96,15 @@ export function BlogArticleTemplate({
       />
 
       <div className="min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14] text-white">
-        <header className="w-full border-b border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md md:py-3">
-          <div className="container mx-auto flex max-w-7xl items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <img src="/solora-app-icon.png" alt="Solora App Icon" className="h-8 w-8 md:h-10 md:w-10" />
-              <span className="text-lg font-bold text-[#E6786E] md:text-xl">Solora</span>
-            </Link>
-            <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
-              <Link href="/" className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-                Home
-              </Link>
-              <Link href="/blog" className="text-sm text-white transition-colors hover:text-white lg:text-base">
-                Blog
-              </Link>
-              <Link href="/#download" className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-                Download
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader locale={locale} currentPath={routePath} />
 
         <main className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
-          <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-[#E6786E] transition-colors hover:text-[#D4695F]">
+          <Link
+            href={localizePath(locale, "/blog")}
+            className="mb-8 inline-flex items-center gap-2 text-[#E6786E] transition-colors hover:text-[#D4695F]"
+          >
             <ArrowLeft className="h-4 w-4" />
-            Back to Blog
+            {ui.backToBlog}
           </Link>
 
           <article className="space-y-8">
@@ -159,12 +152,12 @@ export function BlogArticleTemplate({
 
             {relatedLinks.length ? (
               <section className="space-y-4">
-                <h2 className="text-2xl font-bold text-white md:text-3xl">Related Guides</h2>
+                <h2 className="text-2xl font-bold text-white md:text-3xl">{ui.relatedGuides}</h2>
                 <div className="flex flex-wrap gap-3">
                   {relatedLinks.map((link) => (
                     <Link
                       key={link.href}
-                      href={link.href}
+                      href={localizePath(locale, link.href)}
                       className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                     >
                       {link.label}
@@ -184,9 +177,9 @@ export function BlogArticleTemplate({
                   className="bg-white px-8 py-4 text-lg font-bold text-[#E6786E] shadow-2xl transition-all hover:bg-gray-100 hover:shadow-white/25"
                   asChild
                 >
-                  <Link href="/#download">
+                  <Link href={localizePath(locale, "/#download")}>
                     <Download className="mr-2 h-5 w-5" />
-                    Download Solora App
+                    {ui.downloadSolora}
                   </Link>
                 </Button>
               </div>
@@ -194,24 +187,7 @@ export function BlogArticleTemplate({
           </article>
         </main>
 
-        <footer className="mt-16 border-t border-white/10 bg-black/40 py-12 md:py-16">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
-              <div className="flex items-center gap-3 md:gap-4">
-                <img src="/solora-app-icon.png" alt="Solora" className="h-10 w-10 md:h-12 md:w-12" />
-                <div className="text-center md:text-left">
-                  <span className="block text-xl font-bold text-[#E6786E] md:text-2xl">Solora</span>
-                  <span className="text-xs text-white/60 md:text-sm">Plan the sky, perfect the moment</span>
-                </div>
-              </div>
-
-              <div className="space-y-1 text-center md:text-right md:space-y-2">
-                <p className="text-sm text-white/80 md:text-base">© {new Date().getFullYear()} {siteConfig.author}</p>
-                <p className="text-xs text-white/60 md:text-sm">All rights reserved • Available on App Store</p>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter locale={locale} />
       </div>
     </>
   )

@@ -8,6 +8,7 @@ export const siteConfig = {
   ogImage: "/cover.jpg",
   pressImage: "/soloraBento.jpg",
   icon: "/solora-app-icon.png",
+  appStoreId: "6502008343",
   appStoreUrl: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
   author: "Antonio Jose Martinez Sanchez",
   twitterHandle: "@solora_app",
