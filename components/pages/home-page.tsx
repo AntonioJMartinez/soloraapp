@@ -84,6 +84,7 @@ export function HomePage({ locale }: HomePageProps) {
   const ui = getUiDictionary(locale)
   const evergreenPosts = getEvergreenBlogPosts(locale)
   const eclipse = eclipseCampaign[locale]
+  const activeOnboardingScreen = onboardingScreens[currentScreen]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -173,25 +174,17 @@ export function HomePage({ locale }: HomePageProps) {
                   <div className="rounded-[2.2rem] bg-black p-2 shadow-2xl">
                     <div className="rounded-[1.8rem] bg-black p-1">
                       <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.5rem] bg-black">
-                        {onboardingScreens.map((screen, index) => (
-                          <div
-                            key={screen.id}
-                            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                              index === currentScreen
-                                ? "translate-x-0 opacity-100"
-                                : index < currentScreen
-                                  ? "-translate-x-full opacity-0"
-                                  : "translate-x-full opacity-0"
-                            }`}
-                          >
-                            <img
-                              src={`/${screen.image}`}
-                              alt={screen.alt}
-                              className="h-full w-full rounded-[1.3rem] object-cover"
-                              loading={index === 0 ? "eager" : "lazy"}
-                            />
-                          </div>
-                        ))}
+                        <img
+                          key={activeOnboardingScreen.id}
+                          src={`/${activeOnboardingScreen.image}`}
+                          alt={activeOnboardingScreen.alt}
+                          width={589}
+                          height={1280}
+                          className="absolute inset-0 h-full w-full rounded-[1.3rem] object-cover"
+                          loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
+                        />
                       </div>
                     </div>
                   </div>
@@ -256,7 +249,15 @@ export function HomePage({ locale }: HomePageProps) {
                     <div className="rounded-[2rem] bg-black p-1.5 shadow-2xl">
                       <div className="rounded-[1.6rem] bg-black p-1">
                         <div className="aspect-[9/19.5] overflow-hidden rounded-[1.3rem] bg-black">
-                          <img src={`/screenshot-${id}.jpg`} alt={`Solora screenshot ${id}`} className="h-full w-full object-cover" loading="lazy" />
+                          <img
+                            src={`/screenshot-${id}.jpg`}
+                            alt={`Solora screenshot ${id}`}
+                            width={1206}
+                            height={2622}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </div>
                       </div>
                     </div>

@@ -309,6 +309,10 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         ctaTitle: "Compara tus ubicaciones antes del 12 de agosto",
         ctaDescription: "Usa Solora para planificar trayectoria solar, tiempo, visibilidad y alternativas para el eclipse total de España.",
         relatedLinks: [
+          { href: "/eclipse-solar-2026-a-coruna", label: "Eclipse 2026 en A Coruña: hora y planificación" },
+          { href: "/eclipse-solar-2026-burgos", label: "Eclipse 2026 en Burgos: duración y ubicación" },
+          { href: "/eclipse-solar-2026-palma", label: "Eclipse 2026 en Palma: horizonte y horarios" },
+          { href: "/fotografiar-eclipse-solar-2026-seguridad", label: "Cómo fotografiar el eclipse con seguridad" },
           { href: "/blog/astronomical-events-2026", label: "Eventos astronómicos 2026" },
           { href: "/sunrise-sunset-app", label: "App de amanecer y atardecer" },
           { href: "/sun-tracker-app", label: "Tracker solar y trayectoria AR" },

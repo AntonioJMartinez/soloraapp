@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { blogArticles } from "@/lib/blog-posts"
+import { eclipseGuideSlugs } from "@/lib/eclipse-guides"
 import { buildLanguageAlternates, locales, localizedUrl } from "@/lib/i18n"
 import { infoPageSlugs } from "@/lib/info-pages"
 import { featurePageSlugs } from "@/lib/marketing-content"
@@ -46,5 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   )
 
-  return [...staticEntries, ...blogEntries]
+  const eclipseGuideEntries = eclipseGuideSlugs.map((slug) => ({
+    url: localizedUrl("es", `/${slug}`),
+    lastModified: contentLastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }))
+
+  return [...staticEntries, ...blogEntries, ...eclipseGuideEntries]
 }
