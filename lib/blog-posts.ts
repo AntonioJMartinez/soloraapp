@@ -198,6 +198,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         relatedLinks: [
           { href: "/blog/astronomical-events-2026", label: "Astronomical Events 2026" },
           { href: "/sunrise-sunset-app", label: "Sunrise & Sunset App" },
+          { href: "/sun-tracker-app", label: "Sun Tracker & AR Path" },
           { href: "/golden-hour-photography-app", label: "Golden Hour Photography App" },
           { href: "/blog/partial-lunar-eclipse-august-2026", label: "Partial Lunar Eclipse August 2026" },
         ],
@@ -310,6 +311,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         relatedLinks: [
           { href: "/blog/astronomical-events-2026", label: "Eventos astronómicos 2026" },
           { href: "/sunrise-sunset-app", label: "App de amanecer y atardecer" },
+          { href: "/sun-tracker-app", label: "Tracker solar y trayectoria AR" },
           { href: "/golden-hour-photography-app", label: "App de hora dorada" },
           { href: "/blog/partial-lunar-eclipse-august-2026", label: "Eclipse lunar parcial de agosto de 2026" },
         ],

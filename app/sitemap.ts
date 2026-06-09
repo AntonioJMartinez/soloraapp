@@ -2,7 +2,9 @@ import type { MetadataRoute } from "next"
 
 import { blogArticles } from "@/lib/blog-posts"
 import { buildLanguageAlternates, locales, localizedUrl } from "@/lib/i18n"
+import { infoPageSlugs } from "@/lib/info-pages"
 import { featurePageSlugs } from "@/lib/marketing-content"
+import { trackerPageSlugs } from "@/lib/tracker-pages"
 
 export const dynamic = "force-static"
 
@@ -11,6 +13,8 @@ const staticRoutes = [
   "/blog",
   "/press-kit",
   ...featurePageSlugs.map((slug) => `/${slug}`),
+  ...trackerPageSlugs.map((slug) => `/${slug}`),
+  ...infoPageSlugs.map((slug) => `/${slug}`),
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

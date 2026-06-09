@@ -13,6 +13,7 @@ import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
 import { getEvergreenBlogPosts } from "@/lib/blog-posts"
 import { featurePageSlugs, getFeaturePageContent, getHomeContent, getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
+import { getTrackerPageContent, trackerPageSlugs } from "@/lib/tracker-pages"
 
 const onboardingScreens = [
   { id: 1, image: "onboarding-1.jpg", alt: "Solora main screen showing sunrise and sunset quality ratings with day light schedule" },
@@ -299,6 +300,25 @@ export function HomePage({ locale }: HomePageProps) {
                   return (
                     <Card key={slug} className="border-white/10 bg-white/5 transition-colors hover:bg-white/10">
                       <CardContent className="space-y-4 p-6">
+                        <h3 className="text-2xl font-bold text-white">{page.primaryKeyword}</h3>
+                        <p className="leading-relaxed text-white/70">{page.description}</p>
+                        <Link href={localizePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
+                          {content.clustersCta}
+                          <ChevronRight className="h-4 w-4" />
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+                {trackerPageSlugs.map((slug) => {
+                  const page = getTrackerPageContent(slug, locale)
+
+                  return (
+                    <Card key={slug} className="border-[#E6786E]/20 bg-[#E6786E]/5 transition-colors hover:bg-[#E6786E]/10">
+                      <CardContent className="space-y-4 p-6">
+                        <Badge variant="outline" className="border-[#E6786E]/30 text-[#F4B4AE]">
+                          {page.eyebrow}
+                        </Badge>
                         <h3 className="text-2xl font-bold text-white">{page.primaryKeyword}</h3>
                         <p className="leading-relaxed text-white/70">{page.description}</p>
                         <Link href={localizePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">

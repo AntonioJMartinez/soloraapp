@@ -72,9 +72,9 @@ Each local guide should include official IGN municipality data, an original loca
 
 Create dedicated pages for real app capabilities that currently lack a strong search landing page:
 
-1. Sun tracker and Sun path app.
-2. Moon tracker and Moon path app.
-3. Star tracker for stars, planets, galaxies, and deep-sky objects.
+1. Sun tracker and Sun path app. Implemented June 9, 2026.
+2. Moon tracker and Moon path app. Implemented June 9, 2026.
+3. Star tracker for stars, planets, galaxies, and deep-sky objects. Implemented June 9, 2026.
 4. Astronomical events calendar and eclipse tracker.
 5. Night-sky visibility forecast.
 6. Cloud-cover forecast for photography.
@@ -100,7 +100,7 @@ The site currently exports many localized articles with short, reusable section 
 - Merge or remove low-value pages that overlap the same intent.
 - Do not generate location or event pages without unique data and useful local guidance.
 - Add an editorial review date and primary sources to time-sensitive astronomy content.
-- Build author, support, privacy, and contact pages to strengthen trust.
+- Build author, support, privacy, and contact pages to strengthen trust. Implemented June 9, 2026.
 - Add original screenshots, comparison tables, and planning examples where they clarify the workflow.
 
 ## Phase 5: Performance and Media
@@ -128,7 +128,7 @@ Minimum reporting should include:
 1. Connect Search Console and submit the corrected sitemap.
 2. Add tracked App Store outbound events.
 3. Publish the eclipse safety and first three location guides.
-4. Build Sun tracker, Moon tracker, and Star tracker landing pages.
-5. Fix the lint configuration and stop ignoring TypeScript errors during builds.
+4. Build Sun tracker, Moon tracker, and Star tracker landing pages. Completed June 9, 2026.
+5. Fix the lint configuration and stop ignoring TypeScript errors during builds. TypeScript validation enabled June 9, 2026; ESLint setup remains.
 6. Optimize the heaviest homepage and article images.
-7. Add privacy, support, contact, and author trust pages.
+7. Add privacy, support, contact, and author trust pages. Completed June 9, 2026.
