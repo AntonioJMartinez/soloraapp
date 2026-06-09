@@ -49,7 +49,7 @@ export function SiteFooter({ locale, currentPath }: SiteFooterProps) {
             </div>
           </div>
 
-          <LanguageSwitcher locale={locale} path={currentPath} />
+          <LanguageSwitcher locale={locale} path={currentPath} label={ui.languageLabel} />
 
           <div className="space-y-3 text-center xl:text-right">
             <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-white/70 xl:justify-end">
