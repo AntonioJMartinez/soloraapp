@@ -139,7 +139,7 @@ export function SeoFeaturePage({
         }}
       />
 
-      <SiteHeader locale={locale} currentPath={routePath} />
+      <SiteHeader locale={locale} />
 
       <main className="container mx-auto max-w-7xl px-4 py-10 md:py-16">
         <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -240,7 +240,7 @@ export function SeoFeaturePage({
         </section>
       </main>
 
-      <SiteFooter locale={locale} />
+      <SiteFooter locale={locale} currentPath={routePath} />
     </div>
   )
 }

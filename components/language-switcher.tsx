@@ -13,9 +13,9 @@ export function LanguageSwitcher({ locale, path }: LanguageSwitcherProps) {
   const otherLocales = getSwitchableLocales(locale).filter((switchLocale) => switchLocale !== defaultLocale)
 
   return (
-    <div className="flex items-center gap-2 text-xs text-white/60 md:text-sm">
-      <span className="hidden md:inline">{ui.languageLabel}</span>
-      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1">
+    <div className="flex flex-col items-center gap-2 text-xs text-white/60 md:text-sm">
+      <span>{ui.languageLabel}</span>
+      <div className="flex flex-wrap items-center justify-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-1">
         <Link
           href={localizePath(defaultLocale, path)}
           className={`rounded-full px-2.5 py-1 transition-colors ${

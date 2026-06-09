@@ -3,14 +3,11 @@ import Link from "next/link"
 import { Locale, localizePath } from "@/lib/i18n"
 import { getUiDictionary } from "@/lib/marketing-content"
 
-import { LanguageSwitcher } from "@/components/language-switcher"
-
 type SiteHeaderProps = {
   locale: Locale
-  currentPath: string
 }
 
-export function SiteHeader({ locale, currentPath }: SiteHeaderProps) {
+export function SiteHeader({ locale }: SiteHeaderProps) {
   const ui = getUiDictionary(locale)
 
   return (
@@ -21,24 +18,20 @@ export function SiteHeader({ locale, currentPath }: SiteHeaderProps) {
           <span className="text-lg font-bold text-[#E6786E] md:text-xl">Solora</span>
         </Link>
 
-        <div className="flex items-center gap-4 md:gap-6">
-          <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
-            <Link href={localizePath(locale, "/#features")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-              {ui.navFeatures}
-            </Link>
-            <Link href={localizePath(locale, "/blog")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-              {ui.navBlog}
-            </Link>
-            <Link href={localizePath(locale, "/press-kit")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-              {ui.navPressKit}
-            </Link>
-            <Link href={localizePath(locale, "/#download")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
-              {ui.navDownload}
-            </Link>
-          </nav>
-
-          <LanguageSwitcher locale={locale} path={currentPath} />
-        </div>
+        <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
+          <Link href={localizePath(locale, "/#features")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
+            {ui.navFeatures}
+          </Link>
+          <Link href={localizePath(locale, "/blog")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
+            {ui.navBlog}
+          </Link>
+          <Link href={localizePath(locale, "/press-kit")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
+            {ui.navPressKit}
+          </Link>
+          <Link href={localizePath(locale, "/#download")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
+            {ui.navDownload}
+          </Link>
+        </nav>
       </div>
     </header>
   )

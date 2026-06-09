@@ -143,7 +143,7 @@ export function BlogArticleTemplate({
       />
 
       <div className="min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14] text-white">
-        <SiteHeader locale={locale} currentPath={routePath} />
+        <SiteHeader locale={locale} />
 
         <main className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
           <Link
@@ -262,7 +262,7 @@ export function BlogArticleTemplate({
           </article>
         </main>
 
-        <SiteFooter locale={locale} />
+        <SiteFooter locale={locale} currentPath={routePath} />
       </div>
     </>
   )

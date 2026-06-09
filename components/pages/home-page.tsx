@@ -126,7 +126,7 @@ export function HomePage({ locale }: HomePageProps) {
       />
 
       <div className="min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14]">
-        <SiteHeader locale={locale} currentPath="/" />
+        <SiteHeader locale={locale} />
 
         <main>
           <section className="container mx-auto px-4 py-4 md:py-8 lg:py-10">
@@ -374,7 +374,7 @@ export function HomePage({ locale }: HomePageProps) {
           </section>
         </main>
 
-        <SiteFooter locale={locale} />
+        <SiteFooter locale={locale} currentPath="/" />
       </div>
     </>
   )

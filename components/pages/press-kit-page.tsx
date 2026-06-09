@@ -35,7 +35,7 @@ export function PressKitPage({ locale }: PressKitPageProps) {
       />
 
       <div className="min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14]">
-        <SiteHeader locale={locale} currentPath="/press-kit" />
+        <SiteHeader locale={locale} />
 
         <main className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
           <section className="mb-16 space-y-8 text-center md:mb-20">
@@ -136,7 +136,7 @@ export function PressKitPage({ locale }: PressKitPageProps) {
           </section>
         </main>
 
-        <SiteFooter locale={locale} />
+        <SiteFooter locale={locale} currentPath="/press-kit" />
       </div>
     </>
   )

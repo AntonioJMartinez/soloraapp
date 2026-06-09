@@ -47,7 +47,7 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
       />
 
       <div className="min-h-screen bg-gradient-to-br from-[#190908] via-[#1E140F] to-[#201B14]">
-        <SiteHeader locale={locale} currentPath="/blog" />
+        <SiteHeader locale={locale} />
 
         <main className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
           <section className="mb-12 space-y-6 text-center md:mb-16">
@@ -142,7 +142,7 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
           </section>
         </main>
 
-        <SiteFooter locale={locale} />
+        <SiteFooter locale={locale} currentPath="/blog" />
       </div>
     </>
   )
