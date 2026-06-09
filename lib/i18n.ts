@@ -61,7 +61,10 @@ export function localizePath(locale: Locale, path = "/"): string {
 }
 
 export function localizedUrl(locale: Locale, path = "/"): string {
-  return absoluteUrl(localizePath(locale, path))
+  const localizedPath = localizePath(locale, path)
+  const exportPath = localizedPath === "/" ? localizedPath : `${localizedPath}/`
+
+  return absoluteUrl(exportPath)
 }
 
 export function buildLanguageAlternates(path: string): Record<string, string> {

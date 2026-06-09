@@ -5,6 +5,7 @@ type AuthoredLocale = Exclude<Locale, "pt" | "zh">
 export type ArticleSection = {
   heading: string
   paragraphs: string[]
+  bullets?: string[]
 }
 
 export type BlogCategory = "Astronomy" | "Aurora" | "Photography" | "Weather"
@@ -18,6 +19,7 @@ export type LocalizedBlogArticle = {
   ctaTitle: string
   ctaDescription: string
   relatedLinks: Array<{ href: string; label: string }>
+  sources?: Array<{ href: string; label: string }>
 }
 
 type BlogArticleDefinition = {
@@ -39,6 +41,10 @@ export type BlogPostSummary = {
   publishDate: string
   image: string
   featured: boolean
+}
+
+const articleModifiedDates: Partial<Record<string, string>> = {
+  "total-solar-eclipse-august-2026": "2026-06-09",
 }
 
 const readTimeLabel: Record<Locale, string> = {
@@ -91,39 +97,227 @@ const manualBlogArticles: BlogArticleDefinition[] = [
     true,
     {
       en: {
-        title: "Total Solar Eclipse August 12, 2026: Best Viewing Locations, Path Map, and Photography Tips",
-        description: "Plan for the August 12, 2026 total solar eclipse with path highlights, travel notes, weather strategy, and practical photography advice.",
-        excerpt: "Plan for the August 12, 2026 total solar eclipse with path highlights, travel notes, weather strategy, and practical photography advice.",
-        imageAlt: "Total solar eclipse path and viewing planning for August 2026",
+        title: "2026 Total Solar Eclipse in Spain: Path, Times, Safety and Photography Plan",
+        description: "Plan the August 12, 2026 total solar eclipse in Spain with the path of totality, official local times, sunset constraints, safety and photo tips.",
+        excerpt: "Where and when to see Spain's August 12, 2026 total solar eclipse, plus sunset, weather, safety and photography planning.",
+        imageAlt: "Total solar eclipse over Spain at sunset on August 12, 2026",
         sections: [
-          { heading: "Why this eclipse matters", paragraphs: ["The August 12, 2026 total solar eclipse is one of the most important sky events of the decade for Europe and nearby travel destinations.", "If you want totality instead of a deep partial eclipse, path planning matters as much as weather."] },
-          { heading: "How to choose a viewing location", paragraphs: ["Start with the path of totality, then compare cloud history, travel logistics, and your flexibility to move the night before.", "A slightly less famous location with stronger weather odds can beat a crowded hotspot."] },
-          { heading: "Photography priorities", paragraphs: ["Build your plan around exposure changes, a stable tripod position, and a simple sequence you can execute under pressure.", "If this is your first total eclipse, do not sacrifice the experience just to chase too many camera setups."] },
+          {
+            heading: "Why the August 12, 2026 eclipse matters for Spain",
+            paragraphs: [
+              "On Wednesday, August 12, 2026, a total solar eclipse will cross Spain from west to east near sunset. Spain's National Geographic Institute (IGN) describes it as the first total solar eclipse visible from the Iberian Peninsula in more than a century.",
+              "The path of totality runs through much of the northern half of mainland Spain and reaches the Balearic Islands. Cities and regions near the path include A Coruña, Oviedo, León, Bilbao, Burgos, Zaragoza, València and Palma. Southern Spain will experience a deep partial eclipse rather than totality.",
+            ],
+          },
+          {
+            heading: "What time is the eclipse in Spain?",
+            paragraphs: [
+              "Exact contact times depend on your municipality, so use the official IGN eclipse table for your final timing. The times below are official local time for mainland Spain and the Balearic Islands.",
+              "The Sun will be low in the west during totality. That creates dramatic light, but it also makes an unobstructed western horizon essential. A mountain ridge, building, trees or haze can hide the most important minute even when the sky above you is clear.",
+            ],
+            bullets: [
+              "A Coruña: partial eclipse begins at 19:31, maximum at 20:28, with about 76 seconds of totality and the Sun roughly 12 degrees above the horizon.",
+              "Burgos: partial eclipse begins at 19:33, maximum at 20:29, with about 104 seconds of totality and the Sun roughly 8 degrees high.",
+              "Palma: partial eclipse begins at 19:38 and reaches maximum at 20:32, with the Sun only about 2 degrees above the horizon.",
+              "The eclipse's global maximum occurs near Iceland, where totality can last up to 2 minutes 18 seconds.",
+            ],
+          },
+          {
+            heading: "Where is the best place to see totality?",
+            paragraphs: [
+              "There is no single best city months in advance. Start inside the official path of totality, favor a location near the center line when practical, and then compare horizon openness, road access, crowd capacity and the latest cloud forecast.",
+              "Western and northwestern Spain offer a higher Sun in the sky, while locations farther east experience the eclipse closer to sunset. Inland locations may offer different cloud and haze patterns than the Atlantic or Cantabrian coasts. Keep two or three candidate locations and make the final decision when short-range forecasts become useful.",
+            ],
+            bullets: [
+              "Confirm that the site is inside totality using the IGN municipality table.",
+              "Scout a clear view toward west to west-northwest before eclipse day.",
+              "Avoid relying on a single road, car park or famous viewpoint.",
+              "Choose a legal, accessible site with enough room to set up safely.",
+              "Download maps and save coordinates in case mobile networks become congested.",
+            ],
+          },
+          {
+            heading: "A practical weather and location workflow",
+            paragraphs: [
+              "Long-range climate patterns are useful for travel strategy, but they cannot tell you whether one field will be clear on August 12. Use them to choose a region, then switch to current forecasts as the event approaches.",
+              "In the final days, compare cloud cover at several levels, visibility, rain risk, wind and haze across your saved locations. Solora can help compare sky and weather conditions, preview the Sun's path for a location and keep alternative spots organized. Official eclipse geometry and contact times should still come from IGN.",
+            ],
+            bullets: [
+              "One month out: choose a flexible region and cancellable travel options.",
+              "One week out: shortlist western-horizon sites across more than one weather zone.",
+              "48 hours out: compare cloud layers, visibility, wind and route conditions.",
+              "Eclipse morning: verify official local times, access restrictions and your backup site.",
+              "On location: set up early and do not block roads, emergency access or private land.",
+            ],
+          },
+          {
+            heading: "How Solora can help with eclipse planning",
+            paragraphs: [
+              "Solora brings the surrounding decisions into one workflow: Sun position and path tools, sunrise and sunset timing, cloud and visibility forecasts, worldwide saved locations, astronomical event tracking, widgets, Apple Watch access and reminders.",
+              "For photographers, the useful question is not only when totality happens. It is whether the Sun will clear the local horizon, whether clouds or haze threaten the line of sight, and which backup location gives you a better chance without an impossible last-minute drive.",
+            ],
+            bullets: [
+              "Preview the Sun's direction and altitude for candidate compositions.",
+              "Compare cloud, visibility, wind and weather between saved locations.",
+              "Track the eclipse alongside moon phases, meteor showers and other celestial events.",
+              "Use widgets, Apple Watch and alerts for quick planning context before departure.",
+            ],
+          },
+          {
+            heading: "Solar eclipse eye safety",
+            paragraphs: [
+              "Except during the brief total phase, it is unsafe to look directly at the Sun without specialized solar viewing protection. NASA recommends viewers that comply with the ISO 12312-2 international standard. Ordinary sunglasses, exposed film and improvised filters are not safe.",
+              "If you are inside the path of totality, remove eye protection only when the bright solar surface is completely covered and replace it as soon as the Sun begins to reappear. Children should be supervised. Anyone outside totality must use proper solar protection for the entire event.",
+            ],
+          },
+          {
+            heading: "Photography checklist for the eclipse",
+            paragraphs: [
+              "Use a certified solar filter mounted securely on the front of the lens during every partial phase. Never look through an unfiltered optical viewfinder. Practice attaching and removing the filter before eclipse day so the total phase is not your first attempt.",
+              "Keep the setup simple. Totality in Spain will be brief and the low Sun may require a composition that includes the landscape. Test focus, exposure bracketing, interval timing and your widest planned framing on the previous evening from the same site.",
+            ],
+            bullets: [
+              "Camera, charged batteries, empty memory cards and a stable tripod.",
+              "Certified front-mounted solar filter sized for the lens.",
+              "Remote release or tested interval sequence.",
+              "A wider backup composition for the low western Sun.",
+              "Proper eclipse glasses for every person in your group.",
+              "Red light, water, sun protection and offline navigation.",
+            ],
+          },
+          {
+            heading: "Final planning checklist",
+            paragraphs: [
+              "Confirm your municipality's contact times on the IGN site, arrive several hours early, verify the western horizon and rehearse your safety sequence. Make sure every person knows when filters can and cannot be removed.",
+              "The best plan is flexible enough to respond to weather but simple enough to execute under pressure. Once totality begins, take time to look away from the camera and experience the sky.",
+            ],
+          },
         ],
-        ctaTitle: "Plan eclipse days with more context",
-        ctaDescription: "Use Solora to combine sky timing, moon data, and practical forecast context before your next sky trip.",
+        ctaTitle: "Compare your eclipse locations before August 12",
+        ctaDescription: "Use Solora to plan the Sun's path, weather, visibility and backup locations around Spain's 2026 total solar eclipse.",
         relatedLinks: [
           { href: "/blog/astronomical-events-2026", label: "Astronomical Events 2026" },
-          { href: "/blog/partial-lunar-eclipse-august-2026", label: "Partial Lunar Eclipse August 2026" },
           { href: "/sunrise-sunset-app", label: "Sunrise & Sunset App" },
+          { href: "/golden-hour-photography-app", label: "Golden Hour Photography App" },
+          { href: "/blog/partial-lunar-eclipse-august-2026", label: "Partial Lunar Eclipse August 2026" },
+        ],
+        sources: [
+          { href: "https://astronomia.ign.es/en/eclipses-de-sol-y-luna/eclipse-total-sol-de-12-de-agosto-2026", label: "IGN: Total solar eclipse, August 12, 2026" },
+          { href: "https://eclipses.ign.es/eclipse-total-sol-de-12-de-agosto-2026.html", label: "IGN: Official times by Spanish municipality" },
+          { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Future eclipses" },
+          { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Eclipse viewing safety" },
         ],
       },
       es: {
-        title: "Eclipse solar total del 12 de agosto de 2026: mejores lugares, mapa de la franja y consejos fotográficos",
-        description: "Planifica el eclipse solar total del 12 de agosto de 2026 con franja de totalidad, notas de viaje, estrategia meteorológica y consejos fotográficos.",
-        excerpt: "Planifica el eclipse solar total del 12 de agosto de 2026 con franja de totalidad, notas de viaje, estrategia meteorológica y consejos fotográficos.",
-        imageAlt: "Planificación de la franja del eclipse solar total de agosto de 2026",
+        title: "Eclipse solar total en España 2026: dónde verlo, horarios y guía fotográfica",
+        description: "Guía del eclipse solar total del 12 de agosto de 2026 en España: franja de totalidad, horarios oficiales, atardecer, seguridad y fotografía.",
+        excerpt: "Dónde y cuándo ver el eclipse solar total del 12 de agosto de 2026 en España, con planificación meteorológica, seguridad y fotografía.",
+        imageAlt: "Eclipse solar total en España al atardecer del 12 de agosto de 2026",
         sections: [
-          { heading: "Por qué importa este eclipse", paragraphs: ["El eclipse solar total del 12 de agosto de 2026 será uno de los grandes eventos del cielo de la década para Europa y zonas cercanas.", "Si quieres totalidad y no un eclipse parcial profundo, la planificación de la franja importa tanto como el tiempo."] },
-          { heading: "Cómo elegir ubicación", paragraphs: ["Empieza por la franja de totalidad y después compara historial de nubes, logística y margen para moverte el día anterior.", "Un lugar menos famoso con mejores probabilidades meteorológicas puede superar a un hotspot masificado."] },
-          { heading: "Prioridades fotográficas", paragraphs: ["Planifica pensando en los cambios de exposición, un trípode estable y una secuencia sencilla que puedas ejecutar con calma.", "Si es tu primer eclipse total, no sacrifiques la experiencia por intentar demasiadas cámaras a la vez."] },
+          {
+            heading: "Por qué el eclipse del 12 de agosto de 2026 es histórico",
+            paragraphs: [
+              "El miércoles 12 de agosto de 2026 un eclipse solar total cruzará España de oeste a este cerca del atardecer. El Instituto Geográfico Nacional (IGN) lo describe como el primer eclipse total de Sol visible desde la península Ibérica en más de un siglo.",
+              "La franja de totalidad atravesará gran parte de la mitad norte peninsular y llegará a Baleares. Pasará por zonas y capitales como A Coruña, Oviedo, León, Bilbao, Burgos, Zaragoza, València y Palma. En la mitad sur de España el eclipse se verá como parcial.",
+            ],
+          },
+          {
+            heading: "¿A qué hora es el eclipse solar en España?",
+            paragraphs: [
+              "Los contactos exactos cambian en cada municipio. Para cerrar tu plan debes consultar la tabla oficial del IGN. Los horarios siguientes están expresados en hora oficial peninsular y de Baleares.",
+              "La totalidad ocurrirá con el Sol muy bajo hacia el oeste. Esto puede crear una escena espectacular, pero convierte la visibilidad del horizonte en un factor crítico: una montaña, edificios, árboles o calima pueden ocultar el minuto decisivo aunque el cielo superior esté despejado.",
+            ],
+            bullets: [
+              "A Coruña: inicio parcial a las 19:31, máximo a las 20:28, unos 76 segundos de totalidad y el Sol a unos 12 grados de altura.",
+              "Burgos: inicio parcial a las 19:33, máximo a las 20:29, unos 104 segundos de totalidad y el Sol a unos 8 grados.",
+              "Palma: inicio parcial a las 19:38 y máximo a las 20:32, con el Sol a solo unos 2 grados sobre el horizonte.",
+              "El máximo global ocurrirá cerca de Islandia, con una duración máxima de totalidad de 2 minutos y 18 segundos.",
+            ],
+          },
+          {
+            heading: "Dónde ver el eclipse total en España",
+            paragraphs: [
+              "No existe una única mejor ciudad que pueda elegirse con meses de antelación. Empieza dentro de la franja oficial de totalidad, acércate a la línea central cuando sea práctico y compara después horizonte, accesos, capacidad del lugar y previsión de nubes.",
+              "En el oeste y noroeste el Sol estará más alto. Hacia el este, la totalidad llegará más cerca de la puesta. Las zonas interiores pueden tener condiciones de nubosidad y calima distintas a las costas atlántica y cantábrica. Guarda dos o tres ubicaciones y decide cuando la previsión de corto plazo sea útil.",
+            ],
+            bullets: [
+              "Comprueba en la tabla municipal del IGN que el lugar está dentro de la totalidad.",
+              "Busca una vista limpia hacia el oeste u oeste-noroeste antes del día del eclipse.",
+              "Evita depender de una sola carretera, aparcamiento o mirador popular.",
+              "Elige un espacio legal, accesible y con margen para instalarte sin bloquear el paso.",
+              "Descarga mapas y guarda coordenadas por si se saturan las redes móviles.",
+            ],
+          },
+          {
+            heading: "Plan meteorológico y de ubicaciones",
+            paragraphs: [
+              "La climatología histórica sirve para elegir una región, pero no puede decirte qué campo estará despejado el 12 de agosto. A medida que se acerque el evento, cambia a previsiones actuales y conserva flexibilidad para moverte.",
+              "Durante los últimos días compara nubosidad por capas, visibilidad, riesgo de lluvia, viento y calima entre tus ubicaciones guardadas. Solora permite comparar condiciones del cielo y del tiempo, previsualizar la trayectoria del Sol y organizar alternativas. Para geometría y contactos exactos del eclipse, utiliza siempre los datos oficiales del IGN.",
+            ],
+            bullets: [
+              "Un mes antes: elige una región flexible y reservas que permitan cambios.",
+              "Una semana antes: selecciona lugares con horizonte oeste en más de una zona meteorológica.",
+              "48 horas antes: compara capas de nubes, visibilidad, viento y rutas de acceso.",
+              "La mañana del eclipse: confirma horarios oficiales, restricciones y ubicación alternativa.",
+              "Al llegar: instala el equipo pronto y no bloquees carreteras, emergencias ni terrenos privados.",
+            ],
+          },
+          {
+            heading: "Cómo puede ayudarte Solora a planificar el eclipse",
+            paragraphs: [
+              "Solora reúne las decisiones que rodean al evento: herramientas de posición y trayectoria solar, horarios de amanecer y atardecer, previsión de nubes y visibilidad, ubicaciones guardadas en todo el mundo, seguimiento de eventos astronómicos, widgets, Apple Watch y recordatorios.",
+              "Para fotografía no basta con saber la hora de la totalidad. También necesitas comprobar si el Sol superará el horizonte local, si las nubes o la calima amenazan la línea de visión y qué alternativa mejora tus opciones sin exigir un desplazamiento imposible a última hora.",
+            ],
+            bullets: [
+              "Previsualiza la dirección y altura del Sol para preparar la composición.",
+              "Compara nubes, visibilidad, viento y tiempo entre ubicaciones guardadas.",
+              "Sigue el eclipse junto a fases lunares, lluvias de meteoros y otros eventos.",
+              "Consulta widgets, Apple Watch y alertas para revisar el plan antes de salir.",
+            ],
+          },
+          {
+            heading: "Seguridad para observar el eclipse solar",
+            paragraphs: [
+              "Salvo durante la breve fase total, nunca es seguro mirar directamente al Sol sin protección especializada. NASA recomienda visores que cumplan la norma internacional ISO 12312-2. Las gafas de sol, películas expuestas y filtros improvisados no son seguros.",
+              "Si estás dentro de la franja de totalidad, retira la protección únicamente cuando la superficie brillante del Sol quede completamente cubierta y vuelve a colocarla en cuanto reaparezca. Los menores deben estar supervisados. Fuera de la totalidad hay que mantener la protección durante todo el eclipse.",
+            ],
+          },
+          {
+            heading: "Checklist de fotografía del eclipse",
+            paragraphs: [
+              "Utiliza un filtro solar certificado y bien fijado delante del objetivo durante todas las fases parciales. Nunca mires por un visor óptico sin filtrar. Practica cómo colocar y retirar el filtro antes del día del eclipse.",
+              "Mantén un equipo sencillo. La totalidad será breve y la baja altura del Sol puede favorecer una composición que incluya el paisaje. Prueba enfoque, bracketing, intervalómetro y encuadre la tarde anterior desde el mismo lugar.",
+            ],
+            bullets: [
+              "Cámara, baterías cargadas, tarjetas vacías y trípode estable.",
+              "Filtro solar certificado montado delante del objetivo.",
+              "Disparador remoto o secuencia de intervalos ya probada.",
+              "Un encuadre más abierto de respaldo para el Sol bajo.",
+              "Gafas de eclipse adecuadas para todas las personas del grupo.",
+              "Luz roja, agua, protección solar y navegación sin conexión.",
+            ],
+          },
+          {
+            heading: "Checklist final antes del 12 de agosto",
+            paragraphs: [
+              "Confirma los contactos de tu municipio en la web del IGN, llega con varias horas de margen, revisa el horizonte oeste y ensaya la secuencia de seguridad. Todo el grupo debe saber cuándo pueden retirarse y volver a colocarse los filtros.",
+              "El mejor plan es suficientemente flexible para responder al tiempo y suficientemente simple para ejecutarlo bajo presión. Cuando empiece la totalidad, reserva también unos segundos para apartarte de la cámara y mirar el cielo.",
+            ],
+          },
         ],
-        ctaTitle: "Planifica días de eclipse con más contexto",
-        ctaDescription: "Usa Solora para combinar timing astronómico y previsión práctica antes de tu próxima salida fotográfica.",
+        ctaTitle: "Compara tus ubicaciones antes del 12 de agosto",
+        ctaDescription: "Usa Solora para planificar trayectoria solar, tiempo, visibilidad y alternativas para el eclipse total de España.",
         relatedLinks: [
           { href: "/blog/astronomical-events-2026", label: "Eventos astronómicos 2026" },
-          { href: "/blog/partial-lunar-eclipse-august-2026", label: "Eclipse lunar parcial de agosto de 2026" },
           { href: "/sunrise-sunset-app", label: "App de amanecer y atardecer" },
+          { href: "/golden-hour-photography-app", label: "App de hora dorada" },
+          { href: "/blog/partial-lunar-eclipse-august-2026", label: "Eclipse lunar parcial de agosto de 2026" },
+        ],
+        sources: [
+          { href: "https://astronomia.ign.es/es/eclipses-de-sol-y-luna/eclipse-total-sol-de-12-de-agosto-2026", label: "IGN: Eclipse total de Sol del 12 de agosto de 2026" },
+          { href: "https://eclipses.ign.es/eclipse-total-sol-de-12-de-agosto-2026.html", label: "IGN: Horarios oficiales por municipio" },
+          { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Próximos eclipses" },
+          { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Seguridad durante un eclipse" },
         ],
       },
       fr: {
@@ -1233,6 +1427,26 @@ function getLocalizedArticleContent(definition: BlogArticleDefinition, locale: L
   }
 }
 
+function countArticleWords(content: LocalizedBlogArticle, locale: Locale) {
+  const text = [
+    content.title,
+    content.description,
+    ...content.sections.flatMap((section) => [
+      section.heading,
+      ...section.paragraphs,
+      ...(section.bullets ?? []),
+    ]),
+  ].join(" ")
+
+  if (locale === "zh") {
+    const cjkCharacters = text.match(/[\u3400-\u9fff]/g)?.length ?? 0
+    const latinWords = text.match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g)?.length ?? 0
+    return Math.max(1, Math.round(cjkCharacters / 2) + latinWords)
+  }
+
+  return text.match(/\p{L}[\p{L}\p{N}'’-]*/gu)?.length ?? 0
+}
+
 export function formatReadTime(locale: Locale, minutes: number) {
   return `${minutes} ${readTimeLabel[locale]}`
 }
@@ -1252,9 +1466,10 @@ export function getBlogArticle(locale: Locale, slug: string) {
     minutes: definition.minutes,
     readTime: formatReadTime(locale, definition.minutes),
     publishDate: definition.publishDate,
+    modifiedDate: articleModifiedDates[definition.slug] ?? definition.publishDate,
     image: definition.image,
     featured: definition.featured,
-    wordCount: definition.minutes * 280,
+    wordCount: countArticleWords(localized, locale),
     ...localized,
   }
 }

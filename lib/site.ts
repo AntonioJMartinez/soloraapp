@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Solora",
   shortName: "Solora",
-  url: "https://solora.app",
+  url: "https://www.solora.app",
   title: "Solora | Sunrise, Sunset, Moon Phase and Aurora Forecast App",
   description:
     "Plan sunrise and sunset shoots, golden hour sessions, moon phase calendars, aurora forecasts, Milky Way visibility, tides, and major astronomical events with Solora.",
@@ -9,7 +9,7 @@ export const siteConfig = {
   pressImage: "/soloraBento.jpg",
   icon: "/solora-app-icon.png",
   appStoreId: "6502008343",
-  appStoreUrl: "https://apps.apple.com/es/app/atardecer-amanecer-solora/id6502008343?platform=iphone",
+  appStoreUrl: "https://apps.apple.com/app/id6502008343",
   author: "Antonio Jose Martinez Sanchez",
   twitterHandle: "@solora_app",
 } as const

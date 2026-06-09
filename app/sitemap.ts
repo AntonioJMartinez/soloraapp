@@ -14,13 +14,13 @@ const staticRoutes = [
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
+  const contentLastModified = new Date("2026-06-09T00:00:00.000Z")
 
   const staticEntries = locales.flatMap((locale) =>
     staticRoutes.map((route) => ({
       url: localizedUrl(locale, route),
-      lastModified: now,
-      changeFrequency: (route === "/" ? "weekly" : "monthly") as const,
+      lastModified: contentLastModified,
+      changeFrequency: route === "/" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "/" ? 1 : route === "/blog" ? 0.9 : 0.8,
       alternates: {
         languages: buildLanguageAlternates(route),
@@ -31,7 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogEntries = locales.flatMap((locale) =>
     blogArticles.map((post) => ({
       url: localizedUrl(locale, `/blog/${post.slug}`),
-      lastModified: new Date(post.publishDate),
+      lastModified: new Date(
+        post.slug === "total-solar-eclipse-august-2026" ? "2026-06-09" : post.publishDate,
+      ),
       changeFrequency: "monthly" as const,
       priority: 0.75,
       alternates: {

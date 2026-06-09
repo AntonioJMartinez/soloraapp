@@ -33,6 +33,7 @@ type BlogArticleTemplateProps = {
   ctaTitle: string
   ctaDescription: string
   relatedLinks?: Array<{ href: string; label: string }>
+  sources?: Array<{ href: string; label: string }>
   extraHeaderContent?: ReactNode
 }
 
@@ -53,11 +54,30 @@ export function BlogArticleTemplate({
   ctaTitle,
   ctaDescription,
   relatedLinks = [],
+  sources = [],
   extraHeaderContent,
 }: BlogArticleTemplateProps) {
   const canonicalUrl = localizedUrl(locale, `/blog/${slug}`)
   const ui = getUiDictionary(locale)
   const routePath = `/blog/${slug}`
+  const sourceHeading = {
+    en: "Official sources",
+    es: "Fuentes oficiales",
+    fr: "Sources officielles",
+    it: "Fonti ufficiali",
+    de: "Offizielle Quellen",
+    pt: "Fontes oficiais",
+    zh: "官方来源",
+  }[locale]
+  const updatedLabel = {
+    en: "Updated",
+    es: "Actualizado",
+    fr: "Mis à jour",
+    it: "Aggiornato",
+    de: "Aktualisiert",
+    pt: "Atualizado",
+    zh: "更新于",
+  }[locale]
 
   return (
     <>
@@ -66,31 +86,58 @@ export function BlogArticleTemplate({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: title,
-            description,
-            image: absoluteUrl(`/${image}`),
-            author: {
-              "@type": "Person",
-              name: siteConfig.author,
-            },
-            publisher: {
-              "@type": "Organization",
-              name: siteConfig.name,
-              logo: {
-                "@type": "ImageObject",
-                url: absoluteUrl(siteConfig.icon),
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                headline: title,
+                description,
+                image: absoluteUrl(`/${image}`),
+                author: {
+                  "@type": "Person",
+                  name: siteConfig.author,
+                },
+                publisher: {
+                  "@type": "Organization",
+                  name: siteConfig.name,
+                  logo: {
+                    "@type": "ImageObject",
+                    url: absoluteUrl(siteConfig.icon),
+                  },
+                },
+                datePublished: publishedDate,
+                dateModified: modifiedDate ?? publishedDate,
+                mainEntityOfPage: {
+                  "@type": "WebPage",
+                  "@id": canonicalUrl,
+                },
+                articleSection,
+                wordCount,
+                timeRequired: `PT${Math.max(1, parseInt(readTime, 10) || 1)}M`,
               },
-            },
-            datePublished: publishedDate,
-            dateModified: modifiedDate ?? publishedDate,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": canonicalUrl,
-            },
-            articleSection,
-            wordCount,
-            timeRequired: `PT${Math.max(1, parseInt(readTime, 10) || 1)}M`,
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: ui.navHome,
+                    item: localizedUrl(locale, "/"),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: ui.navBlog,
+                    item: localizedUrl(locale, "/blog"),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: title,
+                    item: canonicalUrl,
+                  },
+                ],
+              },
+            ],
           }),
         }}
       />
@@ -121,6 +168,14 @@ export function BlogArticleTemplate({
 
               <h1 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">{title}</h1>
               <p className="text-lg leading-relaxed text-white/80 md:text-xl">{description}</p>
+              {modifiedDate ? (
+                <p className="text-sm text-white/50">
+                  {updatedLabel}:{" "}
+                  <time dateTime={modifiedDate}>
+                    {new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(new Date(modifiedDate))}
+                  </time>
+                </p>
+              ) : null}
               {extraHeaderContent}
 
               <div className="aspect-video overflow-hidden rounded-2xl">
@@ -164,6 +219,26 @@ export function BlogArticleTemplate({
                     </Link>
                   ))}
                 </div>
+              </section>
+            ) : null}
+
+            {sources.length ? (
+              <section className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h2 className="text-2xl font-bold text-white">{sourceHeading}</h2>
+                <ul className="space-y-3">
+                  {sources.map((source) => (
+                    <li key={source.href}>
+                      <Link
+                        href={source.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#E6786E] underline-offset-4 hover:underline"
+                      >
+                        {source.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </section>
             ) : null}
 

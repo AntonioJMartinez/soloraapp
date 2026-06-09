@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Apple, Bell, Camera, ChevronRight, Cloud, MapPin, Moon, Star, Sun, Waves, Watch } from "lucide-react"
+import { Apple, Bell, CalendarDays, Camera, ChevronRight, Cloud, MapPin, Moon, Star, Sun, Waves, Watch } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -28,6 +28,51 @@ const onboardingScreens = [
 
 const featureIcons = [Cloud, Sun, Camera, Moon, Star, Bell, Watch, MapPin, Waves]
 
+const eclipseCampaign = {
+  en: {
+    badge: "August 12, 2026",
+    title: "Plan Spain's total solar eclipse before the western horizon disappears",
+    body: "Totality crosses northern Spain near sunset. Use the guide to compare the path, local times, western-horizon visibility, weather, safety, and photography priorities.",
+    cta: "Plan the 2026 eclipse in Spain",
+  },
+  es: {
+    badge: "12 de agosto de 2026",
+    title: "Planifica el eclipse solar total de España antes de que el Sol alcance el horizonte",
+    body: "La totalidad cruzará el norte de España cerca del atardecer. Consulta la franja, horarios, visibilidad hacia el oeste, meteorología, seguridad y planificación fotográfica.",
+    cta: "Planificar el eclipse de 2026",
+  },
+  fr: {
+    badge: "12 août 2026",
+    title: "Préparez l'éclipse solaire totale en Espagne près de l'horizon ouest",
+    body: "La totalité traversera le nord de l'Espagne près du coucher du soleil. Consultez la bande, les horaires, la météo, la sécurité et les priorités photo.",
+    cta: "Préparer l'éclipse de 2026",
+  },
+  it: {
+    badge: "12 agosto 2026",
+    title: "Pianifica l'eclissi solare totale in Spagna vicino all'orizzonte occidentale",
+    body: "La totalità attraverserà il nord della Spagna vicino al tramonto. Consulta fascia, orari, meteo, sicurezza e priorità fotografiche.",
+    cta: "Pianifica l'eclissi del 2026",
+  },
+  de: {
+    badge: "12. August 2026",
+    title: "Plane Spaniens totale Sonnenfinsternis am westlichen Horizont",
+    body: "Die Totalitätszone überquert Nordspanien nahe Sonnenuntergang. Der Guide erklärt Pfad, lokale Zeiten, Wetter, Sicherheit und Fotoplanung.",
+    cta: "Die Finsternis 2026 planen",
+  },
+  pt: {
+    badge: "12 de agosto de 2026",
+    title: "Planeje o eclipse solar total na Espanha junto ao horizonte oeste",
+    body: "A totalidade cruzará o norte da Espanha perto do pôr do sol. Consulte faixa, horários, clima, segurança e prioridades fotográficas.",
+    cta: "Planejar o eclipse de 2026",
+  },
+  zh: {
+    badge: "2026 年 8 月 12 日",
+    title: "规划西班牙西方低空的日全食",
+    body: "全食带将在日落前横穿西班牙北部。查看路径、当地时间、天气、安全事项与摄影计划。",
+    cta: "规划 2026 年日全食",
+  },
+} satisfies Record<Locale, { badge: string; title: string; body: string; cta: string }>
+
 type HomePageProps = {
   locale: Locale
 }
@@ -37,6 +82,7 @@ export function HomePage({ locale }: HomePageProps) {
   const content = getHomeContent(locale)
   const ui = getUiDictionary(locale)
   const evergreenPosts = getEvergreenBlogPosts(locale)
+  const eclipse = eclipseCampaign[locale]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -111,12 +157,8 @@ export function HomePage({ locale }: HomePageProps) {
 
                 <div className="flex flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="flex" role="img" aria-label="5 star rating">
-                      {[...Array(5)].map((_, index) => (
-                        <Star key={index} className="h-4 w-4 fill-yellow-400 text-yellow-400" aria-hidden="true" />
-                      ))}
-                    </div>
-                    <span>{content.ratingLabel}</span>
+                    <CalendarDays className="h-4 w-4" aria-hidden="true" />
+                    <span>{ui.freeDownload}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Apple className="h-4 w-4" aria-hidden="true" />
@@ -153,6 +195,24 @@ export function HomePage({ locale }: HomePageProps) {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-8 md:py-12">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[#E6786E]/25 bg-gradient-to-r from-[#E6786E]/20 via-white/5 to-purple-500/10 p-6 md:p-10">
+              <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+                <div className="space-y-4">
+                  <Badge className="border-[#E6786E]/30 bg-[#E6786E]/20 text-[#F4B4AE]">{eclipse.badge}</Badge>
+                  <h2 className="max-w-4xl text-3xl font-bold text-white md:text-5xl">{eclipse.title}</h2>
+                  <p className="max-w-3xl text-lg leading-relaxed text-white/75">{eclipse.body}</p>
+                </div>
+                <Button size="lg" className="bg-[#E6786E] text-white hover:bg-[#D4695F]" asChild>
+                  <Link href={localizePath(locale, "/blog/total-solar-eclipse-august-2026")}>
+                    {eclipse.cta}
+                    <ChevronRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>
@@ -305,14 +365,6 @@ export function HomePage({ locale }: HomePageProps) {
                   </Button>
 
                   <div className="flex flex-col items-center justify-center gap-6 text-lg opacity-90 sm:flex-row sm:gap-12">
-                    <div className="flex items-center gap-2">
-                      <div className="flex" role="img" aria-label="5 star rating">
-                        {[...Array(5)].map((_, index) => (
-                          <Star key={index} className="h-5 w-5 fill-white text-white" aria-hidden="true" />
-                        ))}
-                      </div>
-                      <span>+1000</span>
-                    </div>
                     <div>{ui.freeDownload}</div>
                     <div>{ui.iosPlatformsShort}</div>
                   </div>

@@ -26,7 +26,7 @@ export async function generateMetadata({
   return buildArticleMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: `${article.title} | Solora Blog`,
+    title: article.title,
     description: article.description,
     ogImage: `/${article.image}`,
     ogImageAlt: article.imageAlt,
@@ -58,12 +58,14 @@ export default async function LocalizedArticlePage({
       image={article.image}
       imageAlt={article.imageAlt}
       publishedDate={`${article.publishDate}T00:00:00.000Z`}
+      modifiedDate={`${article.modifiedDate}T00:00:00.000Z`}
       articleSection={article.category}
       wordCount={article.wordCount}
       sections={article.sections}
       ctaTitle={article.ctaTitle}
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
+      sources={article.sources}
     />
   )
 }

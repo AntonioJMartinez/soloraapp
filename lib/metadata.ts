@@ -18,6 +18,14 @@ type ArticleMetadataInput = BasePageMetadataInput & {
   publishedTime: string
 }
 
+const sharedOtherMetadata = {
+  "apple-mobile-web-app-capable": "yes",
+  "apple-mobile-web-app-status-bar-style": "black-translucent",
+  "apple-mobile-web-app-title": siteConfig.name,
+  "mobile-web-app-capable": "yes",
+  "msapplication-TileColor": "#E6786E",
+} satisfies Record<string, string>
+
 export const sharedMetadata: Metadata = {
   authors: [{ name: siteConfig.author }],
   creator: siteConfig.author,
@@ -40,18 +48,8 @@ export const sharedMetadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#E6786E",
-      },
-    ],
+    icon: [{ url: siteConfig.icon, sizes: "1024x1024", type: "image/png" }],
+    apple: [{ url: siteConfig.icon, sizes: "1024x1024", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
   category: "technology",
@@ -69,14 +67,7 @@ export const sharedMetadata: Metadata = {
       app_store_id: siteConfig.appStoreId,
     },
   },
-  other: {
-    "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": siteConfig.name,
-    "mobile-web-app-capable": "yes",
-    "msapplication-TileColor": "#E6786E",
-    "msapplication-config": "/browserconfig.xml",
-  },
+  other: sharedOtherMetadata,
 }
 
 function buildCommonMetadata({
@@ -109,8 +100,6 @@ function buildCommonMetadata({
       images: [
         {
           url: ogImage,
-          width: 1600,
-          height: 900,
           alt: ogImageAlt,
         },
       ],
@@ -123,7 +112,7 @@ function buildCommonMetadata({
       creator: siteConfig.twitterHandle,
     },
     other: {
-      ...(sharedMetadata.other ?? {}),
+      ...sharedOtherMetadata,
       "apple-itunes-app": `app-id=${siteConfig.appStoreId}, app-argument=${canonical}`,
     },
   }
@@ -143,6 +132,7 @@ export function buildArticleMetadata(input: ArticleMetadataInput): Metadata {
     ...metadata,
     openGraph: {
       ...metadata.openGraph,
+      type: "article",
       publishedTime: input.publishedTime,
       authors: [siteConfig.author],
     },

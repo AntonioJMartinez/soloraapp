@@ -221,7 +221,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "Solora is a sunrise and sunset app, golden hour planner, moon phase calendar, aurora forecast tracker, and Milky Way planning tool built for photographers and sky watchers.",
     heroSubbody:
       "Check cloud cover, visibility, moonlight, tides, meteor showers, eclipses, and night-sky conditions before you drive, hike, travel, or set up your camera.",
-    ratingLabel: "+1000 ratings",
+    ratingLabel: "Free on the App Store",
     planningCards: [
       {
         badge: "Who Solora Is For",
@@ -242,11 +242,11 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
     features: [
       { title: "Complete Sky & Weather Forecasts Anywhere", description: "Complete forecasts for clouds, rain, wind, visibility, and temperature anywhere you shoot." },
       { title: "Personalized forecast summaries", description: "Personalized sunrise, sunset, and night-sky visibility summaries so you can plan the best moments in advance." },
-      { title: "Track the Sun, Moon, and Milky Way", description: "See Sun, Moon, and Milky Way positions and alignments in AR to plan stronger compositions." },
+      { title: "Map and AR trackers for the sky", description: "Follow Sun, Moon, Milky Way, stars, planets, and deep-sky targets by direction, altitude, map path, and AR." },
       { title: "Track lunar cycles with precision", description: "Next phases, rise and set times, and illumination for precise planning." },
       { title: "Stay on top of astronomical events", description: "Upcoming eclipses, meteor showers, supermoons, and planetary events in one place." },
       { title: "Smart alerts that match your plans", description: "Alerts for golden hour, moonrise, tides, events, daily summaries, and nearby conditions." },
-      { title: "Every forecast at a glance", description: "Widgets and Apple Watch support for quick access from Home Screen, Lock Screen, and Watch." },
+      { title: "Every forecast at a glance", description: "Widgets, Live Activities, and Apple Watch support for quick access from the Home Screen, Lock Screen, and wrist." },
       { title: "Track and compare worldwide locations", description: "Unlimited locations with quick switching to compare favorite spots anywhere in the world." },
       { title: "Marine & tides for coastal planning", description: "Tide timing and wave conditions for coastal shoots and water-based planning." },
     ],
@@ -273,7 +273,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "Solora es una app de amanecer y atardecer, planificador de hora dorada, calendario lunar, previsión de auroras y herramienta de planificación de la Vía Láctea pensada para fotógrafos y observadores del cielo.",
     heroSubbody:
       "Consulta nubosidad, visibilidad, luz lunar, mareas, lluvias de meteoros, eclipses y condiciones nocturnas antes de conducir, caminar, viajar o montar tu cámara.",
-    ratingLabel: "+1000 valoraciones",
+    ratingLabel: "Gratis en App Store",
     planningCards: [
       {
         badge: "Para quién es Solora",
@@ -294,11 +294,11 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
     features: [
       { title: "Previsión completa del cielo y del tiempo", description: "Previsiones completas de nubes, lluvia, viento, visibilidad y temperatura dondequiera que fotografíes." },
       { title: "Resúmenes personalizados de previsión", description: "Resúmenes personalizados de amanecer, atardecer y visibilidad nocturna para planificar con antelación." },
-      { title: "Sigue Sol, Luna y Vía Láctea", description: "Consulta posiciones y alineaciones en AR para planificar mejores composiciones." },
+      { title: "Trackers del cielo en mapa y AR", description: "Sigue Sol, Luna, Vía Láctea, estrellas, planetas y objetos de cielo profundo por dirección, altura, trayectoria y AR." },
       { title: "Control preciso del ciclo lunar", description: "Próximas fases, horas de salida y puesta e iluminación para una planificación precisa." },
       { title: "Mantente al día con los eventos astronómicos", description: "Eclipses, lluvias de meteoros, superlunas y eventos planetarios en un solo lugar." },
       { title: "Alertas inteligentes según tu plan", description: "Alertas de hora dorada, salida de la luna, mareas, eventos, resúmenes diarios y condiciones cercanas." },
-      { title: "Todo a simple vista", description: "Widgets y Apple Watch para acceso rápido desde la pantalla de inicio, bloqueo y reloj." },
+      { title: "Todo a simple vista", description: "Widgets, Actividades en Directo y Apple Watch para acceso rápido desde la pantalla de inicio, bloqueo y reloj." },
       { title: "Sigue y compara ubicaciones en todo el mundo", description: "Ubicaciones ilimitadas y cambio rápido entre tus sitios favoritos." },
       { title: "Mar y mareas para fotografía costera", description: "Horarios de mareas y oleaje para sesiones costeras y planificación en agua." },
     ],
@@ -325,7 +325,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "Solora est une app de lever et coucher du soleil, de planification de l’heure dorée, de calendrier lunaire, de prévision des aurores et de visibilité de la Voie lactée pour les photographes et les passionnés du ciel.",
     heroSubbody:
       "Consultez nuages, visibilité, lumière lunaire, marées, pluies d’étoiles filantes, éclipses et conditions nocturnes avant de partir, voyager ou installer votre appareil.",
-    ratingLabel: "+1000 avis",
+    ratingLabel: "Gratuit sur l’App Store",
     planningCards: [
       {
         badge: "Pour qui est Solora",
@@ -377,7 +377,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "Solora è un’app per alba e tramonto, pianificazione della golden hour, calendario lunare, previsioni aurora e visibilità della Via Lattea pensata per fotografi e appassionati del cielo.",
     heroSubbody:
       "Controlla nuvole, visibilità, luce lunare, maree, sciami meteorici, eclissi e condizioni del cielo notturno prima di partire o preparare la tua fotocamera.",
-    ratingLabel: "+1000 recensioni",
+    ratingLabel: "Gratis su App Store",
     planningCards: [
       {
         badge: "Per chi è Solora",
@@ -429,7 +429,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "Solora ist eine App für Sonnenaufgang und Sonnenuntergang, Golden-Hour-Planung, Mondphasen, Aurora-Vorhersagen und Milchstraßen-Sichtbarkeit für Fotografen und Himmelsbeobachter.",
     heroSubbody:
       "Prüfe Wolken, Sichtweite, Mondlicht, Gezeiten, Meteorschauer, Finsternisse und Nachtbedingungen, bevor du losfährst, reist oder deine Kamera aufbaust.",
-    ratingLabel: "+1000 Bewertungen",
+    ratingLabel: "Kostenlos im App Store",
     planningCards: [
       {
         badge: "Für wen Solora gemacht ist",
@@ -694,6 +694,7 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       heroAlt: "Solora sunrise and sunset forecast screen",
       benefits: [
         "See sunrise, sunset, dawn, dusk, and changing daylight at your chosen location.",
+        "Preview the Sun's direction, altitude, and path on a map or in AR for location scouting.",
         "Check cloud cover, visibility, and weather so you do not rely on time alone.",
         "Compare multiple locations when one horizon looks weak and another looks promising.",
       ],
@@ -717,6 +718,7 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       heroAlt: "Pantalla de previsión de amanecer y atardecer en Solora",
       benefits: [
         "Consulta amanecer, atardecer, alba, ocaso y la variación de luz de tu ubicación.",
+        "Previsualiza dirección, altura y trayectoria del Sol en mapa o AR para explorar ubicaciones.",
         "Comprueba nubosidad, visibilidad y tiempo para no depender solo de la hora.",
         "Compara varias ubicaciones cuando un horizonte falla y otro promete.",
       ],
@@ -929,6 +931,7 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       benefits: [
         "Know how bright the moon will be before you head out.",
         "See moonrise and moonset timing with the lunar phase in one place.",
+        "Preview the Moon's direction and path when a landscape alignment matters.",
         "Plan dark-sky sessions and moonlit scenes with more confidence.",
       ],
       useCases: [
@@ -952,6 +955,7 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       benefits: [
         "Sabe cuánta luz lunar habrá antes de salir.",
         "Consulta salida y puesta de la luna junto con la fase lunar en una sola vista.",
+        "Previsualiza la dirección y trayectoria de la Luna cuando una alineación importa.",
         "Planifica noches oscuras o escenas con luna con más confianza.",
       ],
       useCases: [
@@ -1161,9 +1165,9 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       primaryKeyword: "Milky Way Planner",
       heroAlt: "Milky Way planning preview in Solora",
       benefits: [
-        "Find darker nights with lower moonlight interference.",
-        "Use weather and visibility context instead of astronomy timing alone.",
-        "Plan around seasonal Milky Way windows with a single workflow.",
+        "Find the galactic center's visibility window, direction, altitude, and orientation.",
+        "Account for moon illumination, Moon-to-galactic-center separation, darkness, and horizon position.",
+        "Compare the next 14 days with weather and visibility context instead of astronomy timing alone.",
       ],
       useCases: [
         "Milky Way landscape photography.",
@@ -1184,9 +1188,9 @@ export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, 
       primaryKeyword: "Planificador de la Vía Láctea",
       heroAlt: "Vista previa de planificación de la Vía Láctea en Solora",
       benefits: [
-        "Encuentra noches más oscuras con menos interferencia lunar.",
-        "Usa contexto de tiempo y visibilidad, no solo el timing astronómico.",
-        "Planifica las ventanas estacionales de la Vía Láctea en un solo flujo.",
+        "Consulta la ventana de visibilidad, dirección, altura y orientación del centro galáctico.",
+        "Ten en cuenta iluminación lunar, separación entre Luna y centro galáctico, oscuridad y horizonte.",
+        "Compara los próximos 14 días con contexto meteorológico y de visibilidad.",
       ],
       useCases: [
         "Fotografía de paisaje con la Vía Láctea.",
@@ -1323,7 +1327,7 @@ const derivedHomeContent: Record<"pt" | "zh", HomeContent> = {
     heroHeadingLine2: "acerte o momento",
     heroBody: "Solora é um app para nascer e pôr do sol, golden hour, fases da lua, previsão de aurora e planejamento da Via Láctea, feito para fotógrafos e observadores do céu.",
     heroSubbody: "Confira nuvens, visibilidade, luz lunar, marés, chuvas de meteoros, eclipses e condições do céu antes de dirigir, viajar, caminhar ou montar a câmera.",
-    ratingLabel: "+1000 avaliações",
+    ratingLabel: "Grátis na App Store",
     planningCards: [
       {
         badge: "Para quem é o Solora",
@@ -1369,7 +1373,7 @@ const derivedHomeContent: Record<"pt" | "zh", HomeContent> = {
     heroHeadingLine2: "抓住最佳时刻",
     heroBody: "Solora 是为摄影师和观星者打造的日出日落、黄金时刻、月相、极光和银河规划应用。",
     heroSubbody: "在开车、徒步、旅行或架设相机前，先查看云量、能见度、月光、潮汐、流星雨、日月食和夜空条件。",
-    ratingLabel: "1000+ 评分",
+    ratingLabel: "App Store 免费下载",
     planningCards: [
       {
         badge: "适合谁使用",
