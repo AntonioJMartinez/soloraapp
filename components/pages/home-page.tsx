@@ -87,7 +87,6 @@ export function HomePage({ locale }: HomePageProps) {
             <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="order-2 space-y-5 lg:order-1">
                 <div className="space-y-4">
-                  <span className="block text-3xl font-bold text-[#E6786E] md:text-4xl lg:text-5xl">Solora</span>
                   <h1 className="text-4xl font-bold leading-tight text-[#EDF4F7] md:text-5xl lg:text-7xl">
                     <span className="block">{content.heroHeadingLine1}</span>
                     <span className="block">{content.heroHeadingLine2}</span>
