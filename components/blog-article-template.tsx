@@ -14,6 +14,11 @@ type ArticleSection = {
   heading: string
   paragraphs: string[]
   bullets?: string[]
+  table?: {
+    caption: string
+    headers: string[]
+    rows: string[][]
+  }
 }
 
 type BlogArticleTemplateProps = {
@@ -199,6 +204,41 @@ export function BlogArticleTemplate({
                           <li key={bullet}>{bullet}</li>
                         ))}
                       </ul>
+                    ) : null}
+                    {section.table ? (
+                      <div className="my-6 overflow-x-auto rounded-2xl border border-white/10">
+                        <table className="min-w-[760px] border-collapse text-left text-sm">
+                          <caption className="bg-white/10 px-4 py-3 text-left font-semibold text-white">
+                            {section.table.caption}
+                          </caption>
+                          <thead className="bg-black/30 text-white">
+                            <tr>
+                              {section.table.headers.map((header) => (
+                                <th key={header} scope="col" className="border-b border-white/10 px-4 py-3 font-semibold">
+                                  {header}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {section.table.rows.map((row) => (
+                              <tr key={row.join("|")} className="border-b border-white/10 last:border-b-0">
+                                {row.map((cell, index) =>
+                                  index === 0 ? (
+                                    <th key={cell} scope="row" className="px-4 py-3 font-semibold text-white">
+                                      {cell}
+                                    </th>
+                                  ) : (
+                                    <td key={`${index}-${cell}`} className="px-4 py-3 text-white/75">
+                                      {cell}
+                                    </td>
+                                  ),
+                                )}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     ) : null}
                   </section>
                 ))}

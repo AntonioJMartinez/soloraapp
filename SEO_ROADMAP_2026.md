@@ -43,6 +43,13 @@ Target window: June 10 to August 12, 2026
 
 Keep `/es/blog/total-solar-eclipse-august-2026/` as the canonical campaign hub. Refresh it whenever official access, safety, transport, or observation guidance changes.
 
+Research update completed June 9, 2026:
+
+- Added a ranked comparison based on official IGN geometry, August cloud climatology, horizon constraints and published observation infrastructure.
+- Identified the northern Meseta as the best overall region, with Palencia, León, Burgos/Aranda and Soria providing the strongest balance.
+- Added official observation-site updates from Soria and Aragón.
+- Reframed A Coruña as the higher-Sun, higher-cloud option and Mallorca as a specialist low-horizon photography option.
+
 ### Supporting pages
 
 Publish only pages with genuinely different local value. Avoid thin city pages that repeat the same text.
@@ -57,6 +64,8 @@ Publish only pages with genuinely different local value. Avoid thin city pages t
 8. How to photograph the 2026 solar eclipse safely.
 9. Eclipse glasses and solar-filter safety: ISO 12312-2 checklist.
 10. Cloud forecast for the Spain eclipse: how to make the final 48-hour location decision.
+
+Implemented June 9, 2026: A Coruña, Burgos, Palma and safe eclipse photography.
 
 Each local guide should include official IGN municipality data, an original location workflow, local horizon considerations, internal links to the main guide and relevant Solora feature pages, and a visible update date.
 
@@ -112,6 +121,25 @@ The site currently exports many localized articles with short, reusable section 
 - Re-enable TypeScript and ESLint validation in production builds after the existing project configuration is cleaned up.
 - Track Core Web Vitals on the live custom domain.
 
+Initial homepage image loading improvement completed June 9, 2026: only the active animated phone screenshot is now mounted, and screenshot dimensions are explicit. Format conversion, responsive variants and hydration isolation remain pending.
+
+## Technical SEO Audit: June 9, 2026
+
+The production export has complete titles, descriptions, canonicals and one H1 on indexable content pages. The highest-priority remaining issue is duplicate localized fallback content:
+
+- Tracker pages and trust pages currently expose English content under several French, Italian, German, Portuguese and Chinese URLs.
+- These fallbacks create duplicate titles and descriptions while advertising hreflang variants that are not genuinely translated.
+- Translate them fully or mark fallback routes `noindex,follow` with a canonical to the source-language page. Do this before adding more localized landing pages.
+
+Additional audit findings:
+
+- Many article titles exceed normal search-result display length, especially event-calendar and moon-calendar translations.
+- The large article artwork and press assets still need modern responsive formats.
+- The website has no active analytics or App Store click measurement despite the analytics package being installed.
+- ESLint remains disabled during production builds.
+- The homepage is still predominantly client-rendered because the animated preview shares the main component.
+- Search Console data is still needed before deciding which short or overlapping articles to expand, merge or remove.
+
 ## Measurement
 
 Minimum reporting should include:
@@ -125,10 +153,12 @@ Minimum reporting should include:
 
 ## Near-Term Priorities
 
-1. Connect Search Console and submit the corrected sitemap.
-2. Add tracked App Store outbound events.
-3. Publish the eclipse safety and first three location guides.
-4. Build Sun tracker, Moon tracker, and Star tracker landing pages. Completed June 9, 2026.
-5. Fix the lint configuration and stop ignoring TypeScript errors during builds. TypeScript validation enabled June 9, 2026; ESLint setup remains.
-6. Optimize the heaviest homepage and article images.
-7. Add privacy, support, contact, and author trust pages. Completed June 9, 2026.
+1. Monitor Search Console indexing and query data for the homepage, eclipse hub and new Spanish supporting pages.
+2. Fix untranslated localized fallback pages and invalid hreflang relationships.
+3. Add consent-aware App Store outbound click measurement with landing page, language and campaign attribution.
+4. Shorten overlong titles and resolve metadata duplication on indexable articles.
+5. Fix the ESLint configuration and stop ignoring lint failures. TypeScript validation is already enabled.
+6. Convert the heaviest homepage and article images to responsive AVIF/WebP variants.
+7. Isolate the animated phone preview and move static homepage sections back to server rendering.
+8. Publish the next genuinely distinct eclipse pages: Soria/Aranda comparison, Aragón official-site guide and final 48-hour cloud-decision guide.
+9. Build the remaining product-led pages: astronomical events, night-sky visibility, photography cloud forecast, tides/waves, widgets and location comparison.

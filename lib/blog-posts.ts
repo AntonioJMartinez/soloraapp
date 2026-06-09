@@ -6,6 +6,11 @@ export type ArticleSection = {
   heading: string
   paragraphs: string[]
   bullets?: string[]
+  table?: {
+    caption: string
+    headers: string[]
+    rows: string[][]
+  }
 }
 
 export type BlogCategory = "Astronomy" | "Aurora" | "Photography" | "Weather"
@@ -97,9 +102,9 @@ const manualBlogArticles: BlogArticleDefinition[] = [
     true,
     {
       en: {
-        title: "2026 Total Solar Eclipse in Spain: Path, Times, Safety and Photography Plan",
-        description: "Plan the August 12, 2026 total solar eclipse in Spain with the path of totality, official local times, sunset constraints, safety and photo tips.",
-        excerpt: "Where and when to see Spain's August 12, 2026 total solar eclipse, plus sunset, weather, safety and photography planning.",
+        title: "Spain Total Solar Eclipse 2026: Best Places and Times",
+        description: "Compare the best places to see Spain's 2026 total solar eclipse, including Castile and León, Aragón, Galicia and Mallorca, with official times and risks.",
+        excerpt: "A research-based comparison of the best regions for Spain's August 12, 2026 total solar eclipse, with official geometry, climate and logistics.",
         imageAlt: "Total solar eclipse over Spain at sunset on August 12, 2026",
         sections: [
           {
@@ -123,17 +128,50 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             ],
           },
           {
-            heading: "Where is the best place to see totality?",
+            heading: "Research conclusion: the best regions in Spain",
             paragraphs: [
-              "There is no single best city months in advance. Start inside the official path of totality, favor a location near the center line when practical, and then compare horizon openness, road access, crowd capacity and the latest cloud forecast.",
-              "Western and northwestern Spain offer a higher Sun in the sky, while locations farther east experience the eclipse closer to sunset. Inland locations may offer different cloud and haze patterns than the Atlantic or Cantabrian coasts. Keep two or three candidate locations and make the final decision when short-range forecasts become useful.",
+              "The best overall region is the northern Meseta, especially the open plains around Palencia, León, Burgos and the Aranda de Duero–Soria corridor. This conclusion combines official IGN eclipse geometry with the IGN's August cloud climatology: the northern Meseta and the Ebro valley have the most favorable average cloud conditions inside the path, while Castile and León also keeps the Sun higher than eastern Spain.",
+              "No exact field can be declared the winner months in advance. The official national eclipse portal advises that the nearest suitable place is often best when it is already inside totality and has a clear western horizon. The final choice should use current forecasts, official observation sites and traffic guidance.",
             ],
             bullets: [
-              "Confirm that the site is inside totality using the IGN municipality table.",
-              "Scout a clear view toward west to west-northwest before eclipse day.",
-              "Avoid relying on a single road, car park or famous viewpoint.",
-              "Choose a legal, accessible site with enough room to set up safely.",
-              "Download maps and save coordinates in case mobile networks become congested.",
+              "Best overall balance: Palencia and Tierra de Campos, with flat horizons, roughly 102 seconds of totality in Palencia and the Sun near 9 degrees.",
+              "Best center-line corridor: Aranda de Duero and Soria, with roughly 101–103 seconds of totality and strong official eclipse infrastructure.",
+              "Best organized lower-cloud alternative: Aragón, especially official sites around Calamocha and Monreal del Campo; totality is about 101 seconds there, but the Sun is only around 6 degrees high.",
+              "Best higher-Sun option: A Coruña and northern Galicia, where the Sun is around 11–12 degrees high, offset by a materially greater Atlantic cloud risk.",
+              "Best specialist sea-horizon option: western Mallorca, where totality lasts about 96 seconds but the Sun is only around 2 degrees high, making haze and tiny horizon obstructions decisive.",
+            ],
+          },
+          {
+            heading: "Comparison of leading eclipse bases",
+            paragraphs: [
+              "The figures below are municipality examples from the official IGN table, not guarantees for every nearby viewpoint. Duration and altitude change with exact coordinates. Climate ratings summarize the official August cloud map and should be treated as planning guidance, not a forecast.",
+            ],
+            table: {
+              caption: "Leading places to base a Spain eclipse plan",
+              headers: ["Area", "Totality", "Sun altitude", "Why choose it", "Main risk"],
+              rows: [
+                ["Palencia / Tierra de Campos", "About 1m 42s", "About 9°", "Best overall balance; open plains and favorable inland climatology", "Crowding and unconfirmed final viewing-site logistics"],
+                ["León plain", "About 1m 45s", "About 10°", "Long totality and one of the highest inland Sun positions", "Western mountain horizon must be checked from the exact site"],
+                ["Aranda de Duero", "About 1m 43s", "About 8°", "Near the center line, accessible and inside the favorable northern Meseta", "Local terrain, traffic and limited famous viewpoints"],
+                ["Soria", "About 1m 41s", "About 7°", "Center-line geometry and published official serviced observation areas", "Lower Sun and convective cloud near mountain systems"],
+                ["Monreal del Campo / Calamocha", "About 1m 41s", "About 6°", "Favorable Aragón climatology and official observation sites", "Very low Sun, heat, haze and terrain"],
+                ["Zaragoza / Ebro valley", "About 1m 23s", "About 6°", "Low average August cloud and strong transport capacity", "Shorter totality, urban crowding, heat and haze"],
+                ["A Coruña", "About 1m 16s", "About 12°", "Highest Sun among the main examples and more horizon margin", "Atlantic low cloud, fog and coastal layers"],
+                ["Palma / western Mallorca", "About 1m 36s", "About 2°", "Potentially dramatic unobstructed sea-horizon composition", "Extreme horizon sensitivity, haze and island mobility"],
+              ],
+            },
+          },
+          {
+            heading: "Official observation sites and logistics",
+            paragraphs: [
+              "Use published official sites instead of inventing a roadside viewpoint. Soria has announced preferred serviced areas including San Leonardo, Uxama, the Fortress of Gormaz, Numancia, Almazán, Medinaceli and Borobia. It also identifies center-line alternatives such as Rioseco de Soria, Sierra de Perdices and the Galiana viewpoint, while warning that several natural and mountain locations require extra preparation.",
+              "As of May 17, 2026, Aragón lists official sites at the former Calamocha aerodrome, MotorLand in Alcañiz, Javalambre ski station, the Cariñena and Épila industrial areas, Ariza and Monreal del Campo. The national portal says official lists will continue changing, so recheck them before travel.",
+            ],
+            bullets: [
+              "A beach is not automatically a clear-horizon site: on Spain's east coast the eclipsed Sun is in the west-northwest, usually inland rather than over the Mediterranean.",
+              "Avoid protected spaces, mountain access and small viewpoints unless authorities explicitly designate and manage them.",
+              "Keep a regional base and several approved alternatives rather than planning a long cross-country chase on eclipse afternoon.",
+              "Arrive early, use offline navigation and follow traffic, emergency and fire-risk restrictions.",
             ],
           },
           {
@@ -205,14 +243,18 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         sources: [
           { href: "https://astronomia.ign.es/en/eclipses-de-sol-y-luna/eclipse-total-sol-de-12-de-agosto-2026", label: "IGN: Total solar eclipse, August 12, 2026" },
           { href: "https://eclipses.ign.es/eclipse-total-sol-de-12-de-agosto-2026.html", label: "IGN: Official times by Spanish municipality" },
+          { href: "https://eclipses.ign.es/informacion-meteorologica.html", label: "IGN: August cloud climatology and meteorological guidance" },
+          { href: "https://www.trioeclipses.es/puntos-de-observacion", label: "Government of Spain: Official observation-point directory" },
+          { href: "https://www.trioeclipses.es/puntos-de-observacion/castilla-y-leon", label: "Government of Spain: Castile and León eclipse guidance" },
+          { href: "https://www.aragon.es/actualidad/aragon-eclipse-solar-2026", label: "Government of Aragón: Current official observation sites" },
           { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Future eclipses" },
           { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Eclipse viewing safety" },
         ],
       },
       es: {
-        title: "Eclipse solar total en España 2026: dónde verlo, horarios y guía fotográfica",
-        description: "Guía del eclipse solar total del 12 de agosto de 2026 en España: franja de totalidad, horarios oficiales, atardecer, seguridad y fotografía.",
-        excerpt: "Dónde y cuándo ver el eclipse solar total del 12 de agosto de 2026 en España, con planificación meteorológica, seguridad y fotografía.",
+        title: "Eclipse total España 2026: mejores lugares y horarios",
+        description: "Compara los mejores lugares para ver el eclipse total de España de 2026: Castilla y León, Aragón, Galicia y Mallorca, con horarios y riesgos.",
+        excerpt: "Comparativa basada en datos oficiales de las mejores zonas para ver el eclipse total del 12 de agosto de 2026 en España.",
         imageAlt: "Eclipse solar total en España al atardecer del 12 de agosto de 2026",
         sections: [
           {
@@ -236,17 +278,50 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             ],
           },
           {
-            heading: "Dónde ver el eclipse total en España",
+            heading: "Conclusión de la investigación: las mejores zonas de España",
             paragraphs: [
-              "No existe una única mejor ciudad que pueda elegirse con meses de antelación. Empieza dentro de la franja oficial de totalidad, acércate a la línea central cuando sea práctico y compara después horizonte, accesos, capacidad del lugar y previsión de nubes.",
-              "En el oeste y noroeste el Sol estará más alto. Hacia el este, la totalidad llegará más cerca de la puesta. Las zonas interiores pueden tener condiciones de nubosidad y calima distintas a las costas atlántica y cantábrica. Guarda dos o tres ubicaciones y decide cuando la previsión de corto plazo sea útil.",
+              "La mejor región en conjunto es el norte de la Meseta, especialmente las llanuras de Palencia, León, Burgos y el corredor Aranda de Duero–Soria. La conclusión combina la geometría oficial del IGN con su climatología de nubosidad de agosto: el norte de la Meseta y el valle del Ebro presentan las condiciones medias más favorables dentro de la franja, mientras Castilla y León conserva el Sol más alto que el este peninsular.",
+              "No se puede declarar ganador a un campo concreto con meses de antelación. El portal oficial estatal recuerda que, si ya estás dentro de la totalidad y tienes horizonte oeste limpio, el lugar más cercano suele ser la mejor opción. La decisión final debe apoyarse en la previsión actual, los puntos oficiales y las indicaciones de movilidad.",
             ],
             bullets: [
-              "Comprueba en la tabla municipal del IGN que el lugar está dentro de la totalidad.",
-              "Busca una vista limpia hacia el oeste u oeste-noroeste antes del día del eclipse.",
-              "Evita depender de una sola carretera, aparcamiento o mirador popular.",
-              "Elige un espacio legal, accesible y con margen para instalarte sin bloquear el paso.",
-              "Descarga mapas y guarda coordenadas por si se saturan las redes móviles.",
+              "Mejor equilibrio general: Palencia y Tierra de Campos, con horizonte llano, unos 102 segundos de totalidad en Palencia y el Sol cerca de 9 grados.",
+              "Mejor corredor de centralidad: Aranda de Duero y Soria, con unos 101–103 segundos de totalidad e infraestructura oficial creciente.",
+              "Mejor alternativa organizada con poca nubosidad media: Aragón, especialmente Calamocha y Monreal del Campo; allí la totalidad ronda 101 segundos, pero el Sol estará a unos 6 grados.",
+              "Mejor opción por altura solar: A Coruña y el norte de Galicia, con el Sol a 11–12 grados, a cambio de un riesgo atlántico de nubes claramente mayor.",
+              "Mejor opción especializada con horizonte marino: el oeste de Mallorca, con unos 96 segundos de totalidad pero el Sol a apenas 2 grados, por lo que la calima y cualquier obstáculo mínimo son decisivos.",
+            ],
+          },
+          {
+            heading: "Comparativa de las principales bases para el eclipse",
+            paragraphs: [
+              "Las cifras son ejemplos municipales de la tabla oficial del IGN, no garantías para cualquier mirador cercano. Duración y altura cambian con las coordenadas exactas. La valoración climática resume el mapa oficial de nubosidad media de agosto y sirve para planificar, no como previsión del 12 de agosto.",
+            ],
+            table: {
+              caption: "Principales zonas para preparar el eclipse total de España",
+              headers: ["Zona", "Totalidad", "Altura del Sol", "Por qué elegirla", "Riesgo principal"],
+              rows: [
+                ["Palencia / Tierra de Campos", "Aprox. 1m 42s", "Aprox. 9°", "Mejor equilibrio; llanuras abiertas y climatología interior favorable", "Aglomeraciones y puntos oficiales definitivos aún en desarrollo"],
+                ["Llanura de León", "Aprox. 1m 45s", "Aprox. 10°", "Totalidad larga y una de las mayores alturas solares del interior", "Hay que comprobar el perfil montañoso hacia el oeste"],
+                ["Aranda de Duero", "Aprox. 1m 43s", "Aprox. 8°", "Cerca de la línea central, accesible y dentro del norte de la Meseta", "Relieve local, tráfico y miradores con capacidad limitada"],
+                ["Soria", "Aprox. 1m 41s", "Aprox. 7°", "Geometría central y zonas oficiales de observación con servicios", "Sol más bajo y nubes convectivas cerca de sistemas montañosos"],
+                ["Monreal del Campo / Calamocha", "Aprox. 1m 41s", "Aprox. 6°", "Climatología favorable en Aragón y puntos oficiales", "Sol muy bajo, calor, calima y relieve"],
+                ["Zaragoza / valle del Ebro", "Aprox. 1m 23s", "Aprox. 6°", "Poca nubosidad media y gran capacidad de transporte", "Totalidad más corta, aglomeraciones, calor y calima"],
+                ["A Coruña", "Aprox. 1m 16s", "Aprox. 12°", "Mayor altura solar entre los ejemplos principales", "Nube baja, niebla y capas costeras atlánticas"],
+                ["Palma / oeste de Mallorca", "Aprox. 1m 36s", "Aprox. 2°", "Composición espectacular con horizonte de mar realmente occidental", "Sensibilidad extrema al horizonte, calima y movilidad insular"],
+              ],
+            },
+          },
+          {
+            heading: "Puntos oficiales de observación y logística",
+            paragraphs: [
+              "Utiliza espacios publicados por las administraciones en vez de improvisar un arcén o un mirador famoso. Soria ha anunciado zonas preferentes con servicios en San Leonardo, Uxama, la Fortaleza de Gormaz, Numancia, Almazán, Medinaceli y Borobia. También identifica alternativas sobre la línea central como Rioseco de Soria, Sierra de Perdices y el Mirador de la Galiana, aunque advierte que varios espacios naturales y de montaña requieren preparación adicional.",
+              "A fecha de 17 de mayo de 2026, Aragón publica como puntos oficiales el antiguo aeródromo de Calamocha, MotorLand en Alcañiz, la estación de esquí de Javalambre, los polígonos de Cariñena y Épila, Ariza y Monreal del Campo. El portal estatal avisa de que las listas seguirán actualizándose: compruébalas otra vez antes de viajar.",
+            ],
+            bullets: [
+              "Una playa no garantiza horizonte útil: en la costa mediterránea peninsular el Sol eclipsado estará al oeste-noroeste, normalmente hacia tierra y no sobre el mar.",
+              "Evita espacios protegidos, accesos de montaña y miradores pequeños salvo que estén designados y gestionados expresamente.",
+              "Elige una base regional y varias alternativas oficiales; no planifiques cruzar media España la tarde del eclipse.",
+              "Llega pronto, descarga navegación sin conexión y respeta restricciones de tráfico, emergencias e incendios.",
             ],
           },
           {
@@ -322,6 +397,11 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         sources: [
           { href: "https://astronomia.ign.es/es/eclipses-de-sol-y-luna/eclipse-total-sol-de-12-de-agosto-2026", label: "IGN: Eclipse total de Sol del 12 de agosto de 2026" },
           { href: "https://eclipses.ign.es/eclipse-total-sol-de-12-de-agosto-2026.html", label: "IGN: Horarios oficiales por municipio" },
+          { href: "https://eclipses.ign.es/informacion-meteorologica.html", label: "IGN: Climatología de nubosidad y orientación meteorológica" },
+          { href: "https://www.trioeclipses.es/puntos-de-observacion", label: "Gobierno de España: Directorio oficial de puntos de observación" },
+          { href: "https://www.trioeclipses.es/puntos-de-observacion/castilla-y-leon", label: "Gobierno de España: Orientación para Castilla y León" },
+          { href: "https://www.aragon.es/actualidad/aragon-eclipse-solar-2026", label: "Gobierno de Aragón: Puntos oficiales publicados" },
+          { href: "https://www.turismocastillayleon.com/cm/facm/300009/439607-Ven%20a%20Soria%20por%20el%20eclipse.pdf", label: "Turismo de Castilla y León: Zonas de observación de Soria" },
           { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Próximos eclipses" },
           { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Seguridad durante un eclipse" },
         ],
