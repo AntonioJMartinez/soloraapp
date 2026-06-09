@@ -667,7 +667,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
     "Astronomy",
     9,
     "2026-01-12",
-    "total-lunar-eclipse-september-2025.jpg",
+    "partial-lunar-eclipse-september-2025.jpg",
     false,
     {
       en: {
@@ -1229,7 +1229,7 @@ const generatedArticleSeeds: GeneratedArticleSeed[] = [
     category: "Astronomy",
     minutes: 10,
     publishDate: "2025-09-02",
-    image: "total-lunar-eclipse-september-2025.jpg",
+    image: "partial-lunar-eclipse-september-2025.jpg",
     featured: true,
     locales: {
       en: { title: "Total Lunar Eclipse September 7, 2025: Your Complete Blood Moon Guide", description: "Mark your calendars for September 7, 2025. Witness the spectacular total lunar eclipse with viewing times, visibility notes, and photography tips.", excerpt: "Mark your calendars for September 7, 2025. Witness the spectacular total lunar eclipse with viewing times, visibility notes, and photography tips.", imageAlt: "Total lunar eclipse blood moon guide for September 2025" },

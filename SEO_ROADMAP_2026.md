@@ -154,11 +154,17 @@ Minimum reporting should include:
 ## Near-Term Priorities
 
 1. Monitor Search Console indexing and query data for the homepage, eclipse hub and new Spanish supporting pages.
-2. Fix untranslated localized fallback pages and invalid hreflang relationships.
-3. Add consent-aware App Store outbound click measurement with landing page, language and campaign attribution.
-4. Shorten overlong titles and resolve metadata duplication on indexable articles.
+2. Fix untranslated localized fallback pages and invalid hreflang relationships. Completed June 9, 2026: fallback pages are noindex, canonicalized to authored translations, removed from the sitemap and excluded from hreflang.
+3. Add consent-aware App Store outbound click measurement with landing page, language and campaign attribution. Implemented June 9, 2026; activation requires the `GA_MEASUREMENT_ID` GitHub repository variable.
+4. Shorten overlong titles and resolve metadata duplication on indexable articles. Completed June 9, 2026 through bounded search titles and corrected fallback indexing.
 5. Fix the ESLint configuration and stop ignoring lint failures. TypeScript validation is already enabled.
-6. Convert the heaviest homepage and article images to responsive AVIF/WebP variants.
+6. Convert the heaviest homepage and article images to responsive AVIF/WebP variants. Completed June 9, 2026 with responsive AVIF sources and original-format fallbacks.
 7. Isolate the animated phone preview and move static homepage sections back to server rendering.
 8. Publish the next genuinely distinct eclipse pages: Soria/Aranda comparison, Aragón official-site guide and final 48-hour cloud-decision guide.
 9. Build the remaining product-led pages: astronomical events, night-sky visibility, photography cloud forecast, tides/waves, widgets and location comparison.
+
+GA4 activation:
+
+1. Create a GA4 web data stream for `https://www.solora.app`.
+2. In GitHub, add the repository variable `GA_MEASUREMENT_ID` with the stream ID, such as `G-XXXXXXXXXX`.
+3. Redeploy `main`. The consent dialog and App Store click event named `app_store_click` will then become active.

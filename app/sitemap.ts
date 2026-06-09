@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 
 import { blogArticles } from "@/lib/blog-posts"
 import { eclipseGuideSlugs } from "@/lib/eclipse-guides"
-import { buildLanguageAlternates, locales, localizedUrl } from "@/lib/i18n"
+import { buildLanguageAlternates, getAvailableLocalesForPath, locales, localizedUrl } from "@/lib/i18n"
 import { infoPageSlugs } from "@/lib/info-pages"
 import { featurePageSlugs } from "@/lib/marketing-content"
 import { trackerPageSlugs } from "@/lib/tracker-pages"
@@ -21,14 +21,14 @@ const staticRoutes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const contentLastModified = new Date("2026-06-09T00:00:00.000Z")
 
-  const staticEntries = locales.flatMap((locale) =>
-    staticRoutes.map((route) => ({
+  const staticEntries = staticRoutes.flatMap((route) =>
+    getAvailableLocalesForPath(route).map((locale) => ({
       url: localizedUrl(locale, route),
       lastModified: contentLastModified,
       changeFrequency: route === "/" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "/" ? 1 : route === "/blog" ? 0.9 : 0.8,
       alternates: {
-        languages: buildLanguageAlternates(route),
+        languages: buildLanguageAlternates(route, getAvailableLocalesForPath(route)),
       },
     })),
   )

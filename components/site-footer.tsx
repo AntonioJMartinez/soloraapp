@@ -1,9 +1,10 @@
 import Link from "next/link"
 
-import { Locale, localizePath } from "@/lib/i18n"
+import { Locale, localizeAvailablePath } from "@/lib/i18n"
 import { getUiDictionary } from "@/lib/marketing-content"
 import { siteConfig } from "@/lib/site"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { PrivacySettingsButton } from "@/components/privacy-settings-button"
 
 type SiteFooterProps = {
   locale: Locale
@@ -26,6 +27,15 @@ export function SiteFooter({ locale, currentPath }: SiteFooterProps) {
           { href: "/contact", label: "Contact" },
           { href: "/privacy", label: "Privacy" },
         ]
+  const privacySettingsLabel = {
+    en: "Analytics settings",
+    es: "Configurar analítica",
+    fr: "Réglages d’analyse",
+    it: "Impostazioni analisi",
+    de: "Analyse-Einstellungen",
+    pt: "Configurar análise",
+    zh: "分析设置",
+  }[locale]
 
   return (
     <footer className="mt-16 border-t border-white/10 bg-black/40 py-12 md:py-16">
@@ -44,7 +54,7 @@ export function SiteFooter({ locale, currentPath }: SiteFooterProps) {
           <div className="space-y-3 text-center xl:text-right">
             <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-white/70 xl:justify-end">
               {trustLinks.map((link) => (
-                <Link key={link.href} href={localizePath(locale, link.href)} className="transition-colors hover:text-white">
+                <Link key={link.href} href={localizeAvailablePath(locale, link.href)} className="transition-colors hover:text-white">
                   {link.label}
                 </Link>
               ))}
@@ -55,6 +65,9 @@ export function SiteFooter({ locale, currentPath }: SiteFooterProps) {
             <p className="text-xs text-white/60 md:text-sm">
               {ui.allRightsReserved} • {ui.availableOnAppStore}
             </p>
+            <div className="text-xs text-white/60">
+              <PrivacySettingsButton label={privacySettingsLabel} />
+            </div>
           </div>
         </div>
       </div>

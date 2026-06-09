@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { ResponsiveImage } from "@/components/responsive-image"
+import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
 import { getEvergreenBlogPosts } from "@/lib/blog-posts"
 import { featurePageSlugs, getFeaturePageContent, getHomeContent, getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
@@ -174,10 +175,12 @@ export function HomePage({ locale }: HomePageProps) {
                   <div className="rounded-[2.2rem] bg-black p-2 shadow-2xl">
                     <div className="rounded-[1.8rem] bg-black p-1">
                       <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.5rem] bg-black">
-                        <img
+                        <ResponsiveImage
                           key={activeOnboardingScreen.id}
                           src={`/${activeOnboardingScreen.image}`}
                           alt={activeOnboardingScreen.alt}
+                          sizes="(min-width: 1024px) 280px, 220px"
+                          responsiveWidths={[480, 589]}
                           width={589}
                           height={1280}
                           className="absolute inset-0 h-full w-full rounded-[1.3rem] object-cover"
@@ -249,9 +252,10 @@ export function HomePage({ locale }: HomePageProps) {
                     <div className="rounded-[2rem] bg-black p-1.5 shadow-2xl">
                       <div className="rounded-[1.6rem] bg-black p-1">
                         <div className="aspect-[9/19.5] overflow-hidden rounded-[1.3rem] bg-black">
-                          <img
+                          <ResponsiveImage
                             src={`/screenshot-${id}.jpg`}
                             alt={`Solora screenshot ${id}`}
+                            sizes="(min-width: 768px) 22vw, 46vw"
                             width={1206}
                             height={2622}
                             className="h-full w-full object-cover"
@@ -303,7 +307,7 @@ export function HomePage({ locale }: HomePageProps) {
                       <CardContent className="space-y-4 p-6">
                         <h3 className="text-2xl font-bold text-white">{page.primaryKeyword}</h3>
                         <p className="leading-relaxed text-white/70">{page.description}</p>
-                        <Link href={localizePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
+                        <Link href={localizeAvailablePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
                           {content.clustersCta}
                           <ChevronRight className="h-4 w-4" />
                         </Link>
@@ -322,7 +326,7 @@ export function HomePage({ locale }: HomePageProps) {
                         </Badge>
                         <h3 className="text-2xl font-bold text-white">{page.primaryKeyword}</h3>
                         <p className="leading-relaxed text-white/70">{page.description}</p>
-                        <Link href={localizePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
+                        <Link href={localizeAvailablePath(locale, `/${slug}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
                           {content.clustersCta}
                           <ChevronRight className="h-4 w-4" />
                         </Link>

@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { ResponsiveImage } from "@/components/responsive-image"
+import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
 type FeaturePageProps = {
@@ -175,7 +176,16 @@ export function SeoFeaturePage({
           </div>
 
           <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-3 shadow-2xl">
-            <img src={heroImage} alt={heroAlt} className="aspect-[16/10] w-full rounded-2xl object-cover" />
+            <ResponsiveImage
+              src={heroImage}
+              alt={heroAlt}
+              sizes="(min-width: 1024px) 40vw, 92vw"
+              width={960}
+              height={600}
+              className="aspect-[16/10] w-full rounded-2xl object-cover"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </section>
 
@@ -230,7 +240,7 @@ export function SeoFeaturePage({
             {relatedLinks.map((link) => (
               <Link
                 key={link.href}
-                href={localizePath(locale, link.href)}
+                href={localizeAvailablePath(locale, link.href)}
                 className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {link.label}

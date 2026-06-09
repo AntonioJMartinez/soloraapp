@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { ResponsiveImage } from "@/components/responsive-image"
+import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
 import { getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
@@ -184,7 +185,16 @@ export function BlogArticleTemplate({
               {extraHeaderContent}
 
               <div className="aspect-video overflow-hidden rounded-2xl">
-                <img src={`/${image}`} alt={imageAlt} className="h-full w-full object-cover" />
+                <ResponsiveImage
+                  src={`/${image}`}
+                  alt={imageAlt}
+                  sizes="(min-width: 896px) 864px, 92vw"
+                  width={960}
+                  height={540}
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
             </header>
 
@@ -252,7 +262,7 @@ export function BlogArticleTemplate({
                   {relatedLinks.map((link) => (
                     <Link
                       key={link.href}
-                      href={localizePath(locale, link.href)}
+                  href={localizeAvailablePath(locale, link.href)}
                       className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                     >
                       {link.label}

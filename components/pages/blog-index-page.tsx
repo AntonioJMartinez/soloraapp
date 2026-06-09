@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { ResponsiveImage } from "@/components/responsive-image"
 import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
 import { getBlogPosts, getFeaturedBlogPosts } from "@/lib/blog-posts"
 import { getBlogIndexContent, getUiDictionary } from "@/lib/marketing-content"
@@ -64,7 +65,16 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
               {featuredPosts.map((post) => (
                 <Card key={post.id} className="group overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
                   <div className="aspect-video overflow-hidden">
-                    <img src={`/${post.image}`} alt={post.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    <ResponsiveImage
+                      src={`/${post.image}`}
+                      alt={post.title}
+                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 92vw"
+                      width={960}
+                      height={540}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <CardContent className="space-y-4 p-6">
                     <div className="flex items-center gap-4 text-sm text-white/60">
@@ -98,7 +108,16 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
                   <CardContent className="p-6">
                     <div className="grid items-center gap-6 md:grid-cols-4">
                       <div className="aspect-video overflow-hidden rounded-lg md:aspect-square">
-                        <img src={`/${post.image}`} alt={post.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                        <ResponsiveImage
+                          src={`/${post.image}`}
+                          alt={post.title}
+                          sizes="(min-width: 768px) 22vw, 92vw"
+                          width={480}
+                          height={480}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                       <div className="space-y-4 md:col-span-3">
                         <div className="flex items-center gap-4 text-sm text-white/60">

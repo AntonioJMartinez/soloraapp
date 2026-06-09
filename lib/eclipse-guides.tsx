@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { EclipseGuidePage, EclipseGuideSection } from "@/components/eclipse-guide-page"
-import { buildLanguageAlternates, Locale } from "@/lib/i18n"
+import { Locale } from "@/lib/i18n"
 import { buildPageMetadata } from "@/lib/metadata"
 
 export const eclipseGuideSlugs = [
@@ -100,7 +100,7 @@ export function getEclipseGuideContent(slug: EclipseGuideSlug, locale: Locale) {
 
 export function buildEclipseGuideMetadata(locale: Locale, slug: EclipseGuideSlug): Metadata {
   const page = getEclipseGuideContent(slug, locale)
-  const metadata = buildPageMetadata({
+  return buildPageMetadata({
     locale,
     path: `/${slug}`,
     title: page.title,
@@ -108,23 +108,6 @@ export function buildEclipseGuideMetadata(locale: Locale, slug: EclipseGuideSlug
     ogImage: "/solar-eclipse-astronomical-event.png",
     ogImageAlt: page.title,
   })
-
-  if (locale !== "es") {
-    return {
-      ...metadata,
-      robots: { index: false, follow: true },
-      alternates: {
-        canonical: buildLanguageAlternates(`/${slug}`).es,
-      },
-    }
-  }
-
-  return {
-    ...metadata,
-    alternates: {
-      canonical: buildLanguageAlternates(`/${slug}`).es,
-    },
-  }
 }
 
 export function renderEclipseGuide(locale: Locale, slug: EclipseGuideSlug) {

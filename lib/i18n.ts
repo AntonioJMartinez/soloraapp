@@ -6,6 +6,23 @@ export const localizedLocales = locales.filter((locale) => locale !== defaultLoc
 
 export type Locale = (typeof locales)[number]
 
+const bilingualEnglishSpanishPaths = new Set([
+  "/about",
+  "/contact",
+  "/privacy",
+  "/support",
+  "/sun-tracker-app",
+  "/moon-tracker-app",
+  "/star-tracker-app",
+])
+
+const spanishOnlyPaths = new Set([
+  "/eclipse-solar-2026-a-coruna",
+  "/eclipse-solar-2026-burgos",
+  "/eclipse-solar-2026-palma",
+  "/fotografiar-eclipse-solar-2026-seguridad",
+])
+
 export const localeNames: Record<Locale, string> = {
   en: "English",
   es: "Español",
@@ -67,16 +84,49 @@ export function localizedUrl(locale: Locale, path = "/"): string {
   return absoluteUrl(exportPath)
 }
 
-export function buildLanguageAlternates(path: string): Record<string, string> {
+export function getAvailableLocalesForPath(path: string): readonly Locale[] {
   const normalizedPath = normalizeRoutePath(path)
-  const alternates = Object.fromEntries(locales.map((locale) => [locale, localizedUrl(locale, normalizedPath)]))
+
+  if (bilingualEnglishSpanishPaths.has(normalizedPath)) {
+    return ["en", "es"]
+  }
+
+  if (spanishOnlyPaths.has(normalizedPath)) {
+    return ["es"]
+  }
+
+  return locales
+}
+
+export function localizeAvailablePath(locale: Locale, path = "/"): string {
+  const availableLocales = getAvailableLocalesForPath(path)
+  const targetLocale = availableLocales.includes(locale)
+    ? locale
+    : availableLocales.includes(defaultLocale)
+      ? defaultLocale
+      : availableLocales[0]
+
+  return localizePath(targetLocale, path)
+}
+
+export function buildLanguageAlternates(
+  path: string,
+  availableLocales: readonly Locale[] = getAvailableLocalesForPath(path),
+): Record<string, string> {
+  const normalizedPath = normalizeRoutePath(path)
+  const alternates = Object.fromEntries(
+    availableLocales.map((locale) => [locale, localizedUrl(locale, normalizedPath)]),
+  )
+  const fallbackLocale = availableLocales.includes(defaultLocale)
+    ? defaultLocale
+    : availableLocales[0]
 
   return {
     ...alternates,
-    "x-default": localizedUrl(defaultLocale, normalizedPath),
+    "x-default": localizedUrl(fallbackLocale, normalizedPath),
   }
 }
 
-export function getSwitchableLocales(currentLocale: Locale): Locale[] {
-  return locales.filter((locale) => locale !== currentLocale)
+export function getSwitchableLocales(currentLocale: Locale, path = "/"): Locale[] {
+  return getAvailableLocalesForPath(path).filter((locale) => locale !== currentLocale)
 }

@@ -1,6 +1,12 @@
 import type { Metadata } from "next"
 
-import { buildLanguageAlternates, Locale, localizedUrl, openGraphLocales } from "@/lib/i18n"
+import {
+  buildLanguageAlternates,
+  getAvailableLocalesForPath,
+  Locale,
+  localizedUrl,
+  openGraphLocales,
+} from "@/lib/i18n"
 import { siteConfig } from "@/lib/site"
 
 type BasePageMetadataInput = {
@@ -19,6 +25,7 @@ type ArticleMetadataInput = BasePageMetadataInput & {
 }
 
 const sharedOtherMetadata = {
+  "apple-itunes-app": `app-id=${siteConfig.appStoreId}`,
   "apple-mobile-web-app-capable": "yes",
   "apple-mobile-web-app-status-bar-style": "black-translucent",
   "apple-mobile-web-app-title": siteConfig.name,
@@ -80,18 +87,32 @@ function buildCommonMetadata({
   ogImageAlt = "Solora astronomical planning app preview",
   type = "website",
 }: BasePageMetadataInput): Metadata {
-  const canonical = localizedUrl(locale, path)
+  const availableLocales = getAvailableLocalesForPath(path)
+  const isTranslated = availableLocales.includes(locale)
+  const canonicalLocale = isTranslated ? locale : availableLocales[0]
+  const canonical = localizedUrl(canonicalLocale, path)
+  const metadataTitle = fitMetadataTitle(title)
 
   return {
-    title,
+    title: metadataTitle,
     description,
     keywords,
     alternates: {
       canonical,
-      languages: buildLanguageAlternates(path),
+      languages: buildLanguageAlternates(path, availableLocales),
     },
+    robots: isTranslated
+      ? undefined
+      : {
+          index: false,
+          follow: true,
+          googleBot: {
+            index: false,
+            follow: true,
+          },
+        },
     openGraph: {
-      title,
+      title: metadataTitle,
       description,
       url: canonical,
       siteName: siteConfig.name,
@@ -106,7 +127,7 @@ function buildCommonMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: metadataTitle,
       description,
       images: [ogImage],
       creator: siteConfig.twitterHandle,
@@ -116,6 +137,23 @@ function buildCommonMetadata({
       "apple-itunes-app": `app-id=${siteConfig.appStoreId}, app-argument=${canonical}`,
     },
   }
+}
+
+function fitMetadataTitle(title: string, maxLength = 62): string {
+  if (title.length <= maxLength) {
+    return title
+  }
+
+  const clause = title.split(/[:|]/, 1)[0].trim()
+
+  if (clause.length >= 32 && clause.length <= maxLength) {
+    return clause
+  }
+
+  const shortened = title.slice(0, maxLength + 1)
+  const lastSpace = shortened.lastIndexOf(" ")
+
+  return shortened.slice(0, lastSpace > 40 ? lastSpace : maxLength).trim()
 }
 
 export function buildPageMetadata(input: BasePageMetadataInput): Metadata {

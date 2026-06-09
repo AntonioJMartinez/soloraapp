@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { Locale, localizeAvailablePath, localizedUrl } from "@/lib/i18n"
 import { siteConfig } from "@/lib/site"
 
 export type InfoPageSection = {
@@ -70,7 +70,7 @@ export function InfoPage({ locale, slug, eyebrow, title, description, updated, s
                     {section.links.map((link) => (
                       <Link
                         key={link.href}
-                        href={link.external ? link.href : localizePath(locale, link.href)}
+                        href={link.external ? link.href : localizeAvailablePath(locale, link.href)}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
                         className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[#F4B4AE] transition-colors hover:bg-white/10"
