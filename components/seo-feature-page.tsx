@@ -21,6 +21,7 @@ type FeaturePageProps = {
   useCases: string[]
   faqs: Array<{ question: string; answer: string }>
   relatedLinks: Array<{ href: string; label: string }>
+  planningSections?: Array<{ heading: string; body: string }>
   slug: string
 }
 
@@ -36,6 +37,7 @@ export function SeoFeaturePage({
   useCases,
   faqs,
   relatedLinks,
+  planningSections = [],
   slug,
 }: FeaturePageProps) {
   const routePath = `/${slug}`
@@ -214,6 +216,29 @@ export function SeoFeaturePage({
             </CardContent>
           </Card>
         </section>
+
+        {planningSections.length ? (
+          <section className="mt-12 space-y-6">
+            <div className="space-y-3">
+              <Badge className="border-white/10 bg-white/10 text-white">
+                {locale === "es" ? "Flujo de planificación" : "Planning workflow"}
+              </Badge>
+              <h2 className="text-3xl font-bold">
+                {locale === "es" ? `Cómo usar ${primaryKeyword.toLowerCase()} en una sesión real` : `How to use ${primaryKeyword.toLowerCase()} in a real planning session`}
+              </h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {planningSections.map((section) => (
+                <Card key={section.heading} className="border-white/10 bg-white/5">
+                  <CardContent className="space-y-3 p-6">
+                    <h3 className="text-xl font-bold">{section.heading}</h3>
+                    <p className="leading-relaxed text-white/75">{section.body}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-12 space-y-6" aria-labelledby="faq-heading">
           <div className="space-y-3">

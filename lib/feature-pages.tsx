@@ -43,6 +43,7 @@ export function renderFeaturePage(locale: Locale, slug: FeaturePageSlug) {
       benefits={content.benefits}
       useCases={content.useCases}
       faqs={content.faqs}
+      planningSections={content.planningSections}
       relatedLinks={content.relatedLinks.map((relatedSlug) => ({
         href: `/${relatedSlug}`,
         label: getFeaturePageContent(relatedSlug, locale).primaryKeyword,
