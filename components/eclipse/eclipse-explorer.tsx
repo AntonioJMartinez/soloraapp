@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, CloudSun, Pause, Play, Sun, Timer } from "lucide-react"
+import { ArrowRight, CloudSun, Sun, Timer } from "lucide-react"
 
 import {
   EclipseDictionary,
@@ -79,6 +79,38 @@ const bandPath = `${toPath(BAND_NORTH)} ${BAND_SOUTH.slice()
 
 const centerLinePath = toPath(CENTER_LINE)
 
+// Projected centerline points; x increases monotonically west → east,
+// so the umbra position can be parameterized by an x fraction.
+const CL_POINTS = CENTER_LINE.map(([lon, lat]) => ({ x: px(lon), y: py(lat) }))
+const CL_X0 = CL_POINTS[0].x
+const CL_X1 = CL_POINTS[CL_POINTS.length - 1].x
+
+function umbraPointAt(fraction: number) {
+  const x = CL_X0 + (CL_X1 - CL_X0) * fraction
+  for (let i = 0; i < CL_POINTS.length - 1; i++) {
+    const a = CL_POINTS[i]
+    const b = CL_POINTS[i + 1]
+    if (x >= a.x && x <= b.x) {
+      const t = (x - a.x) / (b.x - a.x)
+      return { x, y: a.y + (b.y - a.y) * t }
+    }
+  }
+  return CL_POINTS[CL_POINTS.length - 1]
+}
+
+// Local time of the shadow's center along the sweep: the umbra crosses
+// A Coruña around 20:28 and Palma around 20:32 (IGN examples).
+const SWEEP_START_MIN = 1226.5 // ~20:26:30 entering the Atlantic edge of the map
+const SWEEP_END_MIN = 1233.0 // ~20:33:00 leaving past Menorca
+
+function sweepTimeLabel(fraction: number) {
+  const totalSeconds = Math.round((SWEEP_START_MIN + (SWEEP_END_MIN - SWEEP_START_MIN) * fraction) * 60)
+  const h = Math.floor(totalSeconds / 3600)
+  const m = Math.floor((totalSeconds % 3600) / 60)
+  const s = totalSeconds % 60
+  return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`
+}
+
 const MADRID: LonLat = [-3.7, 40.42]
 
 // Per-spot label placement so names stay readable on the map
@@ -94,20 +126,7 @@ const LABEL_OFFSETS: Record<string, { dx: number; dy: number; anchor: "start" | 
   palma: { dx: 0, dy: 26, anchor: "middle" },
 }
 
-// Fixed star field for the simulator (static so SSR and client match)
-const STARS: Array<[number, number, number]> = [
-  [40, 30, 1.4], [110, 70, 1], [180, 24, 1.6], [240, 90, 1], [300, 40, 1.2], [360, 110, 1],
-  [420, 30, 1.5], [470, 80, 1], [530, 50, 1.3], [600, 100, 1], [650, 26, 1.6], [710, 70, 1.1],
-  [760, 40, 1.3], [80, 130, 1], [200, 150, 1.2], [330, 170, 1], [500, 140, 1.2], [620, 160, 1],
-  [730, 130, 1.4], [150, 200, 1], [430, 200, 1.1], [560, 190, 1], [690, 210, 1.2], [270, 60, 1],
-]
-
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
-
-function mixColor(a: [number, number, number], b: [number, number, number], t: number) {
-  const c = a.map((channel, index) => Math.round(channel + (b[index] - channel) * t))
-  return `rgb(${c[0]},${c[1]},${c[2]})`
-}
 
 // ---------------------------------------------------------------------------
 // Ratings helpers
@@ -135,258 +154,69 @@ function Dots({ score, label }: { score: number; label: string }) {
 }
 
 // ---------------------------------------------------------------------------
-// Simulator
+// Shadow clock: auto-sweeping umbra, scrubbable with the pointer
 // ---------------------------------------------------------------------------
 
-function EclipseSimulator({ spot, dict, spotName }: { spot: EclipseSpot; dict: EclipseDictionary; spotName: string }) {
-  const contacts = useMemo(() => spotContacts(spot), [spot])
-  const rangeStart = contacts.c1 - 12
-  const rangeEnd = Math.max(contacts.sunset + 8, Math.min(contacts.c4, contacts.sunset + 30) + 6)
+const SWEEP_LOOP_MS = 14000
 
-  const [time, setTime] = useState(contacts.c2 - 6)
-  const [playing, setPlaying] = useState(false)
+function useUmbraFraction(manual: number | null) {
+  const [auto, setAuto] = useState(0.3)
+  const lastFraction = useRef(0.3)
 
   useEffect(() => {
-    setTime(spotContacts(spot).c2 - 6)
-    setPlaying(false)
-  }, [spot])
-
-  useEffect(() => {
-    if (!playing) {
+    if (manual !== null) {
+      // Remember the scrub position so the sweep resumes from there
+      lastFraction.current = manual
       return
     }
-    const timer = setInterval(() => {
-      setTime((current) => {
-        const nearMax = Math.abs(current - contacts.max) < 3
-        return Math.min(rangeEnd, current + (nearMax ? 0.06 : 0.4))
-      })
-    }, 40)
-    return () => clearInterval(timer)
-  }, [playing, contacts.max, rangeEnd])
-
-  useEffect(() => {
-    if (time >= rangeEnd && playing) {
-      setPlaying(false)
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
     }
-  }, [time, rangeEnd, playing])
+    let raf = 0
+    let start: number | null = null
+    const base = lastFraction.current
+    const step = (timestamp: number) => {
+      if (start === null) {
+        start = timestamp
+      }
+      const next = (base + (timestamp - start) / SWEEP_LOOP_MS) % 1
+      lastFraction.current = next
+      setAuto(next)
+      raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [manual])
 
-  // --- Geometry ---------------------------------------------------------
-  const W = 800
-  const H = 340
-  const horizonY = 264
-  const pxPerDeg = 9
-  const sunR = 26
-  const moonR = 27.5
-
-  const altitude = spot.sunAltitude * ((contacts.sunset - time) / (contacts.sunset - contacts.max))
-  const progress = clamp((time - rangeStart) / (rangeEnd - rangeStart), 0, 1)
-  const sunX = 320 + progress * 150
-  const sunY = horizonY - altitude * pxPerDeg
-
-  const s =
-    time <= contacts.max
-      ? clamp((time - contacts.max) / (contacts.max - contacts.c1), -1.15, 0)
-      : clamp((time - contacts.max) / (contacts.c4 - contacts.max), 0, 1.15)
-  const moonX = sunX + s * (sunR + moonR) * 0.95
-  const moonY = sunY + s * (sunR + moonR) * 0.35
-
-  const coverage = clamp(1 - Math.abs(s), 0, 1)
-  const isTotality = time >= contacts.c2 && time <= contacts.c3
-  const isDiamond = !isTotality && coverage > 0.982 && altitude > 0
-  const sunUp = altitude > -0.5
-
-  const eclipseDark = isTotality ? 1 : Math.pow(coverage, 5)
-  const twilight = clamp((time - contacts.sunset) / 20, 0, 1) * 0.75
-  const darkness = clamp(Math.max(eclipseDark, twilight), 0, 1)
-
-  const skyTop = mixColor([86, 128, 188], [6, 7, 20], darkness)
-  const skyMid = mixColor([224, 152, 116], [26, 20, 44], darkness)
-  const skyGlow = mixColor([255, 196, 140], [64, 36, 54], darkness)
-  const starOpacity = clamp((darkness - 0.72) / 0.28, 0, 1)
-
-  const phase =
-    !sunUp
-      ? dict.phaseSet
-      : isTotality
-        ? dict.phaseTotality
-        : isDiamond
-          ? dict.phaseDiamond
-          : time < contacts.c1
-            ? dict.phaseBefore
-            : time <= contacts.c3
-              ? dict.phasePartial
-              : time <= contacts.c4
-                ? dict.phaseEnding
-                : dict.phaseBefore
-
-  const jumpPoints = [
-    { label: `C1 · ${formatMinutes(contacts.c1)}`, value: contacts.c1 },
-    { label: `☀︎ ${formatMinutes(contacts.c2)}`, value: contacts.c2 - 1.5 },
-    { label: `● ${formatMinutes(contacts.max)}`, value: contacts.max },
-    { label: `↓ ${formatMinutes(contacts.sunset)}`, value: contacts.sunset - 1 },
-  ]
-
-  // The last visible sliver of photosphere sits on the sun's rim opposite the moon's center
-  const diamondAngle = Math.atan2(moonY - sunY, moonX - sunX)
-  const diamondX = sunX - Math.cos(diamondAngle) * sunR
-  const diamondY = sunY - Math.sin(diamondAngle) * sunR
-
-  return (
-    <div id="eclipse-simulator" className="scroll-mt-24 rounded-2xl border border-white/10 bg-black/40 p-4 md:p-6">
-      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h3 className="text-xl font-bold text-white md:text-2xl">{dict.simTitle}</h3>
-          <p className="mt-1 text-sm text-white/60">
-            {dict.simSubtitle} <span className="font-semibold text-[#F4B7A8]">{spotName}</span>
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-sm tabular-nums text-white/90">
-            {dict.simLocalTime} {formatMinutes(time)}
-          </span>
-          <button
-            type="button"
-            onClick={() => {
-              if (!playing && time >= rangeEnd - 0.5) {
-                setTime(rangeStart)
-              }
-              setPlaying((value) => !value)
-            }}
-            className="inline-flex items-center gap-2 rounded-full bg-[#E6786E] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#D4695F]"
-          >
-            {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            {playing ? dict.simPause : dict.simPlay}
-          </button>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-xl border border-white/10">
-        <svg viewBox={`0 0 ${W} ${H}`} className="block w-full" role="img" aria-label={phase}>
-          <defs>
-            <linearGradient id="sim-sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={skyTop} />
-              <stop offset="62%" stopColor={skyMid} />
-              <stop offset="100%" stopColor={skyGlow} />
-            </linearGradient>
-            <radialGradient id="sim-corona" cx="50%" cy="50%" r="50%">
-              <stop offset="30%" stopColor="rgba(255,255,255,0.95)" />
-              <stop offset="55%" stopColor="rgba(220,228,255,0.4)" />
-              <stop offset="100%" stopColor="rgba(200,215,255,0)" />
-            </radialGradient>
-            <radialGradient id="sim-sunglow" cx="50%" cy="50%" r="50%">
-              <stop offset="35%" stopColor="rgba(255,214,150,0.9)" />
-              <stop offset="100%" stopColor="rgba(255,180,110,0)" />
-            </radialGradient>
-            <radialGradient id="sim-diamond" cx="50%" cy="50%" r="50%">
-              <stop offset="20%" stopColor="rgba(255,255,255,1)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-            </radialGradient>
-          </defs>
-
-          <rect x="0" y="0" width={W} height={horizonY} fill="url(#sim-sky)" />
-
-          {STARS.map(([x, y, r]) => (
-            <circle key={`${x}-${y}`} cx={x} cy={y} r={r} fill="white" opacity={starOpacity * 0.9} />
-          ))}
-
-          {sunUp ? (
-            <g>
-              {!isTotality ? (
-                <circle cx={sunX} cy={sunY} r={sunR * 2.4} fill="url(#sim-sunglow)" opacity={1 - darkness * 0.85} />
-              ) : null}
-              {isTotality ? <circle cx={moonX} cy={moonY} r={moonR * 2.6} fill="url(#sim-corona)" /> : null}
-              <circle cx={sunX} cy={sunY} r={sunR} fill="#FFE3B0" />
-              <circle cx={moonX} cy={moonY} r={moonR} fill={isTotality ? "#05060F" : mixColor([16, 14, 24], [5, 6, 15], darkness)} />
-              {isDiamond ? <circle cx={diamondX} cy={diamondY} r={16} fill="url(#sim-diamond)" /> : null}
-            </g>
-          ) : null}
-
-          {/* Horizon */}
-          {spot.horizon === "sea" ? (
-            <g>
-              <rect x="0" y={horizonY} width={W} height={H - horizonY} fill={mixColor([24, 34, 54], [4, 6, 14], darkness)} />
-              <rect x="0" y={horizonY} width={W} height="2.5" fill={mixColor([255, 200, 150], [90, 70, 100], darkness)} opacity="0.7" />
-              {sunUp && altitude < 6 ? (
-                <rect
-                  x={sunX - 30}
-                  y={horizonY + 4}
-                  width="60"
-                  height={H - horizonY - 8}
-                  fill="url(#sim-sunglow)"
-                  opacity={0.25 * (1 - darkness)}
-                />
-              ) : null}
-            </g>
-          ) : (
-            <g>
-              <rect x="0" y={horizonY} width={W} height={H - horizonY} fill={mixColor([26, 18, 14], [6, 5, 8], darkness)} />
-              <path
-                d={`M0,${horizonY} L90,${horizonY - 12} L190,${horizonY - 2} L300,${horizonY - 16} L430,${horizonY - 4} L560,${horizonY - 14} L680,${horizonY - 3} L800,${horizonY - 10} L800,${H} L0,${H} Z`}
-                fill={mixColor([20, 14, 11], [5, 4, 7], darkness)}
-              />
-            </g>
-          )}
-
-          {/* Phase caption inside the scene */}
-          <text
-            x={W / 2}
-            y={H - 18}
-            textAnchor="middle"
-            className="fill-white"
-            opacity="0.85"
-            fontSize="15"
-            fontWeight={isTotality ? 700 : 500}
-          >
-            {phase}
-          </text>
-        </svg>
-      </div>
-
-      <div className="mt-4">
-        <input
-          type="range"
-          min={rangeStart}
-          max={rangeEnd}
-          step={0.05}
-          value={time}
-          onChange={(event) => {
-            setPlaying(false)
-            setTime(Number(event.target.value))
-          }}
-          aria-label={dict.simLocalTime}
-          className="w-full accent-[#E6786E]"
-        />
-        <div className="mt-2 flex flex-wrap items-center gap-2">
-          {jumpPoints.map((point) => (
-            <button
-              key={point.label}
-              type="button"
-              onClick={() => {
-                setPlaying(false)
-                setTime(point.value)
-              }}
-              className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-xs tabular-nums text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              {point.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <p className="mt-4 text-xs leading-relaxed text-white/50">⚠️ {dict.simSafety}</p>
-    </div>
-  )
+  return manual ?? auto
 }
 
 // ---------------------------------------------------------------------------
-// Explorer (map + ranking + detail + simulator)
+// Explorer (map + ranking + detail)
 // ---------------------------------------------------------------------------
 
 export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: EclipseDictionary }) {
   const [selectedId, setSelectedId] = useState<EclipseSpot["id"]>("palencia")
+  const [manualFraction, setManualFraction] = useState<number | null>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
+
+  const fraction = useUmbraFraction(manualFraction)
+  const umbra = umbraPointAt(fraction)
+  const clockX = clamp(umbra.x, 56, MAP_W - 56)
+
   const selected = eclipseSpots.find((spot) => spot.id === selectedId) ?? eclipseSpots[0]
   const contacts = spotContacts(selected)
   const text = dict.spots[selected.id]
+
+  const scrubTo = (clientX: number) => {
+    const svg = svgRef.current
+    if (!svg) {
+      return
+    }
+    const rect = svg.getBoundingClientRect()
+    const x = ((clientX - rect.left) / rect.width) * MAP_W
+    setManualFraction(clamp((x - CL_X0) / (CL_X1 - CL_X0), 0, 1))
+  }
 
   const detailTimes: Array<{ label: string; value: string }> = [
     { label: dict.detailPartial, value: selected.official?.c1 ?? `~${formatMinutes(contacts.c1)}` },
@@ -404,7 +234,16 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
           <h3 className="text-xl font-bold text-white md:text-2xl">{dict.mapTitle}</h3>
           <p className="mt-1 text-sm text-white/60">{dict.mapSubtitle}</p>
 
-          <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="mt-4 block w-full" role="img" aria-label={dict.mapTitle}>
+          <svg
+            ref={svgRef}
+            viewBox={`0 0 ${MAP_W} ${MAP_H}`}
+            className="mt-4 block w-full cursor-crosshair touch-pan-y"
+            role="img"
+            aria-label={dict.mapTitle}
+            onPointerMove={(event) => scrubTo(event.clientX)}
+            onPointerDown={(event) => scrubTo(event.clientX)}
+            onPointerLeave={() => setManualFraction(null)}
+          >
             <defs>
               <linearGradient id="map-band" x1="0" y1="0" x2="1" y2="0.35">
                 <stop offset="0%" stopColor="rgba(230,120,110,0.34)" />
@@ -428,13 +267,6 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
             {/* Totality band */}
             <path d={bandPath} fill="url(#map-band)" stroke="rgba(244,183,168,0.35)" strokeWidth="1" strokeDasharray="6 5" />
             <path d={centerLinePath} fill="none" stroke="#F4B7A8" strokeWidth="2" strokeDasharray="10 7" opacity="0.75" />
-
-            {/* Traveling umbra */}
-            <g className="motion-reduce:hidden" opacity="0.55">
-              <circle r="62" fill="url(#map-umbra)">
-                <animateMotion dur="9s" repeatCount="indefinite" path={centerLinePath} />
-              </circle>
-            </g>
 
             {/* Sweep time labels */}
             <text x={px(-9.6)} y={py(43.9)} fontSize="13" fontWeight="700" className="fill-[#F4B7A8]" opacity="0.9">
@@ -492,7 +324,7 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
                     fontSize="12"
                     fontWeight={isSelected ? 700 : 500}
                     textAnchor={offset.anchor}
-                    className={isSelected ? "fill-white" : "fill-white"}
+                    className="fill-white"
                     opacity={isSelected ? 1 : 0.75}
                   >
                     {dict.spots[spot.id].name.split(" · ")[0]}
@@ -500,6 +332,31 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
                 </g>
               )
             })}
+
+            {/* Traveling umbra with its clock */}
+            <g pointerEvents="none">
+              <circle cx={umbra.x} cy={umbra.y} r="62" fill="url(#map-umbra)" opacity="0.55" />
+              <line
+                x1={clockX}
+                y1={umbra.y - 58}
+                x2={umbra.x}
+                y2={umbra.y - 18}
+                stroke="rgba(244,183,168,0.5)"
+                strokeWidth="1"
+              />
+              <rect x={clockX - 46} y={umbra.y - 88} width="92" height="30" rx="15" fill="rgba(5,5,12,0.8)" stroke="rgba(244,183,168,0.45)" strokeWidth="1" />
+              <text
+                x={clockX}
+                y={umbra.y - 67}
+                textAnchor="middle"
+                fontSize="16"
+                fontWeight="700"
+                className="fill-[#F4B7A8]"
+                style={{ fontVariantNumeric: "tabular-nums" }}
+              >
+                {sweepTimeLabel(fraction)}
+              </text>
+            </g>
           </svg>
 
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-white/60">
@@ -516,11 +373,12 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
               {dict.sweepLabel}
             </span>
           </div>
+          <p className="mt-2 text-xs text-[#F4B7A8]/80">{dict.scrubHint}</p>
           <p className="mt-2 text-[11px] leading-relaxed text-white/40">{dict.mapDisclaimer}</p>
         </div>
 
         {/* Ranked list */}
-        <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5">
+        <div id="eclipse-spots" className="scroll-mt-24 rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5">
           <h3 className="text-xl font-bold text-white md:text-2xl">{dict.spotsTitle}</h3>
           <p className="mt-1 text-sm text-white/60">{dict.spotsSubtitle}</p>
           <ol className="mt-4 space-y-2">
@@ -641,8 +499,6 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
         </div>
         {selected.approx ? <p className="mt-3 text-[11px] text-white/40">{dict.approxNote}</p> : null}
       </div>
-
-      <EclipseSimulator spot={selected} dict={dict} spotName={text.name} />
     </div>
   )
 }

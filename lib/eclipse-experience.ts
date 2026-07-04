@@ -208,8 +208,6 @@ export type EclipseDictionary = {
   hubSubtitle: string
   navMap: string
   navSpots: string
-  navSimulator: string
-  navChecklist: string
   navArticle: string
   statDate: string
   statFirstContact: string
@@ -227,6 +225,7 @@ export type EclipseDictionary = {
   bandLabel: string
   centerLabel: string
   sweepLabel: string
+  scrubHint: string
   outsideLabel: string
   mapDisclaimer: string
   spotsTitle: string
@@ -243,28 +242,6 @@ export type EclipseDictionary = {
   detailRisk: string
   detailGuide: string
   approxNote: string
-  simTitle: string
-  simSubtitle: string
-  simPlay: string
-  simPause: string
-  simLocalTime: string
-  phaseBefore: string
-  phasePartial: string
-  phaseDiamond: string
-  phaseTotality: string
-  phaseEnding: string
-  phaseSet: string
-  simSafety: string
-  checklistTitle: string
-  checklistSubtitle: string
-  checklistReset: string
-  checklistReady: string
-  tabSafety: string
-  tabPhoto: string
-  tabPlan: string
-  itemsSafety: string[]
-  itemsPhoto: string[]
-  itemsPlan: string[]
   spots: Record<EclipseSpotId, SpotText>
 }
 
@@ -272,11 +249,9 @@ const en: EclipseDictionary = {
   eyebrow: "Interactive guide",
   hubTitle: "Total Solar Eclipse · August 12, 2026",
   hubSubtitle:
-    "Explore the path of totality across Spain, compare the best places, scrub the sunset simulator and get eclipse-day ready.",
+    "Explore the path of totality across Spain, follow the shadow's clock on the map and compare the best places to watch.",
   navMap: "Path map",
   navSpots: "Best places",
-  navSimulator: "Simulator",
-  navChecklist: "Checklist",
   navArticle: "Full guide",
   statDate: "Wed · Aug 12, 2026",
   statFirstContact: "Partial begins ~19:30",
@@ -294,6 +269,7 @@ const en: EclipseDictionary = {
   bandLabel: "Path of totality (~290 km wide)",
   centerLabel: "Center line — longest totality",
   sweepLabel: "Shadow sweeps west → east, ~20:27 to ~20:32",
+  scrubHint: "Move your finger or cursor across the map to scrub the shadow's clock.",
   outsideLabel: "Madrid — deep partial, no totality",
   mapDisclaimer:
     "Stylized map for orientation. Confirm the exact limits and your municipality's official times on the IGN eclipse table.",
@@ -311,47 +287,6 @@ const en: EclipseDictionary = {
   detailRisk: "Main risk",
   detailGuide: "Read the full local guide",
   approxNote: "~ approximate times — confirm your exact municipality on the official IGN table.",
-  simTitle: "Sunset eclipse simulator",
-  simSubtitle: "Drag the timeline and watch the sky change over",
-  simPlay: "Play",
-  simPause: "Pause",
-  simLocalTime: "Local time",
-  phaseBefore: "Before the eclipse",
-  phasePartial: "Partial phase — filter ON",
-  phaseDiamond: "Diamond ring!",
-  phaseTotality: "TOTALITY — filters off, look up",
-  phaseEnding: "Partial phase — filter back ON",
-  phaseSet: "Sun below the horizon",
-  simSafety:
-    "Simulation only. Never look at the real Sun without ISO 12312-2 certified protection, except during the brief total phase inside the path.",
-  checklistTitle: "Your eclipse-day checklist",
-  checklistSubtitle: "Tick items off as you prepare — progress is saved on this device.",
-  checklistReset: "Reset",
-  checklistReady: "ready",
-  tabSafety: "Safety",
-  tabPhoto: "Photography",
-  tabPlan: "Planning",
-  itemsSafety: [
-    "ISO 12312-2 eclipse glasses for every person",
-    "Certified solar filter for camera, binoculars or telescope",
-    "Glasses and filters inspected — no scratches or damage",
-    "Exact totality window known — filters off only then",
-    "Supervision planned for children",
-  ],
-  itemsPhoto: [
-    "Tripod and remote release packed",
-    "Focus and exposure rehearsed the evening before",
-    "Batteries charged, memory cards empty",
-    "Wide backup composition planned for the low Sun",
-    "Alarm set to refit the filter right after totality",
-  ],
-  itemsPlan: [
-    "Municipality contact times confirmed on the IGN table",
-    "Western horizon checked from the exact spot",
-    "Backup location saved in a second weather zone",
-    "Offline maps, water and sun protection ready",
-    "Early arrival planned — traffic and fire restrictions checked",
-  ],
   spots: {
     palencia: {
       name: "Palencia · Tierra de Campos",
@@ -405,11 +340,9 @@ const es: EclipseDictionary = {
   eyebrow: "Guía interactiva",
   hubTitle: "Eclipse solar total · 12 de agosto de 2026",
   hubSubtitle:
-    "Explora la franja de totalidad sobre España, compara los mejores lugares, mueve el simulador del atardecer y prepara el día del eclipse.",
+    "Explora la franja de totalidad sobre España, sigue el reloj de la sombra en el mapa y compara los mejores lugares para verlo.",
   navMap: "Mapa de la franja",
   navSpots: "Mejores lugares",
-  navSimulator: "Simulador",
-  navChecklist: "Checklist",
   navArticle: "Guía completa",
   statDate: "Miércoles · 12 ago 2026",
   statFirstContact: "Parcial desde ~19:30",
@@ -427,6 +360,7 @@ const es: EclipseDictionary = {
   bandLabel: "Franja de totalidad (~290 km de ancho)",
   centerLabel: "Línea central: totalidad más larga",
   sweepLabel: "La sombra barre de oeste a este, ~20:27 a ~20:32",
+  scrubHint: "Desliza el dedo o el cursor por el mapa para mover el reloj de la sombra.",
   outsideLabel: "Madrid: parcial profundo, sin totalidad",
   mapDisclaimer:
     "Mapa estilizado orientativo. Confirma los límites exactos y los horarios oficiales de tu municipio en la tabla del IGN.",
@@ -444,47 +378,6 @@ const es: EclipseDictionary = {
   detailRisk: "Riesgo principal",
   detailGuide: "Lee la guía local completa",
   approxNote: "~ horarios aproximados: confirma tu municipio exacto en la tabla oficial del IGN.",
-  simTitle: "Simulador del eclipse al atardecer",
-  simSubtitle: "Arrastra la línea de tiempo y mira cómo cambia el cielo sobre",
-  simPlay: "Reproducir",
-  simPause: "Pausar",
-  simLocalTime: "Hora local",
-  phaseBefore: "Antes del eclipse",
-  phasePartial: "Fase parcial: filtro PUESTO",
-  phaseDiamond: "¡Anillo de diamante!",
-  phaseTotality: "TOTALIDAD: sin filtro, mira al cielo",
-  phaseEnding: "Fase parcial: filtro PUESTO de nuevo",
-  phaseSet: "Sol bajo el horizonte",
-  simSafety:
-    "Es solo una simulación. Nunca mires al Sol real sin protección certificada ISO 12312-2, salvo durante la breve fase total dentro de la franja.",
-  checklistTitle: "Tu checklist del día del eclipse",
-  checklistSubtitle: "Marca los puntos mientras te preparas: el progreso se guarda en este dispositivo.",
-  checklistReset: "Reiniciar",
-  checklistReady: "listo",
-  tabSafety: "Seguridad",
-  tabPhoto: "Fotografía",
-  tabPlan: "Planificación",
-  itemsSafety: [
-    "Gafas de eclipse ISO 12312-2 para cada persona",
-    "Filtro solar certificado para cámara, prismáticos o telescopio",
-    "Gafas y filtros revisados: sin rayas ni daños",
-    "Ventana exacta de totalidad conocida: filtro fuera solo entonces",
-    "Supervisión prevista para menores",
-  ],
-  itemsPhoto: [
-    "Trípode y disparador remoto preparados",
-    "Enfoque y exposición ensayados la tarde anterior",
-    "Baterías cargadas y tarjetas vacías",
-    "Composición amplia de respaldo para el Sol bajo",
-    "Alarma para recolocar el filtro justo tras la totalidad",
-  ],
-  itemsPlan: [
-    "Horarios de tu municipio confirmados en la tabla del IGN",
-    "Horizonte oeste comprobado desde el punto exacto",
-    "Ubicación alternativa guardada en otra zona meteorológica",
-    "Mapas sin conexión, agua y protección solar listos",
-    "Llegada con antelación: tráfico y restricciones comprobados",
-  ],
   spots: {
     palencia: {
       name: "Palencia · Tierra de Campos",
@@ -539,11 +432,9 @@ const fr: EclipseDictionary = {
   eyebrow: "Guide interactif",
   hubTitle: "Éclipse solaire totale · 12 août 2026",
   hubSubtitle:
-    "Explorez la bande de totalité sur l'Espagne, comparez les meilleurs lieux, pilotez le simulateur de coucher de soleil et préparez le jour J.",
+    "Explorez la bande de totalité sur l'Espagne, suivez l'horloge de l'ombre sur la carte et comparez les meilleurs lieux d'observation.",
   navMap: "Carte de la bande",
   navSpots: "Meilleurs lieux",
-  navSimulator: "Simulateur",
-  navChecklist: "Check-list",
   navArticle: "Guide complet",
   statDate: "Mercredi · 12 août 2026",
   statFirstContact: "Phase partielle dès ~19h30",
@@ -561,6 +452,7 @@ const fr: EclipseDictionary = {
   bandLabel: "Bande de totalité (~290 km de large)",
   centerLabel: "Ligne centrale — totalité la plus longue",
   sweepLabel: "L'ombre balaie d'ouest en est, ~20h27 à ~20h32",
+  scrubHint: "Glissez le doigt ou le curseur sur la carte pour déplacer l'horloge de l'ombre.",
   outsideLabel: "Madrid — partielle profonde, pas de totalité",
   mapDisclaimer:
     "Carte stylisée d'orientation. Confirmez les limites exactes et les horaires officiels de votre commune sur la table de l'IGN.",
@@ -578,47 +470,6 @@ const fr: EclipseDictionary = {
   detailRisk: "Risque principal",
   detailGuide: "Lire le guide local complet",
   approxNote: "~ horaires approximatifs — confirmez votre commune exacte sur la table officielle de l'IGN.",
-  simTitle: "Simulateur d'éclipse au couchant",
-  simSubtitle: "Faites glisser la frise et regardez le ciel changer au-dessus de",
-  simPlay: "Lecture",
-  simPause: "Pause",
-  simLocalTime: "Heure locale",
-  phaseBefore: "Avant l'éclipse",
-  phasePartial: "Phase partielle — filtre EN PLACE",
-  phaseDiamond: "Anneau de diamant !",
-  phaseTotality: "TOTALITÉ — sans filtre, regardez le ciel",
-  phaseEnding: "Phase partielle — remettez le filtre",
-  phaseSet: "Soleil sous l'horizon",
-  simSafety:
-    "Simple simulation. Ne regardez jamais le vrai Soleil sans protection certifiée ISO 12312-2, sauf pendant la brève phase totale dans la bande.",
-  checklistTitle: "Votre check-list du jour de l'éclipse",
-  checklistSubtitle: "Cochez les points au fil de la préparation — la progression est enregistrée sur cet appareil.",
-  checklistReset: "Réinitialiser",
-  checklistReady: "prêt",
-  tabSafety: "Sécurité",
-  tabPhoto: "Photographie",
-  tabPlan: "Préparation",
-  itemsSafety: [
-    "Lunettes d'éclipse ISO 12312-2 pour chaque personne",
-    "Filtre solaire certifié pour appareil photo, jumelles ou télescope",
-    "Lunettes et filtres inspectés — sans rayures ni dommages",
-    "Fenêtre exacte de totalité connue — filtres retirés seulement alors",
-    "Surveillance prévue pour les enfants",
-  ],
-  itemsPhoto: [
-    "Trépied et déclencheur à distance prêts",
-    "Mise au point et exposition répétées la veille au soir",
-    "Batteries chargées, cartes mémoire vides",
-    "Composition large de secours pour le Soleil bas",
-    "Alarme pour remettre le filtre juste après la totalité",
-  ],
-  itemsPlan: [
-    "Horaires de la commune confirmés sur la table de l'IGN",
-    "Horizon ouest vérifié depuis le lieu exact",
-    "Lieu de repli enregistré dans une autre zone météo",
-    "Cartes hors ligne, eau et protection solaire prêtes",
-    "Arrivée en avance — trafic et restrictions vérifiés",
-  ],
   spots: {
     palencia: {
       name: "Palencia · Tierra de Campos",
@@ -673,11 +524,9 @@ const it: EclipseDictionary = {
   eyebrow: "Guida interattiva",
   hubTitle: "Eclissi solare totale · 12 agosto 2026",
   hubSubtitle:
-    "Esplora la fascia di totalità sulla Spagna, confronta i posti migliori, muovi il simulatore del tramonto e preparati al giorno dell'eclissi.",
+    "Esplora la fascia di totalità sulla Spagna, segui l'orologio dell'ombra sulla mappa e confronta i posti migliori per osservarla.",
   navMap: "Mappa della fascia",
   navSpots: "Posti migliori",
-  navSimulator: "Simulatore",
-  navChecklist: "Checklist",
   navArticle: "Guida completa",
   statDate: "Mercoledì · 12 ago 2026",
   statFirstContact: "Fase parziale da ~19:30",
@@ -695,6 +544,7 @@ const it: EclipseDictionary = {
   bandLabel: "Fascia di totalità (~290 km di larghezza)",
   centerLabel: "Linea centrale — totalità più lunga",
   sweepLabel: "L'ombra corre da ovest a est, ~20:27 alle ~20:32",
+  scrubHint: "Scorri il dito o il cursore sulla mappa per muovere l'orologio dell'ombra.",
   outsideLabel: "Madrid — parziale profonda, niente totalità",
   mapDisclaimer:
     "Mappa stilizzata orientativa. Conferma i limiti esatti e gli orari ufficiali del tuo comune sulla tabella dell'IGN.",
@@ -712,47 +562,6 @@ const it: EclipseDictionary = {
   detailRisk: "Rischio principale",
   detailGuide: "Leggi la guida locale completa",
   approxNote: "~ orari approssimativi — conferma il tuo comune esatto sulla tabella ufficiale IGN.",
-  simTitle: "Simulatore dell'eclissi al tramonto",
-  simSubtitle: "Trascina la timeline e guarda come cambia il cielo sopra",
-  simPlay: "Avvia",
-  simPause: "Pausa",
-  simLocalTime: "Ora locale",
-  phaseBefore: "Prima dell'eclissi",
-  phasePartial: "Fase parziale — filtro SU",
-  phaseDiamond: "Anello di diamante!",
-  phaseTotality: "TOTALITÀ — senza filtro, guarda il cielo",
-  phaseEnding: "Fase parziale — rimetti il filtro",
-  phaseSet: "Sole sotto l'orizzonte",
-  simSafety:
-    "Solo una simulazione. Non guardare mai il Sole reale senza protezione certificata ISO 12312-2, salvo durante la breve fase totale dentro la fascia.",
-  checklistTitle: "La tua checklist per il giorno dell'eclissi",
-  checklistSubtitle: "Spunta le voci mentre ti prepari — i progressi restano salvati su questo dispositivo.",
-  checklistReset: "Azzera",
-  checklistReady: "pronto",
-  tabSafety: "Sicurezza",
-  tabPhoto: "Fotografia",
-  tabPlan: "Pianificazione",
-  itemsSafety: [
-    "Occhiali da eclissi ISO 12312-2 per ogni persona",
-    "Filtro solare certificato per fotocamera, binocolo o telescopio",
-    "Occhiali e filtri controllati — senza graffi o danni",
-    "Finestra esatta di totalità nota — filtri via solo allora",
-    "Supervisione prevista per i bambini",
-  ],
-  itemsPhoto: [
-    "Treppiede e scatto remoto pronti",
-    "Messa a fuoco ed esposizione provate la sera prima",
-    "Batterie cariche, schede di memoria vuote",
-    "Composizione ampia di riserva per il Sole basso",
-    "Sveglia per rimettere il filtro subito dopo la totalità",
-  ],
-  itemsPlan: [
-    "Orari del comune confermati sulla tabella IGN",
-    "Orizzonte ovest verificato dal punto esatto",
-    "Località di riserva salvata in un'altra zona meteo",
-    "Mappe offline, acqua e protezione solare pronte",
-    "Arrivo in anticipo — traffico e restrizioni verificati",
-  ],
   spots: {
     palencia: {
       name: "Palencia · Tierra de Campos",
@@ -807,11 +616,9 @@ const de: EclipseDictionary = {
   eyebrow: "Interaktiver Guide",
   hubTitle: "Totale Sonnenfinsternis · 12. August 2026",
   hubSubtitle:
-    "Erkunde den Totalitätspfad über Spanien, vergleiche die besten Orte, steuere den Sonnenuntergangs-Simulator und mach dich bereit für den Finsternistag.",
+    "Erkunde den Totalitätspfad über Spanien, folge der Schatten-Uhr auf der Karte und vergleiche die besten Beobachtungsorte.",
   navMap: "Pfadkarte",
   navSpots: "Beste Orte",
-  navSimulator: "Simulator",
-  navChecklist: "Checkliste",
   navArticle: "Kompletter Guide",
   statDate: "Mittwoch · 12. Aug 2026",
   statFirstContact: "Partiell ab ~19:30",
@@ -829,6 +636,7 @@ const de: EclipseDictionary = {
   bandLabel: "Totalitätspfad (~290 km breit)",
   centerLabel: "Zentrallinie — längste Totalität",
   sweepLabel: "Der Schatten zieht von West nach Ost, ~20:27 bis ~20:32",
+  scrubHint: "Bewege Finger oder Cursor über die Karte, um die Schatten-Uhr zu steuern.",
   outsideLabel: "Madrid — tiefe partielle Phase, keine Totalität",
   mapDisclaimer:
     "Stilisierte Orientierungskarte. Genaue Grenzen und offizielle Zeiten deiner Gemeinde in der IGN-Tabelle prüfen.",
@@ -846,47 +654,6 @@ const de: EclipseDictionary = {
   detailRisk: "Hauptrisiko",
   detailGuide: "Zum ausführlichen lokalen Guide",
   approxNote: "~ ungefähre Zeiten — prüfe deine genaue Gemeinde in der offiziellen IGN-Tabelle.",
-  simTitle: "Sonnenuntergangs-Simulator",
-  simSubtitle: "Ziehe die Zeitleiste und sieh zu, wie sich der Himmel verändert über",
-  simPlay: "Abspielen",
-  simPause: "Pause",
-  simLocalTime: "Ortszeit",
-  phaseBefore: "Vor der Finsternis",
-  phasePartial: "Partielle Phase — Filter DRAUF",
-  phaseDiamond: "Diamantring!",
-  phaseTotality: "TOTALITÄT — Filter ab, nach oben schauen",
-  phaseEnding: "Partielle Phase — Filter wieder DRAUF",
-  phaseSet: "Sonne unter dem Horizont",
-  simSafety:
-    "Nur eine Simulation. Schau nie ohne ISO-12312-2-zertifizierten Schutz in die echte Sonne — außer während der kurzen totalen Phase innerhalb des Pfads.",
-  checklistTitle: "Deine Checkliste für den Finsternistag",
-  checklistSubtitle: "Hake die Punkte beim Vorbereiten ab — der Fortschritt bleibt auf diesem Gerät gespeichert.",
-  checklistReset: "Zurücksetzen",
-  checklistReady: "bereit",
-  tabSafety: "Sicherheit",
-  tabPhoto: "Fotografie",
-  tabPlan: "Planung",
-  itemsSafety: [
-    "ISO-12312-2-Finsternisbrille für jede Person",
-    "Zertifizierter Sonnenfilter für Kamera, Fernglas oder Teleskop",
-    "Brillen und Filter geprüft — keine Kratzer oder Schäden",
-    "Genaues Totalitätsfenster bekannt — Filter nur dann ab",
-    "Aufsicht für Kinder geplant",
-  ],
-  itemsPhoto: [
-    "Stativ und Fernauslöser eingepackt",
-    "Fokus und Belichtung am Vorabend geprobt",
-    "Akkus geladen, Speicherkarten leer",
-    "Weite Ersatzkomposition für die tiefe Sonne geplant",
-    "Wecker gestellt, um den Filter direkt nach der Totalität wieder anzubringen",
-  ],
-  itemsPlan: [
-    "Kontaktzeiten der Gemeinde in der IGN-Tabelle bestätigt",
-    "Westhorizont vom genauen Standort geprüft",
-    "Ausweichort in einer zweiten Wetterzone gespeichert",
-    "Offline-Karten, Wasser und Sonnenschutz bereit",
-    "Frühe Anreise geplant — Verkehr und Beschränkungen geprüft",
-  ],
   spots: {
     palencia: {
       name: "Palencia · Tierra de Campos",

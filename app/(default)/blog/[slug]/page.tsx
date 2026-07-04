@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
-import { EclipseHub } from "@/components/eclipse/eclipse-hub"
+import { EclipseCountdownBanner, EclipseHub } from "@/components/eclipse/eclipse-hub"
 import { blogArticles, getBlogArticle } from "@/lib/blog-posts"
 import { eclipseHubSlug } from "@/lib/eclipse-experience"
 import { buildArticleMetadata } from "@/lib/metadata"
@@ -65,6 +65,7 @@ export default async function EnglishArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
+      beforeHeader={slug === eclipseHubSlug ? <EclipseCountdownBanner locale="en" /> : undefined}
       afterHeader={slug === eclipseHubSlug ? <EclipseHub locale="en" /> : undefined}
     />
   )

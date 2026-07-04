@@ -1,6 +1,5 @@
 import { CalendarDays, Clock, Sparkles, Timer } from "lucide-react"
 
-import { EclipseChecklist } from "@/components/eclipse/eclipse-checklist"
 import { EclipseCountdown } from "@/components/eclipse/eclipse-countdown"
 import { EclipseExplorer } from "@/components/eclipse/eclipse-explorer"
 import { getEclipseDictionary } from "@/lib/eclipse-experience"
@@ -8,11 +7,15 @@ import { Locale } from "@/lib/i18n"
 
 const navAnchors = [
   { href: "#eclipse-map", key: "navMap" as const },
-  { href: "#eclipse-map", key: "navSpots" as const },
-  { href: "#eclipse-simulator", key: "navSimulator" as const },
-  { href: "#eclipse-checklist", key: "navChecklist" as const },
+  { href: "#eclipse-spots", key: "navSpots" as const },
   { href: "#eclipse-article", key: "navArticle" as const },
 ]
+
+/** Countdown banner rendered at the very top of the article page */
+export function EclipseCountdownBanner({ locale }: { locale: Locale }) {
+  const dict = getEclipseDictionary(locale)
+  return <EclipseCountdown dict={dict} />
+}
 
 export function EclipseHub({ locale }: { locale: Locale }) {
   const dict = getEclipseDictionary(locale)
@@ -81,10 +84,8 @@ export function EclipseHub({ locale }: { locale: Locale }) {
           ))}
         </nav>
 
-        <div className="mt-6 space-y-6">
-          <EclipseCountdown dict={dict} />
+        <div className="mt-6">
           <EclipseExplorer locale={locale} dict={dict} />
-          <EclipseChecklist dict={dict} />
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
-import { EclipseHub } from "@/components/eclipse/eclipse-hub"
+import { EclipseCountdownBanner, EclipseHub } from "@/components/eclipse/eclipse-hub"
 import { blogArticles, getBlogArticle } from "@/lib/blog-posts"
 import { eclipseHubSlug } from "@/lib/eclipse-experience"
 import { assertLocale, localizedLocales } from "@/lib/i18n"
@@ -68,6 +68,7 @@ export default async function LocalizedArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
+      beforeHeader={slug === eclipseHubSlug ? <EclipseCountdownBanner locale={locale} /> : undefined}
       afterHeader={slug === eclipseHubSlug ? <EclipseHub locale={locale} /> : undefined}
     />
   )
