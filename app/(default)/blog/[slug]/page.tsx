@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
+import { EclipseHub } from "@/components/eclipse/eclipse-hub"
 import { blogArticles, getBlogArticle } from "@/lib/blog-posts"
+import { eclipseHubSlug } from "@/lib/eclipse-experience"
 import { buildArticleMetadata } from "@/lib/metadata"
 
 export function generateStaticParams() {
@@ -63,6 +65,7 @@ export default async function EnglishArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
+      afterHeader={slug === eclipseHubSlug ? <EclipseHub locale="en" /> : undefined}
     />
   )
 }

@@ -49,7 +49,7 @@ export type BlogPostSummary = {
 }
 
 const articleModifiedDates: Partial<Record<string, string>> = {
-  "total-solar-eclipse-august-2026": "2026-06-09",
+  "total-solar-eclipse-august-2026": "2026-07-04",
 }
 
 const readTimeLabel: Record<Locale, string> = {

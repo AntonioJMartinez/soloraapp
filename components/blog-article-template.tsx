@@ -41,6 +41,7 @@ type BlogArticleTemplateProps = {
   relatedLinks?: Array<{ href: string; label: string }>
   sources?: Array<{ href: string; label: string }>
   extraHeaderContent?: ReactNode
+  afterHeader?: ReactNode
 }
 
 export function BlogArticleTemplate({
@@ -62,6 +63,7 @@ export function BlogArticleTemplate({
   relatedLinks = [],
   sources = [],
   extraHeaderContent,
+  afterHeader,
 }: BlogArticleTemplateProps) {
   const canonicalUrl = localizedUrl(locale, `/blog/${slug}`)
   const ui = getUiDictionary(locale)
@@ -197,6 +199,8 @@ export function BlogArticleTemplate({
                 />
               </div>
             </header>
+
+            {afterHeader}
 
             <div className="prose prose-invert prose-lg max-w-none">
               <div className="space-y-8 text-white/90 leading-relaxed">
