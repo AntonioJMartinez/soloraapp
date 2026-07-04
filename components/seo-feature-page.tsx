@@ -172,7 +172,7 @@ export function SeoFeaturePage({
                 className="border-white/20 bg-white/5 text-white hover:bg-white/10"
                 asChild
               >
-                <Link href={localizePath(locale, "/blog")}>{copy.readPlanningGuides}</Link>
+                <Link href={localizeAvailablePath(locale, "/blog")}>{copy.readPlanningGuides}</Link>
               </Button>
             </div>
           </div>

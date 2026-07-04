@@ -8,6 +8,7 @@ export type Locale = (typeof locales)[number]
 
 const bilingualEnglishSpanishPaths = new Set([
   "/about",
+  "/blog",
   "/contact",
   "/privacy",
   "/support",
@@ -91,6 +92,10 @@ export function localizedUrl(locale: Locale, path = "/"): string {
 
 export function getAvailableLocalesForPath(path: string): readonly Locale[] {
   const normalizedPath = normalizeRoutePath(path)
+
+  if (normalizedPath === "/blog" || normalizedPath.startsWith("/blog/")) {
+    return ["en", "es"]
+  }
 
   if (bilingualEnglishSpanishPaths.has(normalizedPath)) {
     return ["en", "es"]

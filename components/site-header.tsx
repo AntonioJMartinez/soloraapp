@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { Locale, localizePath } from "@/lib/i18n"
+import { Locale, localizeAvailablePath, localizePath } from "@/lib/i18n"
 import { getUiDictionary } from "@/lib/marketing-content"
 
 type SiteHeaderProps = {
@@ -22,7 +22,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
           <Link href={localizePath(locale, "/#features")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
             {ui.navFeatures}
           </Link>
-          <Link href={localizePath(locale, "/blog")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
+          <Link href={localizeAvailablePath(locale, "/blog")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">
             {ui.navBlog}
           </Link>
           <Link href={localizePath(locale, "/press-kit")} className="text-sm text-white/80 transition-colors hover:text-white lg:text-base">

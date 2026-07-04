@@ -31,7 +31,7 @@ const priorityBlogSlugs = new Set([
 ])
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const contentLastModified = new Date("2026-06-09T00:00:00.000Z")
+  const contentLastModified = new Date("2026-07-04T00:00:00.000Z")
 
   const staticEntries = staticRoutes.flatMap((route) =>
     getAvailableLocalesForPath(route).map((locale) => ({
@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     blogArticles.filter((post) => priorityBlogSlugs.has(post.slug)).map((post) => ({
       url: localizedUrl(locale, `/blog/${post.slug}`),
       lastModified: new Date(
-        post.slug === "total-solar-eclipse-august-2026" ? "2026-06-09" : post.publishDate,
+        post.slug === "total-solar-eclipse-august-2026" ? "2026-07-04" : post.publishDate,
       ),
       changeFrequency: "monthly" as const,
       priority: post.slug === "total-solar-eclipse-august-2026" ? 0.9 : 0.75,

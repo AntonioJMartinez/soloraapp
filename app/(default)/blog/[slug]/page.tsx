@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
-import { blogArticles, getBlogArticle } from "@/lib/blog-posts"
+import { blogArticles, getBlogArticle, indexableBlogLocales } from "@/lib/blog-posts"
 import { buildArticleMetadata } from "@/lib/metadata"
 
 export function generateStaticParams() {
@@ -29,6 +29,7 @@ export async function generateMetadata({
     ogImage: `/${article.image}`,
     ogImageAlt: article.imageAlt,
     publishedTime: `${article.publishDate}T00:00:00.000Z`,
+    availableLocales: indexableBlogLocales,
   })
 }
 
@@ -63,6 +64,7 @@ export default async function EnglishArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
+      faqs={article.faqs}
     />
   )
 }

@@ -22,6 +22,11 @@ type ArticleSection = {
   }
 }
 
+type ArticleFaq = {
+  question: string
+  answer: string
+}
+
 type BlogArticleTemplateProps = {
   locale: Locale
   title: string
@@ -40,6 +45,7 @@ type BlogArticleTemplateProps = {
   ctaDescription: string
   relatedLinks?: Array<{ href: string; label: string }>
   sources?: Array<{ href: string; label: string }>
+  faqs?: ArticleFaq[]
   extraHeaderContent?: ReactNode
 }
 
@@ -61,6 +67,7 @@ export function BlogArticleTemplate({
   ctaDescription,
   relatedLinks = [],
   sources = [],
+  faqs = [],
   extraHeaderContent,
 }: BlogArticleTemplateProps) {
   const canonicalUrl = localizedUrl(locale, `/blog/${slug}`)
@@ -84,6 +91,82 @@ export function BlogArticleTemplate({
     pt: "Atualizado",
     zh: "更新于",
   }[locale]
+  const faqHeading = {
+    en: "Frequently asked questions",
+    es: "Preguntas frecuentes",
+    fr: "Questions fréquentes",
+    it: "Domande frequenti",
+    de: "Häufige Fragen",
+    pt: "Perguntas frequentes",
+    zh: "常见问题",
+  }[locale]
+  const schemaGraph = [
+    {
+      "@type": "BlogPosting",
+      headline: title,
+      description,
+      image: absoluteUrl(`/${image}`),
+      author: {
+        "@type": "Person",
+        name: siteConfig.author,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        logo: {
+          "@type": "ImageObject",
+          url: absoluteUrl(siteConfig.icon),
+        },
+      },
+      datePublished: publishedDate,
+      dateModified: modifiedDate ?? publishedDate,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalUrl,
+      },
+      articleSection,
+      wordCount,
+      timeRequired: `PT${Math.max(1, parseInt(readTime, 10) || 1)}M`,
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: ui.navHome,
+          item: localizedUrl(locale, "/"),
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: ui.navBlog,
+          item: localizedUrl(locale, "/blog"),
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: title,
+          item: canonicalUrl,
+        },
+      ],
+    },
+    ...(faqs.length
+      ? [
+          {
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          },
+        ]
+      : []),
+  ]
 
   return (
     <>
@@ -92,58 +175,7 @@ export function BlogArticleTemplate({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "BlogPosting",
-                headline: title,
-                description,
-                image: absoluteUrl(`/${image}`),
-                author: {
-                  "@type": "Person",
-                  name: siteConfig.author,
-                },
-                publisher: {
-                  "@type": "Organization",
-                  name: siteConfig.name,
-                  logo: {
-                    "@type": "ImageObject",
-                    url: absoluteUrl(siteConfig.icon),
-                  },
-                },
-                datePublished: publishedDate,
-                dateModified: modifiedDate ?? publishedDate,
-                mainEntityOfPage: {
-                  "@type": "WebPage",
-                  "@id": canonicalUrl,
-                },
-                articleSection,
-                wordCount,
-                timeRequired: `PT${Math.max(1, parseInt(readTime, 10) || 1)}M`,
-              },
-              {
-                "@type": "BreadcrumbList",
-                itemListElement: [
-                  {
-                    "@type": "ListItem",
-                    position: 1,
-                    name: ui.navHome,
-                    item: localizedUrl(locale, "/"),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: ui.navBlog,
-                    item: localizedUrl(locale, "/blog"),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 3,
-                    name: title,
-                    item: canonicalUrl,
-                  },
-                ],
-              },
-            ],
+            "@graph": schemaGraph,
           }),
         }}
       />
@@ -153,7 +185,7 @@ export function BlogArticleTemplate({
 
         <main className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
           <Link
-            href={localizePath(locale, "/blog")}
+            href={localizeAvailablePath(locale, "/blog")}
             className="mb-8 inline-flex items-center gap-2 text-[#E6786E] transition-colors hover:text-[#D4695F]"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -255,6 +287,20 @@ export function BlogArticleTemplate({
               </div>
             </div>
 
+            {faqs.length ? (
+              <section className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h2 className="text-2xl font-bold text-white md:text-3xl">{faqHeading}</h2>
+                <div className="space-y-4">
+                  {faqs.map((faq) => (
+                    <details key={faq.question} className="rounded-xl border border-white/10 bg-black/20 p-4">
+                      <summary className="cursor-pointer text-lg font-semibold text-white">{faq.question}</summary>
+                      <p className="mt-3 text-white/80">{faq.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             {relatedLinks.length ? (
               <section className="space-y-4">
                 <h2 className="text-2xl font-bold text-white md:text-3xl">{ui.relatedGuides}</h2>
@@ -262,7 +308,7 @@ export function BlogArticleTemplate({
                   {relatedLinks.map((link) => (
                     <Link
                       key={link.href}
-                  href={localizeAvailablePath(locale, link.href)}
+                      href={localizeAvailablePath(locale, link.href)}
                       className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                     >
                       {link.label}

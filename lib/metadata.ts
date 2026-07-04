@@ -18,6 +18,7 @@ type BasePageMetadataInput = {
   ogImage?: string
   ogImageAlt?: string
   type?: "website" | "article"
+  availableLocales?: readonly Locale[]
 }
 
 type ArticleMetadataInput = BasePageMetadataInput & {
@@ -86,8 +87,9 @@ function buildCommonMetadata({
   ogImage = siteConfig.ogImage,
   ogImageAlt = "Solora astronomical planning app preview",
   type = "website",
+  availableLocales: inputAvailableLocales,
 }: BasePageMetadataInput): Metadata {
-  const availableLocales = getAvailableLocalesForPath(path)
+  const availableLocales = inputAvailableLocales ?? getAvailableLocalesForPath(path)
   const isTranslated = availableLocales.includes(locale)
   const canonicalLocale = isTranslated ? locale : availableLocales[0]
   const canonical = localizedUrl(canonicalLocale, path)

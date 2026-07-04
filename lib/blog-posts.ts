@@ -13,6 +13,11 @@ export type ArticleSection = {
   }
 }
 
+export type ArticleFaq = {
+  question: string
+  answer: string
+}
+
 export type BlogCategory = "Astronomy" | "Aurora" | "Photography" | "Weather"
 
 export type LocalizedBlogArticle = {
@@ -25,6 +30,7 @@ export type LocalizedBlogArticle = {
   ctaDescription: string
   relatedLinks: Array<{ href: string; label: string }>
   sources?: Array<{ href: string; label: string }>
+  faqs?: ArticleFaq[]
 }
 
 type BlogArticleDefinition = {
@@ -49,8 +55,10 @@ export type BlogPostSummary = {
 }
 
 const articleModifiedDates: Partial<Record<string, string>> = {
-  "total-solar-eclipse-august-2026": "2026-06-09",
+  "total-solar-eclipse-august-2026": "2026-07-04",
 }
+
+export const indexableBlogLocales = ["en", "es"] as const
 
 const readTimeLabel: Record<Locale, string> = {
   en: "min read",
@@ -102,8 +110,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
     true,
     {
       en: {
-        title: "Spain Total Solar Eclipse 2026: Best Places and Times",
-        description: "Compare the best places to see Spain's 2026 total solar eclipse, including Castile and León, Aragón, Galicia and Mallorca, with official times and risks.",
+        title: "Spain Solar Eclipse 2026: Where to Watch, Time and Map",
+        description: "Find where to watch Spain's August 12, 2026 total solar eclipse, with path of totality, local times, best regions, safety and horizon-planning tips.",
         excerpt: "A research-based comparison of the best regions for Spain's August 12, 2026 total solar eclipse, with official geometry, climate and logistics.",
         imageAlt: "Total solar eclipse over Spain at sunset on August 12, 2026",
         sections: [
@@ -250,10 +258,32 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Future eclipses" },
           { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Eclipse viewing safety" },
         ],
+        faqs: [
+          {
+            question: "Where is the best place to watch the 2026 solar eclipse in Spain?",
+            answer: "The best overall planning zone is the northern Meseta, especially open areas around Palencia, León, Burgos, Aranda de Duero and Soria, because it balances totality duration, lower average August cloud risk and a higher Sun than the eastern coast.",
+          },
+          {
+            question: "What time is the total solar eclipse in Spain on August 12, 2026?",
+            answer: "Totality happens near 20:27-20:33 local time depending on location. For example, A Coruña reaches totality around 20:28, Burgos around 20:29 and Palma around 20:31-20:32. Always confirm final contact times with the official IGN table for your exact municipality.",
+          },
+          {
+            question: "Will Madrid or Barcelona see the 2026 eclipse as total?",
+            answer: "Central Madrid and Barcelona are outside the path of totality, so they will see a deep partial eclipse. To experience totality, choose a site inside the official totality band with a clear west-northwest horizon.",
+          },
+          {
+            question: "Why does the horizon matter so much for the 2026 Spain eclipse?",
+            answer: "The eclipse occurs close to sunset in Spain, so the Sun will be low. Even a small hill, building, tree line, haze layer or coastal cloud bank can block totality from an otherwise good location.",
+          },
+          {
+            question: "What eye protection do I need for the eclipse?",
+            answer: "Use certified solar eclipse viewers that comply with ISO 12312-2 for every partial phase. Only viewers inside the path of totality can remove protection during the brief total phase, and it must be replaced immediately when the Sun begins to reappear.",
+          },
+        ],
       },
       es: {
-        title: "Eclipse total España 2026: mejores lugares y horarios",
-        description: "Compara los mejores lugares para ver el eclipse total de España de 2026: Castilla y León, Aragón, Galicia y Mallorca, con horarios y riesgos.",
+        title: "Eclipse solar 2026 España: dónde verlo, hora y mapa",
+        description: "Guía para saber dónde ver el eclipse solar total del 12 de agosto de 2026 en España: mapa de totalidad, horarios, mejores zonas y seguridad.",
         excerpt: "Comparativa basada en datos oficiales de las mejores zonas para ver el eclipse total del 12 de agosto de 2026 en España.",
         imageAlt: "Eclipse solar total en España al atardecer del 12 de agosto de 2026",
         sections: [
@@ -261,6 +291,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             heading: "Por qué el eclipse del 12 de agosto de 2026 es histórico",
             paragraphs: [
               "El miércoles 12 de agosto de 2026 un eclipse solar total cruzará España de oeste a este cerca del atardecer. El Instituto Geográfico Nacional (IGN) lo describe como el primer eclipse total de Sol visible desde la península Ibérica en más de un siglo.",
+              "Respuesta rápida: para ver el eclipse solar 2026 en España como total debes situarte dentro de la franja de totalidad. Las mejores zonas para planificar combinan norte de Castilla y León, corredor de Burgos-Soria, Aragón interior, Galicia norte y Mallorca occidental, siempre con un horizonte oeste-noroeste limpio.",
               "La franja de totalidad atravesará gran parte de la mitad norte peninsular y llegará a Baleares. Pasará por zonas y capitales como A Coruña, Oviedo, León, Bilbao, Burgos, Zaragoza, València y Palma. En la mitad sur de España el eclipse se verá como parcial.",
             ],
           },
@@ -404,6 +435,32 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           { href: "https://www.turismocastillayleon.com/cm/facm/300009/439607-Ven%20a%20Soria%20por%20el%20eclipse.pdf", label: "Turismo de Castilla y León: Zonas de observación de Soria" },
           { href: "https://science.nasa.gov/eclipses/future-eclipses/", label: "NASA: Próximos eclipses" },
           { href: "https://science.nasa.gov/eclipses/safety/", label: "NASA: Seguridad durante un eclipse" },
+        ],
+        faqs: [
+          {
+            question: "¿Dónde ver el eclipse solar 2026 en España?",
+            answer: "La mejor zona general para planificar es el norte de la Meseta, especialmente áreas abiertas de Palencia, León, Burgos, Aranda de Duero y Soria. Combinan duración de totalidad, nubosidad media favorable en agosto y un Sol más alto que en el este peninsular.",
+          },
+          {
+            question: "¿A qué hora será el eclipse solar 2026 en España?",
+            answer: "La totalidad ocurrirá aproximadamente entre las 20:27 y las 20:33, según el municipio. A Coruña estará cerca de las 20:28, Burgos cerca de las 20:29 y Palma cerca de las 20:31-20:32. Para cerrar el plan, consulta siempre la tabla oficial del IGN para tu ubicación exacta.",
+          },
+          {
+            question: "¿Madrid y Barcelona verán el eclipse total de 2026?",
+            answer: "El centro de Madrid y Barcelona quedan fuera de la franja de totalidad, por lo que verán un eclipse parcial muy profundo. Para vivir la totalidad hay que desplazarse a un punto dentro de la franja oficial y comprobar que el horizonte oeste-noroeste esté libre.",
+          },
+          {
+            question: "¿Qué mapa de la franja de totalidad debo usar?",
+            answer: "Usa el mapa y la tabla oficial del IGN para confirmar si tu municipio está dentro de la franja de totalidad. Después valida el terreno con una app de trayectoria solar como Solora, porque estar dentro de la franja no garantiza ver el Sol si el horizonte local está tapado.",
+          },
+          {
+            question: "¿Por qué importa tanto el horizonte en este eclipse?",
+            answer: "En España el eclipse será al atardecer, con el Sol bajo. Una loma, edificios, árboles, calima o una nube baja sobre el horizonte pueden ocultar la totalidad aunque el resto del cielo parezca despejado.",
+          },
+          {
+            question: "¿Qué protección necesito para observar el eclipse?",
+            answer: "Necesitas gafas o visores solares certificados ISO 12312-2 durante todas las fases parciales. Solo dentro de la franja de totalidad se puede retirar la protección durante la breve fase total, y hay que volver a colocarla en cuanto reaparezca el Sol.",
+          },
         ],
       },
       fr: {
@@ -1521,7 +1578,9 @@ function countArticleWords(content: LocalizedBlogArticle, locale: Locale) {
       section.heading,
       ...section.paragraphs,
       ...(section.bullets ?? []),
+      ...(section.table ? [section.table.caption, ...section.table.headers, ...section.table.rows.flat()] : []),
     ]),
+    ...(content.faqs?.flatMap((faq) => [faq.question, faq.answer]) ?? []),
   ].join(" ")
 
   if (locale === "zh") {

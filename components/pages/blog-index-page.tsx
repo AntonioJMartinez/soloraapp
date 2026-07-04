@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ResponsiveImage } from "@/components/responsive-image"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
 import { getBlogPosts, getFeaturedBlogPosts } from "@/lib/blog-posts"
 import { getBlogIndexContent, getUiDictionary } from "@/lib/marketing-content"
 
@@ -87,10 +87,10 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
                       </div>
                     </div>
                     <h3 className="text-xl font-bold text-white transition-colors group-hover:text-[#E6786E]">
-                      <Link href={localizePath(locale, `/blog/${post.id}`)}>{post.title}</Link>
+                      <Link href={localizeAvailablePath(locale, `/blog/${post.id}`)}>{post.title}</Link>
                     </h3>
                     <p className="text-sm leading-relaxed text-white/70">{post.excerpt}</p>
-                    <Link href={localizePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-1 text-sm font-medium text-[#E6786E]">
+                    <Link href={localizeAvailablePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-1 text-sm font-medium text-[#E6786E]">
                       {ui.readMore}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -130,10 +130,10 @@ export function BlogIndexPage({ locale }: BlogIndexPageProps) {
                           </div>
                         </div>
                         <h3 className="text-xl font-bold text-white transition-colors group-hover:text-[#E6786E] md:text-2xl">
-                          <Link href={localizePath(locale, `/blog/${post.id}`)}>{post.title}</Link>
+                          <Link href={localizeAvailablePath(locale, `/blog/${post.id}`)}>{post.title}</Link>
                         </h3>
                         <p className="leading-relaxed text-white/70">{post.excerpt}</p>
-                        <Link href={localizePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
+                        <Link href={localizeAvailablePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
                           {ui.readFullArticle}
                           <ArrowRight className="h-4 w-4" />
                         </Link>

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { Locale, localizePath, localizedUrl } from "@/lib/i18n"
+import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
 import { siteConfig } from "@/lib/site"
 
 export type EclipseGuideSection = {
@@ -132,7 +132,7 @@ export function EclipseGuidePage({
 
           <section className="flex flex-col gap-3 rounded-3xl bg-gradient-to-br from-[#E6786E] to-[#C25A50] p-7 sm:flex-row sm:flex-wrap">
             <Button asChild className="bg-white text-[#C25A50] hover:bg-white/90">
-              <Link href={localizePath(locale, "/blog/total-solar-eclipse-august-2026")}>{copy.mainGuide}</Link>
+              <Link href={localizeAvailablePath(locale, "/blog/total-solar-eclipse-august-2026")}>{copy.mainGuide}</Link>
             </Button>
             <Button asChild variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
               <Link href={localizePath(locale, "/sun-tracker-app")}>{copy.tracker}</Link>

@@ -205,7 +205,7 @@ export function HomePage({ locale }: HomePageProps) {
                   <p className="max-w-3xl text-lg leading-relaxed text-white/75">{eclipse.body}</p>
                 </div>
                 <Button size="lg" className="bg-[#E6786E] text-white hover:bg-[#D4695F]" asChild>
-                  <Link href={localizePath(locale, "/blog/total-solar-eclipse-august-2026")}>
+                  <Link href={localizeAvailablePath(locale, "/blog/total-solar-eclipse-august-2026")}>
                     {eclipse.cta}
                     <ChevronRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
@@ -357,7 +357,7 @@ export function HomePage({ locale }: HomePageProps) {
                       </Badge>
                       <h3 className="text-2xl font-bold text-white">{post.title}</h3>
                       <p className="leading-relaxed text-white/70">{post.excerpt}</p>
-                      <Link href={localizePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
+                      <Link href={localizeAvailablePath(locale, `/blog/${post.id}`)} className="inline-flex items-center gap-2 font-medium text-[#E6786E]">
                         {content.evergreenCta}
                         <ChevronRight className="h-4 w-4" />
                       </Link>

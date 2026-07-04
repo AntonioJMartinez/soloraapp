@@ -213,9 +213,9 @@ export const uiDictionary: Record<AuthoredLocale, UiDictionary> = {
 
 export const homeContent: Record<AuthoredLocale, HomeContent> = {
   en: {
-    title: "Solora | Sunrise, Sunset, Moon Phase and Aurora Forecast App",
+    title: "Solora App | Sunrise, Sunset, Moon, Aurora & Eclipse Planner",
     description:
-      "Plan sunrise, sunset, golden hour, moon phases, aurora forecasts, Milky Way visibility, tides, and major astronomical events with Solora.",
+      "Download Solora to plan sunrise, sunset, golden hour, moon phases, aurora forecasts, Milky Way visibility, tides and the 2026 Spain eclipse.",
     heroHeadingLine1: "Plan the sky,",
     heroHeadingLine2: "perfect the moment",
     heroBody:
@@ -265,9 +265,9 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
     downloadBody: "Download now and start planning with the best AI forecasts.",
   },
   es: {
-    title: "Solora | App de amanecer, atardecer, fases lunares y aurora",
+    title: "Solora App | Amanecer, atardecer, luna, auroras y eclipses",
     description:
-      "Planifica amaneceres, atardeceres, hora dorada, fases lunares, auroras, visibilidad de la Vía Láctea, mareas y grandes eventos astronómicos con Solora.",
+      "Descarga Solora para planificar amanecer, atardecer, hora dorada, fases lunares, auroras, Vía Láctea, mareas y el eclipse 2026.",
     heroHeadingLine1: "Planifica el cielo,",
     heroHeadingLine2: "perfecciona el momento",
     heroBody:
