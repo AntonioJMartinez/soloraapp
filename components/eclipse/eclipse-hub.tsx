@@ -5,13 +5,6 @@ import { EclipseExplorer } from "@/components/eclipse/eclipse-explorer"
 import { getEclipseDictionary } from "@/lib/eclipse-experience"
 import { Locale } from "@/lib/i18n"
 
-const navAnchors = [
-  { href: "#eclipse-about", key: "navAbout" as const },
-  { href: "#eclipse-map", key: "navMap" as const },
-  { href: "#eclipse-spots", key: "navSpots" as const },
-  { href: "#eclipse-article", key: "navArticle" as const },
-]
-
 /** Countdown banner rendered at the very top of the article page */
 export function EclipseCountdownBanner({ locale }: { locale: Locale }) {
   const dict = getEclipseDictionary(locale)
@@ -72,18 +65,6 @@ export function EclipseHub({ locale }: { locale: Locale }) {
             )
           })}
         </div>
-
-        <nav aria-label={dict.hubTitle} className="mt-5 flex flex-wrap gap-2">
-          {navAnchors.map((anchor) => (
-            <a
-              key={anchor.key}
-              href={anchor.href}
-              className="rounded-full bg-[#E6786E]/15 px-4 py-1.5 text-sm font-medium text-[#F4B7A8] transition-colors hover:bg-[#E6786E]/30 hover:text-white"
-            >
-              {dict[anchor.key]}
-            </a>
-          ))}
-        </nav>
 
         <div
           id="eclipse-about"

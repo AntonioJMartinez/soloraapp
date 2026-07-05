@@ -208,10 +208,6 @@ export type EclipseDictionary = {
   hubSubtitle: string
   aboutTitle: string
   aboutBody: string
-  navAbout: string
-  navMap: string
-  navSpots: string
-  navArticle: string
   statDate: string
   statFirstContact: string
   statTotalityWindow: string
@@ -256,10 +252,6 @@ const en: EclipseDictionary = {
   aboutTitle: "What is it?",
   aboutBody:
     "A total solar eclipse — the first visible from mainland Spain in over a century. Near sunset on August 12, 2026, the Moon fully covers the Sun along a path sweeping from Galicia to the Balearic Islands, briefly turning day to twilight. Outside that path, most of Spain sees a deep partial eclipse.",
-  navAbout: "What is it",
-  navMap: "Path map",
-  navSpots: "Best places",
-  navArticle: "Full guide",
   statDate: "Wed · Aug 12, 2026",
   statFirstContact: "Partial begins ~19:30",
   statTotalityWindow: "Totality ~20:27–20:33",
@@ -351,10 +343,6 @@ const es: EclipseDictionary = {
   aboutTitle: "¿Qué es?",
   aboutBody:
     "Un eclipse solar total, el primero visible desde la España peninsular en más de un siglo. Cerca del atardecer del 12 de agosto de 2026, la Luna cubre por completo el Sol a lo largo de una franja que va de Galicia a Baleares y convierte el día en penumbra durante unos segundos. Fuera de esa franja, casi toda España verá un eclipse parcial profundo.",
-  navAbout: "¿Qué es?",
-  navMap: "Mapa de la franja",
-  navSpots: "Mejores lugares",
-  navArticle: "Guía completa",
   statDate: "Miércoles · 12 ago 2026",
   statFirstContact: "Parcial desde ~19:30",
   statTotalityWindow: "Totalidad ~20:27–20:33",
@@ -447,10 +435,6 @@ const fr: EclipseDictionary = {
   aboutTitle: "Qu'est-ce que c'est ?",
   aboutBody:
     "Une éclipse solaire totale — la première visible depuis l'Espagne continentale depuis plus d'un siècle. Près du coucher du soleil, le 12 août 2026, la Lune couvre entièrement le Soleil le long d'une bande allant de la Galice aux Baléares, transformant brièvement le jour en crépuscule. Ailleurs, la majeure partie de l'Espagne voit une éclipse partielle profonde.",
-  navAbout: "Qu'est-ce que c'est",
-  navMap: "Carte de la bande",
-  navSpots: "Meilleurs lieux",
-  navArticle: "Guide complet",
   statDate: "Mercredi · 12 août 2026",
   statFirstContact: "Phase partielle dès ~19h30",
   statTotalityWindow: "Totalité ~20h27–20h33",
@@ -543,10 +527,6 @@ const it: EclipseDictionary = {
   aboutTitle: "Che cos'è?",
   aboutBody:
     "Un'eclissi solare totale — la prima visibile dalla Spagna continentale da oltre un secolo. Verso il tramonto del 12 agosto 2026, la Luna copre completamente il Sole lungo una fascia che va dalla Galizia alle Baleari, trasformando per pochi secondi il giorno in penombra. Fuori da quella fascia, gran parte della Spagna vedrà un'eclissi parziale profonda.",
-  navAbout: "Che cos'è",
-  navMap: "Mappa della fascia",
-  navSpots: "Posti migliori",
-  navArticle: "Guida completa",
   statDate: "Mercoledì · 12 ago 2026",
   statFirstContact: "Fase parziale da ~19:30",
   statTotalityWindow: "Totalità ~20:27–20:33",
@@ -639,10 +619,6 @@ const de: EclipseDictionary = {
   aboutTitle: "Was ist das?",
   aboutBody:
     "Eine totale Sonnenfinsternis — die erste seit über einem Jahrhundert vom spanischen Festland aus sichtbar. Kurz vor Sonnenuntergang am 12. August 2026 bedeckt der Mond die Sonne vollständig entlang eines Pfades von Galicien bis zu den Balearen und verwandelt den Tag für Sekunden in Dämmerung. Außerhalb dieses Pfades erlebt der Großteil Spaniens eine tiefe partielle Finsternis.",
-  navAbout: "Was ist das",
-  navMap: "Pfadkarte",
-  navSpots: "Beste Orte",
-  navArticle: "Kompletter Guide",
   statDate: "Mittwoch · 12. Aug 2026",
   statFirstContact: "Partiell ab ~19:30",
   statTotalityWindow: "Totalität ~20:27–20:33",
