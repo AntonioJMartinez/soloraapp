@@ -115,51 +115,11 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             ],
           },
           {
-            heading: "What time is the eclipse in Spain?",
+            heading: "Which region gives you the best chance",
             paragraphs: [
-              "Exact contact times depend on your municipality, so use the official IGN eclipse table for your final timing. The times below are official local time for mainland Spain and the Balearic Islands.",
-              "The Sun will be low in the west during totality. That creates dramatic light, but it also makes an unobstructed western horizon essential. A mountain ridge, building, trees or haze can hide the most important minute even when the sky above you is clear.",
+              "Use the interactive map and ranking above to compare exact times, totality length and Sun altitude for each base. The short version: the best overall region is the northern Meseta, especially the open plains around Palencia, León, Burgos and the Aranda de Duero–Soria corridor. That combines official IGN eclipse geometry with the IGN's August cloud climatology, where the northern Meseta and the Ebro valley have the most favorable average cloud conditions inside the path and Castile and León keeps the Sun higher than eastern Spain.",
+              "No exact field can be declared the winner months in advance. The official national eclipse portal advises that the nearest suitable place is often best when it is already inside totality and has a clear western horizon. The Sun will be low in the west during totality, so an unobstructed western horizon is essential — a ridge, building, trees or haze can hide the most important minute even when the sky above is clear.",
             ],
-            bullets: [
-              "A Coruña: partial eclipse begins at 19:31, maximum at 20:28, with about 76 seconds of totality and the Sun roughly 12 degrees above the horizon.",
-              "Burgos: partial eclipse begins at 19:33, maximum at 20:29, with about 104 seconds of totality and the Sun roughly 8 degrees high.",
-              "Palma: partial eclipse begins at 19:38 and reaches maximum at 20:32, with the Sun only about 2 degrees above the horizon.",
-              "The eclipse's global maximum occurs near Iceland, where totality can last up to 2 minutes 18 seconds.",
-            ],
-          },
-          {
-            heading: "Research conclusion: the best regions in Spain",
-            paragraphs: [
-              "The best overall region is the northern Meseta, especially the open plains around Palencia, León, Burgos and the Aranda de Duero–Soria corridor. This conclusion combines official IGN eclipse geometry with the IGN's August cloud climatology: the northern Meseta and the Ebro valley have the most favorable average cloud conditions inside the path, while Castile and León also keeps the Sun higher than eastern Spain.",
-              "No exact field can be declared the winner months in advance. The official national eclipse portal advises that the nearest suitable place is often best when it is already inside totality and has a clear western horizon. The final choice should use current forecasts, official observation sites and traffic guidance.",
-            ],
-            bullets: [
-              "Best overall balance: Palencia and Tierra de Campos, with flat horizons, roughly 102 seconds of totality in Palencia and the Sun near 9 degrees.",
-              "Best center-line corridor: Aranda de Duero and Soria, with roughly 101–103 seconds of totality and strong official eclipse infrastructure.",
-              "Best organized lower-cloud alternative: Aragón, especially official sites around Calamocha and Monreal del Campo; totality is about 101 seconds there, but the Sun is only around 6 degrees high.",
-              "Best higher-Sun option: A Coruña and northern Galicia, where the Sun is around 11–12 degrees high, offset by a materially greater Atlantic cloud risk.",
-              "Best specialist sea-horizon option: western Mallorca, where totality lasts about 96 seconds but the Sun is only around 2 degrees high, making haze and tiny horizon obstructions decisive.",
-            ],
-          },
-          {
-            heading: "Comparison of leading eclipse bases",
-            paragraphs: [
-              "The figures below are municipality examples from the official IGN table, not guarantees for every nearby viewpoint. Duration and altitude change with exact coordinates. Climate ratings summarize the official August cloud map and should be treated as planning guidance, not a forecast.",
-            ],
-            table: {
-              caption: "Leading places to base a Spain eclipse plan",
-              headers: ["Area", "Totality", "Sun altitude", "Why choose it", "Main risk"],
-              rows: [
-                ["Palencia / Tierra de Campos", "About 1m 42s", "About 9°", "Best overall balance; open plains and favorable inland climatology", "Crowding and unconfirmed final viewing-site logistics"],
-                ["León plain", "About 1m 45s", "About 10°", "Long totality and one of the highest inland Sun positions", "Western mountain horizon must be checked from the exact site"],
-                ["Aranda de Duero", "About 1m 43s", "About 8°", "Near the center line, accessible and inside the favorable northern Meseta", "Local terrain, traffic and limited famous viewpoints"],
-                ["Soria", "About 1m 41s", "About 7°", "Center-line geometry and published official serviced observation areas", "Lower Sun and convective cloud near mountain systems"],
-                ["Monreal del Campo / Calamocha", "About 1m 41s", "About 6°", "Favorable Aragón climatology and official observation sites", "Very low Sun, heat, haze and terrain"],
-                ["Zaragoza / Ebro valley", "About 1m 23s", "About 6°", "Low average August cloud and strong transport capacity", "Shorter totality, urban crowding, heat and haze"],
-                ["A Coruña", "About 1m 16s", "About 12°", "Highest Sun among the main examples and more horizon margin", "Atlantic low cloud, fog and coastal layers"],
-                ["Palma / western Mallorca", "About 1m 36s", "About 2°", "Potentially dramatic unobstructed sea-horizon composition", "Extreme horizon sensitivity, haze and island mobility"],
-              ],
-            },
           },
           {
             heading: "Official observation sites and logistics",
@@ -223,13 +183,6 @@ const manualBlogArticles: BlogArticleDefinition[] = [
               "Red light, water, sun protection and offline navigation.",
             ],
           },
-          {
-            heading: "Final planning checklist",
-            paragraphs: [
-              "Confirm your municipality's contact times on the IGN site, arrive several hours early, verify the western horizon and rehearse your safety sequence. Make sure every person knows when filters can and cannot be removed.",
-              "The best plan is flexible enough to respond to weather but simple enough to execute under pressure. Once totality begins, take time to look away from the camera and experience the sky.",
-            ],
-          },
         ],
         ctaTitle: "Compare your eclipse locations before August 12",
         ctaDescription: "Use Solora to plan the Sun's path, weather, visibility and backup locations around Spain's 2026 total solar eclipse.",
@@ -255,51 +208,11 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             ],
           },
           {
-            heading: "¿A qué hora es el eclipse solar en España?",
+            heading: "Qué región te da la mejor oportunidad",
             paragraphs: [
-              "Los contactos exactos cambian en cada municipio. Para cerrar tu plan debes consultar la tabla oficial del IGN. Los horarios siguientes están expresados en hora oficial peninsular y de Baleares.",
-              "La totalidad ocurrirá con el Sol muy bajo hacia el oeste. Esto puede crear una escena espectacular, pero convierte la visibilidad del horizonte en un factor crítico: una montaña, edificios, árboles o calima pueden ocultar el minuto decisivo aunque el cielo superior esté despejado.",
+              "Usa el mapa interactivo y el ranking de arriba para comparar horarios exactos, duración de la totalidad y altura del Sol de cada base. En resumen: la mejor región en conjunto es el norte de la Meseta, especialmente las llanuras de Palencia, León, Burgos y el corredor Aranda de Duero–Soria. Esto combina la geometría oficial del IGN con su climatología de nubosidad de agosto, donde el norte de la Meseta y el valle del Ebro presentan las condiciones medias más favorables dentro de la franja y Castilla y León conserva el Sol más alto que el este peninsular.",
+              "No se puede declarar ganador a un campo concreto con meses de antelación. El portal oficial estatal recuerda que, si ya estás dentro de la totalidad y tienes horizonte oeste limpio, el lugar más cercano suele ser la mejor opción. La totalidad ocurrirá con el Sol muy bajo hacia el oeste, así que un horizonte occidental despejado es esencial: una montaña, edificios, árboles o calima pueden ocultar el minuto decisivo aunque el cielo superior esté despejado.",
             ],
-            bullets: [
-              "A Coruña: inicio parcial a las 19:31, máximo a las 20:28, unos 76 segundos de totalidad y el Sol a unos 12 grados de altura.",
-              "Burgos: inicio parcial a las 19:33, máximo a las 20:29, unos 104 segundos de totalidad y el Sol a unos 8 grados.",
-              "Palma: inicio parcial a las 19:38 y máximo a las 20:32, con el Sol a solo unos 2 grados sobre el horizonte.",
-              "El máximo global ocurrirá cerca de Islandia, con una duración máxima de totalidad de 2 minutos y 18 segundos.",
-            ],
-          },
-          {
-            heading: "Conclusión de la investigación: las mejores zonas de España",
-            paragraphs: [
-              "La mejor región en conjunto es el norte de la Meseta, especialmente las llanuras de Palencia, León, Burgos y el corredor Aranda de Duero–Soria. La conclusión combina la geometría oficial del IGN con su climatología de nubosidad de agosto: el norte de la Meseta y el valle del Ebro presentan las condiciones medias más favorables dentro de la franja, mientras Castilla y León conserva el Sol más alto que el este peninsular.",
-              "No se puede declarar ganador a un campo concreto con meses de antelación. El portal oficial estatal recuerda que, si ya estás dentro de la totalidad y tienes horizonte oeste limpio, el lugar más cercano suele ser la mejor opción. La decisión final debe apoyarse en la previsión actual, los puntos oficiales y las indicaciones de movilidad.",
-            ],
-            bullets: [
-              "Mejor equilibrio general: Palencia y Tierra de Campos, con horizonte llano, unos 102 segundos de totalidad en Palencia y el Sol cerca de 9 grados.",
-              "Mejor corredor de centralidad: Aranda de Duero y Soria, con unos 101–103 segundos de totalidad e infraestructura oficial creciente.",
-              "Mejor alternativa organizada con poca nubosidad media: Aragón, especialmente Calamocha y Monreal del Campo; allí la totalidad ronda 101 segundos, pero el Sol estará a unos 6 grados.",
-              "Mejor opción por altura solar: A Coruña y el norte de Galicia, con el Sol a 11–12 grados, a cambio de un riesgo atlántico de nubes claramente mayor.",
-              "Mejor opción especializada con horizonte marino: el oeste de Mallorca, con unos 96 segundos de totalidad pero el Sol a apenas 2 grados, por lo que la calima y cualquier obstáculo mínimo son decisivos.",
-            ],
-          },
-          {
-            heading: "Comparativa de las principales bases para el eclipse",
-            paragraphs: [
-              "Las cifras son ejemplos municipales de la tabla oficial del IGN, no garantías para cualquier mirador cercano. Duración y altura cambian con las coordenadas exactas. La valoración climática resume el mapa oficial de nubosidad media de agosto y sirve para planificar, no como previsión del 12 de agosto.",
-            ],
-            table: {
-              caption: "Principales zonas para preparar el eclipse total de España",
-              headers: ["Zona", "Totalidad", "Altura del Sol", "Por qué elegirla", "Riesgo principal"],
-              rows: [
-                ["Palencia / Tierra de Campos", "Aprox. 1m 42s", "Aprox. 9°", "Mejor equilibrio; llanuras abiertas y climatología interior favorable", "Aglomeraciones y puntos oficiales definitivos aún en desarrollo"],
-                ["Llanura de León", "Aprox. 1m 45s", "Aprox. 10°", "Totalidad larga y una de las mayores alturas solares del interior", "Hay que comprobar el perfil montañoso hacia el oeste"],
-                ["Aranda de Duero", "Aprox. 1m 43s", "Aprox. 8°", "Cerca de la línea central, accesible y dentro del norte de la Meseta", "Relieve local, tráfico y miradores con capacidad limitada"],
-                ["Soria", "Aprox. 1m 41s", "Aprox. 7°", "Geometría central y zonas oficiales de observación con servicios", "Sol más bajo y nubes convectivas cerca de sistemas montañosos"],
-                ["Monreal del Campo / Calamocha", "Aprox. 1m 41s", "Aprox. 6°", "Climatología favorable en Aragón y puntos oficiales", "Sol muy bajo, calor, calima y relieve"],
-                ["Zaragoza / valle del Ebro", "Aprox. 1m 23s", "Aprox. 6°", "Poca nubosidad media y gran capacidad de transporte", "Totalidad más corta, aglomeraciones, calor y calima"],
-                ["A Coruña", "Aprox. 1m 16s", "Aprox. 12°", "Mayor altura solar entre los ejemplos principales", "Nube baja, niebla y capas costeras atlánticas"],
-                ["Palma / oeste de Mallorca", "Aprox. 1m 36s", "Aprox. 2°", "Composición espectacular con horizonte de mar realmente occidental", "Sensibilidad extrema al horizonte, calima y movilidad insular"],
-              ],
-            },
           },
           {
             heading: "Puntos oficiales de observación y logística",
@@ -361,13 +274,6 @@ const manualBlogArticles: BlogArticleDefinition[] = [
               "Un encuadre más abierto de respaldo para el Sol bajo.",
               "Gafas de eclipse adecuadas para todas las personas del grupo.",
               "Luz roja, agua, protección solar y navegación sin conexión.",
-            ],
-          },
-          {
-            heading: "Checklist final antes del 12 de agosto",
-            paragraphs: [
-              "Confirma los contactos de tu municipio en la web del IGN, llega con varias horas de margen, revisa el horizonte oeste y ensaya la secuencia de seguridad. Todo el grupo debe saber cuándo pueden retirarse y volver a colocarse los filtros.",
-              "El mejor plan es suficientemente flexible para responder al tiempo y suficientemente simple para ejecutarlo bajo presión. Cuando empiece la totalidad, reserva también unos segundos para apartarte de la cámara y mirar el cielo.",
             ],
           },
         ],
