@@ -49,7 +49,7 @@ export type BlogPostSummary = {
 }
 
 const articleModifiedDates: Partial<Record<string, string>> = {
-  "total-solar-eclipse-august-2026": "2026-07-04",
+  "total-solar-eclipse-august-2026": "2026-07-05",
 }
 
 const readTimeLabel: Record<Locale, string> = {
@@ -111,7 +111,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             heading: "Why the August 12, 2026 eclipse matters for Spain",
             paragraphs: [
               "On Wednesday, August 12, 2026, a total solar eclipse will cross Spain from west to east near sunset. Spain's National Geographic Institute (IGN) describes it as the first total solar eclipse visible from the Iberian Peninsula in more than a century.",
-              "The path of totality runs through much of the northern half of mainland Spain and reaches the Balearic Islands. Cities and regions near the path include A Coruña, Oviedo, León, Bilbao, Burgos, Zaragoza, València and Palma. Southern Spain will experience a deep partial eclipse rather than totality.",
+              "The path of totality — up to about 294 km wide — runs across much of the northern half of mainland Spain and reaches the Balearic Islands. Provincial capitals in or beside it include A Coruña, Lugo, Oviedo, León, Zamora, Valladolid, Segovia, Burgos, Bilbao, Logroño, Zaragoza, Lleida, Tarragona and València, ending over Palma de Mallorca. Southern Spain — Madrid, Sevilla, Málaga — sees a deep partial eclipse instead.",
+              "Globally the eclipse reaches magnitude 1.0386 and lasts longest near Iceland, at about 2 minutes 18 seconds. The same night brings the peak of the Perseid meteor shower, and because the Moon is new there is no moonlight to wash it out — a rare double bill in one evening. Use the interactive map above to check the exact circumstances for your own spot.",
             ],
           },
           {
@@ -204,7 +205,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
             heading: "Por qué el eclipse del 12 de agosto de 2026 es histórico",
             paragraphs: [
               "El miércoles 12 de agosto de 2026 un eclipse solar total cruzará España de oeste a este cerca del atardecer. El Instituto Geográfico Nacional (IGN) lo describe como el primer eclipse total de Sol visible desde la península Ibérica en más de un siglo.",
-              "La franja de totalidad atravesará gran parte de la mitad norte peninsular y llegará a Baleares. Pasará por zonas y capitales como A Coruña, Oviedo, León, Bilbao, Burgos, Zaragoza, València y Palma. En la mitad sur de España el eclipse se verá como parcial.",
+              "La franja de totalidad, de hasta unos 294 km de ancho, atraviesa gran parte de la mitad norte peninsular y llega a Baleares. Entre las capitales dentro o junto a ella están A Coruña, Lugo, Oviedo, León, Zamora, Valladolid, Segovia, Burgos, Bilbao, Logroño, Zaragoza, Lleida, Tarragona y València, terminando sobre Palma de Mallorca. La mitad sur —Madrid, Sevilla, Málaga— verá un eclipse parcial profundo.",
+              "A escala global el eclipse alcanza magnitud 1,0386 y dura más cerca de Islandia, unos 2 minutos y 18 segundos. Esa misma noche llega el máximo de las Perseidas y, al ser Luna nueva, no hay luz lunar que las tape: una doble cita poco habitual en una sola tarde. Usa el mapa interactivo de arriba para comprobar las circunstancias exactas en tu punto.",
             ],
           },
           {

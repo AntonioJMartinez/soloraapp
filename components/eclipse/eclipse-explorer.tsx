@@ -12,106 +12,26 @@ import {
   spotContacts,
 } from "@/lib/eclipse-experience"
 import { Locale, localizeAvailablePath } from "@/lib/i18n"
-
-// ---------------------------------------------------------------------------
-// Map projection (simple equirectangular over the Iberian Peninsula)
-// ---------------------------------------------------------------------------
-
-const MAP_W = 720
-const MAP_H = 520
-const LON_MIN = -10.2
-const LON_MAX = 4.6
-const LAT_MIN = 35.9
-const LAT_MAX = 44.6
-
-const px = (lon: number) => ((lon - LON_MIN) / (LON_MAX - LON_MIN)) * MAP_W
-const py = (lat: number) => ((LAT_MAX - lat) / (LAT_MAX - LAT_MIN)) * MAP_H
-
-type LonLat = [number, number]
-
-function toPath(points: LonLat[], close = false) {
-  const d = points
-    .map(([lon, lat], index) => `${index === 0 ? "M" : "L"}${px(lon).toFixed(1)},${py(lat).toFixed(1)}`)
-    .join(" ")
-  return close ? `${d} Z` : d
-}
-
-// Stylized Iberian Peninsula coastline (clockwise from Fisterra)
-const IBERIA: LonLat[] = [
-  [-9.29, 43.05], [-8.87, 43.34], [-8.3, 43.43], [-8.06, 43.66], [-7.68, 43.79], [-7.0, 43.6],
-  [-6.2, 43.6], [-5.4, 43.55], [-4.7, 43.45], [-3.8, 43.49], [-3.02, 43.44], [-2.35, 43.37],
-  [-1.79, 43.39], [-1.4, 43.28], [-0.7, 42.92], [0.0, 42.7], [0.66, 42.86], [1.73, 42.5],
-  [2.55, 42.45], [3.04, 42.47], [3.32, 42.32], [2.78, 41.9], [2.17, 41.35], [1.03, 41.06],
-  [0.72, 40.6], [0.03, 40.05], [-0.32, 39.45], [0.2, 38.73], [-0.51, 38.2], [-0.76, 37.85],
-  [-1.3, 37.56], [-1.85, 36.95], [-2.19, 36.73], [-3.5, 36.7], [-4.42, 36.71], [-5.17, 36.3],
-  [-5.6, 36.01], [-6.04, 36.19], [-6.29, 36.53], [-6.95, 37.22], [-7.4, 37.17], [-8.2, 37.12],
-  [-8.99, 37.02], [-8.8, 37.9], [-8.78, 38.45], [-9.2, 38.7], [-9.42, 38.75], [-9.35, 39.35],
-  [-9.0, 39.6], [-8.9, 40.15], [-8.75, 40.65], [-8.68, 41.15], [-8.87, 41.6], [-8.87, 41.86],
-  [-8.72, 42.24], [-9.03, 42.6],
-]
-
-const PORTUGAL_BORDER: LonLat[] = [
-  [-8.87, 41.86], [-8.2, 42.05], [-7.6, 41.85], [-6.6, 41.9], [-6.2, 41.3], [-6.8, 40.5],
-  [-6.93, 39.6], [-7.05, 38.7], [-7.4, 37.17],
-]
-
-const MALLORCA: LonLat[] = [
-  [2.35, 39.57], [2.75, 39.35], [3.24, 39.35], [3.47, 39.66], [3.15, 39.9], [2.7, 39.85],
-]
-const MENORCA: LonLat[] = [[3.83, 39.95], [4.1, 39.88], [4.32, 39.98], [4.05, 40.08]]
-const IBIZA: LonLat[] = [[1.22, 38.88], [1.45, 38.83], [1.62, 39.0], [1.35, 39.08]]
-
-const BAND_NORTH: LonLat[] = [
-  [-10.2, 44.9], [-8, 44.3], [-6, 44.0], [-4, 43.6], [-2, 43.5], [0, 42.9], [2, 42.0], [4.6, 40.6],
-]
-const BAND_SOUTH: LonLat[] = [
-  [-10.2, 42.3], [-8, 41.9], [-6, 41.4], [-4.5, 41.05], [-3, 40.6], [-1, 39.9], [0.5, 39.4],
-  [1.5, 38.85], [3, 38.3], [4.6, 37.8],
-]
-const CENTER_LINE: LonLat[] = [
-  [-10.2, 43.6], [-8, 43.15], [-6, 42.6], [-3.7, 41.9], [-1.3, 41.0], [0.8, 40.2], [3.0, 39.4], [4.6, 38.9],
-]
-
-const bandPath = `${toPath(BAND_NORTH)} ${BAND_SOUTH.slice()
-  .reverse()
-  .map(([lon, lat]) => `L${px(lon).toFixed(1)},${py(lat).toFixed(1)}`)
-  .join(" ")} Z`
-
-const centerLinePath = toPath(CENTER_LINE)
-
-// Projected centerline points; x increases monotonically west → east,
-// so the umbra position can be parameterized by an x fraction.
-const CL_POINTS = CENTER_LINE.map(([lon, lat]) => ({ x: px(lon), y: py(lat) }))
-const CL_X0 = CL_POINTS[0].x
-const CL_X1 = CL_POINTS[CL_POINTS.length - 1].x
-
-function umbraPointAt(fraction: number) {
-  const x = CL_X0 + (CL_X1 - CL_X0) * fraction
-  for (let i = 0; i < CL_POINTS.length - 1; i++) {
-    const a = CL_POINTS[i]
-    const b = CL_POINTS[i + 1]
-    if (x >= a.x && x <= b.x) {
-      const t = (x - a.x) / (b.x - a.x)
-      return { x, y: a.y + (b.y - a.y) * t }
-    }
-  }
-  return CL_POINTS[CL_POINTS.length - 1]
-}
-
-// Local time of the shadow's center along the sweep: the umbra crosses
-// A Coruña around 20:28 and Palma around 20:32 (IGN examples).
-const SWEEP_START_MIN = 1226.5 // ~20:26:30 entering the Atlantic edge of the map
-const SWEEP_END_MIN = 1233.0 // ~20:33:00 leaving past Menorca
-
-function sweepTimeLabel(fraction: number) {
-  const totalSeconds = Math.round((SWEEP_START_MIN + (SWEEP_END_MIN - SWEEP_START_MIN) * fraction) * 60)
-  const h = Math.floor(totalSeconds / 3600)
-  const m = Math.floor((totalSeconds % 3600) / 60)
-  const s = totalSeconds % 60
-  return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`
-}
-
-const MADRID: LonLat = [-3.7, 40.42]
+import {
+  bandPath,
+  centerLinePath,
+  CL_X0,
+  CL_X1,
+  IBERIA,
+  IBIZA,
+  MADRID,
+  MALLORCA,
+  MAP_H,
+  MAP_W,
+  MENORCA,
+  PORTUGAL_BORDER,
+  clamp,
+  px,
+  py,
+  sweepTimeLabel,
+  toPath,
+  umbraPointAt,
+} from "@/lib/eclipse-geo"
 
 // Per-spot label placement so names stay readable on the map
 const LABEL_OFFSETS: Record<string, { dx: number; dy: number; anchor: "start" | "middle" | "end" }> = {
@@ -125,8 +45,6 @@ const LABEL_OFFSETS: Record<string, { dx: number; dy: number; anchor: "start" | 
   zaragoza: { dx: 14, dy: -8, anchor: "start" },
   palma: { dx: 0, dy: 26, anchor: "middle" },
 }
-
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
 
 // ---------------------------------------------------------------------------
 // Ratings helpers

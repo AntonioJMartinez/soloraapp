@@ -2,6 +2,7 @@ import { CalendarDays, Clock, Sparkles, Timer } from "lucide-react"
 
 import { EclipseCountdown } from "@/components/eclipse/eclipse-countdown"
 import { EclipseExplorer } from "@/components/eclipse/eclipse-explorer"
+import { EclipseLocationChecker } from "@/components/eclipse/eclipse-location-checker"
 import { getEclipseDictionary } from "@/lib/eclipse-experience"
 import { Locale } from "@/lib/i18n"
 
@@ -74,8 +75,9 @@ export function EclipseHub({ locale }: { locale: Locale }) {
           <p className="mt-2 max-w-3xl text-white/80 md:text-lg md:leading-relaxed">{dict.aboutBody}</p>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 space-y-6">
           <EclipseExplorer locale={locale} dict={dict} />
+          <EclipseLocationChecker dict={dict} />
         </div>
       </div>
 

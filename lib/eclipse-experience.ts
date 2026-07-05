@@ -208,6 +208,20 @@ export type EclipseDictionary = {
   hubSubtitle: string
   aboutTitle: string
   aboutBody: string
+  checkTitle: string
+  checkSubtitle: string
+  checkUseLocation: string
+  checkLocating: string
+  checkGeoError: string
+  verdictTotal: string
+  verdictEdge: string
+  verdictPartial: string
+  verdictSet: string
+  labelObscuration: string
+  labelDirection: string
+  labelMagnitude: string
+  checkPartialEnds: string
+  checkNote: string
   statDate: string
   statFirstContact: string
   statTotalityWindow: string
@@ -252,6 +266,20 @@ const en: EclipseDictionary = {
   aboutTitle: "What is it?",
   aboutBody:
     "A total solar eclipse — the first visible from mainland Spain in over a century. Near sunset on August 12, 2026, the Moon fully covers the Sun along a path sweeping from Galicia to the Balearic Islands, briefly turning day to twilight. Outside that path, most of Spain sees a deep partial eclipse.",
+  checkTitle: "Will you see it? Check any location",
+  checkSubtitle: "Tap the map, use your location or pick a city to get exact times, the Sun's height and whether you are inside totality.",
+  checkUseLocation: "Use my location",
+  checkLocating: "Locating…",
+  checkGeoError: "Couldn't get your location — tap the map instead.",
+  verdictTotal: "You're in the path of totality",
+  verdictEdge: "You're right on the edge of the path",
+  verdictPartial: "Partial eclipse only here",
+  verdictSet: "The Sun sets before the eclipse peaks",
+  labelObscuration: "Sun covered",
+  labelDirection: "Look toward",
+  labelMagnitude: "Magnitude",
+  checkPartialEnds: "Partial ends",
+  checkNote: "Estimated from NASA orbital elements. Confirm your municipality's official times on the IGN table, and never look at the Sun without ISO 12312-2 protection outside totality.",
   statDate: "Wed · Aug 12, 2026",
   statFirstContact: "Partial begins ~19:30",
   statTotalityWindow: "Totality ~20:27–20:33",
@@ -343,6 +371,20 @@ const es: EclipseDictionary = {
   aboutTitle: "¿Qué es?",
   aboutBody:
     "Un eclipse solar total, el primero visible desde la España peninsular en más de un siglo. Cerca del atardecer del 12 de agosto de 2026, la Luna cubre por completo el Sol a lo largo de una franja que va de Galicia a Baleares y convierte el día en penumbra durante unos segundos. Fuera de esa franja, casi toda España verá un eclipse parcial profundo.",
+  checkTitle: "¿Lo verás? Comprueba cualquier lugar",
+  checkSubtitle: "Toca el mapa, usa tu ubicación o elige una ciudad para ver horarios exactos, la altura del Sol y si estás dentro de la totalidad.",
+  checkUseLocation: "Usar mi ubicación",
+  checkLocating: "Localizando…",
+  checkGeoError: "No se pudo obtener tu ubicación: toca el mapa.",
+  verdictTotal: "Estás en la franja de totalidad",
+  verdictEdge: "Estás justo en el borde de la franja",
+  verdictPartial: "Aquí solo se verá parcial",
+  verdictSet: "El Sol se pone antes del máximo",
+  labelObscuration: "Sol cubierto",
+  labelDirection: "Mira hacia",
+  labelMagnitude: "Magnitud",
+  checkPartialEnds: "Fin del parcial",
+  checkNote: "Estimado a partir de los elementos orbitales de la NASA. Confirma los horarios oficiales de tu municipio en la tabla del IGN y nunca mires al Sol sin protección ISO 12312-2 fuera de la totalidad.",
   statDate: "Miércoles · 12 ago 2026",
   statFirstContact: "Parcial desde ~19:30",
   statTotalityWindow: "Totalidad ~20:27–20:33",
@@ -435,6 +477,20 @@ const fr: EclipseDictionary = {
   aboutTitle: "Qu'est-ce que c'est ?",
   aboutBody:
     "Une éclipse solaire totale — la première visible depuis l'Espagne continentale depuis plus d'un siècle. Près du coucher du soleil, le 12 août 2026, la Lune couvre entièrement le Soleil le long d'une bande allant de la Galice aux Baléares, transformant brièvement le jour en crépuscule. Ailleurs, la majeure partie de l'Espagne voit une éclipse partielle profonde.",
+  checkTitle: "La verrez-vous ? Testez un lieu",
+  checkSubtitle: "Touchez la carte, utilisez votre position ou choisissez une ville pour connaître horaires exacts, hauteur du Soleil et si vous êtes dans la totalité.",
+  checkUseLocation: "Utiliser ma position",
+  checkLocating: "Localisation…",
+  checkGeoError: "Position indisponible — touchez la carte.",
+  verdictTotal: "Vous êtes dans la bande de totalité",
+  verdictEdge: "Vous êtes juste au bord de la bande",
+  verdictPartial: "Éclipse partielle seulement ici",
+  verdictSet: "Le Soleil se couche avant le maximum",
+  labelObscuration: "Soleil couvert",
+  labelDirection: "Regardez vers",
+  labelMagnitude: "Magnitude",
+  checkPartialEnds: "Fin de la partielle",
+  checkNote: "Estimation d'après les éléments orbitaux de la NASA. Confirmez les horaires officiels de votre commune sur la table de l'IGN, et ne regardez jamais le Soleil sans protection ISO 12312-2 hors totalité.",
   statDate: "Mercredi · 12 août 2026",
   statFirstContact: "Phase partielle dès ~19h30",
   statTotalityWindow: "Totalité ~20h27–20h33",
@@ -527,6 +583,20 @@ const it: EclipseDictionary = {
   aboutTitle: "Che cos'è?",
   aboutBody:
     "Un'eclissi solare totale — la prima visibile dalla Spagna continentale da oltre un secolo. Verso il tramonto del 12 agosto 2026, la Luna copre completamente il Sole lungo una fascia che va dalla Galizia alle Baleari, trasformando per pochi secondi il giorno in penombra. Fuori da quella fascia, gran parte della Spagna vedrà un'eclissi parziale profonda.",
+  checkTitle: "La vedrai? Controlla un luogo",
+  checkSubtitle: "Tocca la mappa, usa la tua posizione o scegli una città per orari esatti, altezza del Sole e se sei dentro la totalità.",
+  checkUseLocation: "Usa la mia posizione",
+  checkLocating: "Localizzazione…",
+  checkGeoError: "Posizione non disponibile: tocca la mappa.",
+  verdictTotal: "Sei nella fascia di totalità",
+  verdictEdge: "Sei proprio sul bordo della fascia",
+  verdictPartial: "Qui solo eclissi parziale",
+  verdictSet: "Il Sole tramonta prima del massimo",
+  labelObscuration: "Sole coperto",
+  labelDirection: "Guarda verso",
+  labelMagnitude: "Magnitudine",
+  checkPartialEnds: "Fine parziale",
+  checkNote: "Stima dagli elementi orbitali della NASA. Conferma gli orari ufficiali del tuo comune sulla tabella IGN e non guardare mai il Sole senza protezione ISO 12312-2 fuori dalla totalità.",
   statDate: "Mercoledì · 12 ago 2026",
   statFirstContact: "Fase parziale da ~19:30",
   statTotalityWindow: "Totalità ~20:27–20:33",
@@ -619,6 +689,20 @@ const de: EclipseDictionary = {
   aboutTitle: "Was ist das?",
   aboutBody:
     "Eine totale Sonnenfinsternis — die erste seit über einem Jahrhundert vom spanischen Festland aus sichtbar. Kurz vor Sonnenuntergang am 12. August 2026 bedeckt der Mond die Sonne vollständig entlang eines Pfades von Galicien bis zu den Balearen und verwandelt den Tag für Sekunden in Dämmerung. Außerhalb dieses Pfades erlebt der Großteil Spaniens eine tiefe partielle Finsternis.",
+  checkTitle: "Wirst du sie sehen? Ort prüfen",
+  checkSubtitle: "Tippe auf die Karte, nutze deinen Standort oder wähle eine Stadt für genaue Zeiten, Sonnenhöhe und ob du in der Totalität bist.",
+  checkUseLocation: "Meinen Standort verwenden",
+  checkLocating: "Wird lokalisiert…",
+  checkGeoError: "Standort nicht verfügbar — tippe auf die Karte.",
+  verdictTotal: "Du bist im Totalitätspfad",
+  verdictEdge: "Du bist genau am Rand des Pfads",
+  verdictPartial: "Hier nur partielle Finsternis",
+  verdictSet: "Die Sonne geht vor dem Maximum unter",
+  labelObscuration: "Sonne bedeckt",
+  labelDirection: "Blick nach",
+  labelMagnitude: "Magnitude",
+  checkPartialEnds: "Partielle endet",
+  checkNote: "Geschätzt aus NASA-Bahnelementen. Bestätige die offiziellen Zeiten deiner Gemeinde in der IGN-Tabelle und schau außerhalb der Totalität nie ohne ISO-12312-2-Schutz in die Sonne.",
   statDate: "Mittwoch · 12. Aug 2026",
   statFirstContact: "Partiell ab ~19:30",
   statTotalityWindow: "Totalität ~20:27–20:33",
