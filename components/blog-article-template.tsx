@@ -41,7 +41,6 @@ type BlogArticleTemplateProps = {
   relatedLinks?: Array<{ href: string; label: string }>
   sources?: Array<{ href: string; label: string }>
   extraHeaderContent?: ReactNode
-  beforeHeader?: ReactNode
   afterHeader?: ReactNode
 }
 
@@ -64,7 +63,6 @@ export function BlogArticleTemplate({
   relatedLinks = [],
   sources = [],
   extraHeaderContent,
-  beforeHeader,
   afterHeader,
 }: BlogArticleTemplateProps) {
   const canonicalUrl = localizedUrl(locale, `/blog/${slug}`)
@@ -165,8 +163,6 @@ export function BlogArticleTemplate({
           </Link>
 
           <article className="space-y-8">
-            {beforeHeader}
-
             <header className="space-y-6">
               <div className="flex items-center gap-4 text-sm text-white/60">
                 <Badge variant="outline" className="border-[#E6786E]/30 text-[#E6786E]">

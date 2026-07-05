@@ -65,7 +65,7 @@ export default async function EnglishArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
-      beforeHeader={slug === eclipseHubSlug ? <EclipseCountdownBanner locale="en" /> : undefined}
+      extraHeaderContent={slug === eclipseHubSlug ? <EclipseCountdownBanner locale="en" /> : undefined}
       afterHeader={slug === eclipseHubSlug ? <EclipseHub locale="en" /> : undefined}
     />
   )

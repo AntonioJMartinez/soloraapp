@@ -68,7 +68,7 @@ export default async function LocalizedArticlePage({
       ctaDescription={article.ctaDescription}
       relatedLinks={article.relatedLinks}
       sources={article.sources}
-      beforeHeader={slug === eclipseHubSlug ? <EclipseCountdownBanner locale={locale} /> : undefined}
+      extraHeaderContent={slug === eclipseHubSlug ? <EclipseCountdownBanner locale={locale} /> : undefined}
       afterHeader={slug === eclipseHubSlug ? <EclipseHub locale={locale} /> : undefined}
     />
   )
