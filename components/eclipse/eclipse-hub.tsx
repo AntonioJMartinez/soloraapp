@@ -6,6 +6,7 @@ import { getEclipseDictionary } from "@/lib/eclipse-experience"
 import { Locale } from "@/lib/i18n"
 
 const navAnchors = [
+  { href: "#eclipse-about", key: "navAbout" as const },
   { href: "#eclipse-map", key: "navMap" as const },
   { href: "#eclipse-spots", key: "navSpots" as const },
   { href: "#eclipse-article", key: "navArticle" as const },
@@ -83,6 +84,14 @@ export function EclipseHub({ locale }: { locale: Locale }) {
             </a>
           ))}
         </nav>
+
+        <div
+          id="eclipse-about"
+          className="mt-6 scroll-mt-24 rounded-2xl border border-[#E6786E]/25 bg-black/30 p-5 md:p-6"
+        >
+          <h3 className="text-lg font-bold text-white md:text-xl">{dict.aboutTitle}</h3>
+          <p className="mt-2 max-w-3xl text-white/80 md:text-lg md:leading-relaxed">{dict.aboutBody}</p>
+        </div>
 
         <div className="mt-6">
           <EclipseExplorer locale={locale} dict={dict} />

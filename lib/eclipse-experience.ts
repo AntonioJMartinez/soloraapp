@@ -206,6 +206,9 @@ export type EclipseDictionary = {
   eyebrow: string
   hubTitle: string
   hubSubtitle: string
+  aboutTitle: string
+  aboutBody: string
+  navAbout: string
   navMap: string
   navSpots: string
   navArticle: string
@@ -250,6 +253,10 @@ const en: EclipseDictionary = {
   hubTitle: "Total Solar Eclipse · August 12, 2026",
   hubSubtitle:
     "Explore the path of totality across Spain, follow the shadow's clock on the map and compare the best places to watch.",
+  aboutTitle: "What is it?",
+  aboutBody:
+    "A total solar eclipse — the first visible from mainland Spain in over a century. Near sunset on August 12, 2026, the Moon fully covers the Sun along a path sweeping from Galicia to the Balearic Islands, briefly turning day to twilight. Outside that path, most of Spain sees a deep partial eclipse.",
+  navAbout: "What is it",
   navMap: "Path map",
   navSpots: "Best places",
   navArticle: "Full guide",
@@ -341,6 +348,10 @@ const es: EclipseDictionary = {
   hubTitle: "Eclipse solar total · 12 de agosto de 2026",
   hubSubtitle:
     "Explora la franja de totalidad sobre España, sigue el reloj de la sombra en el mapa y compara los mejores lugares para verlo.",
+  aboutTitle: "¿Qué es?",
+  aboutBody:
+    "Un eclipse solar total, el primero visible desde la España peninsular en más de un siglo. Cerca del atardecer del 12 de agosto de 2026, la Luna cubre por completo el Sol a lo largo de una franja que va de Galicia a Baleares y convierte el día en penumbra durante unos segundos. Fuera de esa franja, casi toda España verá un eclipse parcial profundo.",
+  navAbout: "¿Qué es?",
   navMap: "Mapa de la franja",
   navSpots: "Mejores lugares",
   navArticle: "Guía completa",
@@ -433,6 +444,10 @@ const fr: EclipseDictionary = {
   hubTitle: "Éclipse solaire totale · 12 août 2026",
   hubSubtitle:
     "Explorez la bande de totalité sur l'Espagne, suivez l'horloge de l'ombre sur la carte et comparez les meilleurs lieux d'observation.",
+  aboutTitle: "Qu'est-ce que c'est ?",
+  aboutBody:
+    "Une éclipse solaire totale — la première visible depuis l'Espagne continentale depuis plus d'un siècle. Près du coucher du soleil, le 12 août 2026, la Lune couvre entièrement le Soleil le long d'une bande allant de la Galice aux Baléares, transformant brièvement le jour en crépuscule. Ailleurs, la majeure partie de l'Espagne voit une éclipse partielle profonde.",
+  navAbout: "Qu'est-ce que c'est",
   navMap: "Carte de la bande",
   navSpots: "Meilleurs lieux",
   navArticle: "Guide complet",
@@ -525,6 +540,10 @@ const it: EclipseDictionary = {
   hubTitle: "Eclissi solare totale · 12 agosto 2026",
   hubSubtitle:
     "Esplora la fascia di totalità sulla Spagna, segui l'orologio dell'ombra sulla mappa e confronta i posti migliori per osservarla.",
+  aboutTitle: "Che cos'è?",
+  aboutBody:
+    "Un'eclissi solare totale — la prima visibile dalla Spagna continentale da oltre un secolo. Verso il tramonto del 12 agosto 2026, la Luna copre completamente il Sole lungo una fascia che va dalla Galizia alle Baleari, trasformando per pochi secondi il giorno in penombra. Fuori da quella fascia, gran parte della Spagna vedrà un'eclissi parziale profonda.",
+  navAbout: "Che cos'è",
   navMap: "Mappa della fascia",
   navSpots: "Posti migliori",
   navArticle: "Guida completa",
@@ -617,6 +636,10 @@ const de: EclipseDictionary = {
   hubTitle: "Totale Sonnenfinsternis · 12. August 2026",
   hubSubtitle:
     "Erkunde den Totalitätspfad über Spanien, folge der Schatten-Uhr auf der Karte und vergleiche die besten Beobachtungsorte.",
+  aboutTitle: "Was ist das?",
+  aboutBody:
+    "Eine totale Sonnenfinsternis — die erste seit über einem Jahrhundert vom spanischen Festland aus sichtbar. Kurz vor Sonnenuntergang am 12. August 2026 bedeckt der Mond die Sonne vollständig entlang eines Pfades von Galicien bis zu den Balearen und verwandelt den Tag für Sekunden in Dämmerung. Außerhalb dieses Pfades erlebt der Großteil Spaniens eine tiefe partielle Finsternis.",
+  navAbout: "Was ist das",
   navMap: "Pfadkarte",
   navSpots: "Beste Orte",
   navArticle: "Kompletter Guide",

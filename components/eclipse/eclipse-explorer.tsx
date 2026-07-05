@@ -228,8 +228,8 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
 
   return (
     <div className="space-y-6">
-      {/* Map + ranked list */}
-      <div id="eclipse-map" className="scroll-mt-24 grid gap-6 lg:grid-cols-[3fr_2fr]">
+      {/* Full-width path map */}
+      <div id="eclipse-map" className="scroll-mt-24">
         <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-[#0A1122] to-[#141021] p-4 md:p-5">
           <h3 className="text-xl font-bold text-white md:text-2xl">{dict.mapTitle}</h3>
           <p className="mt-1 text-sm text-white/60">{dict.mapSubtitle}</p>
@@ -376,26 +376,28 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
           <p className="mt-2 text-xs text-[#F4B7A8]/80">{dict.scrubHint}</p>
           <p className="mt-2 text-[11px] leading-relaxed text-white/40">{dict.mapDisclaimer}</p>
         </div>
+      </div>
 
-        {/* Ranked list */}
-        <div id="eclipse-spots" className="scroll-mt-24 rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5">
-          <h3 className="text-xl font-bold text-white md:text-2xl">{dict.spotsTitle}</h3>
-          <p className="mt-1 text-sm text-white/60">{dict.spotsSubtitle}</p>
-          <ol className="mt-4 space-y-2">
-            {eclipseSpots.map((spot, index) => {
-              const isSelected = spot.id === selectedId
-              return (
-                <li key={spot.id}>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedId(spot.id)}
-                    aria-pressed={isSelected}
-                    className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-colors ${
-                      isSelected
-                        ? "border-[#E6786E]/60 bg-[#E6786E]/15"
-                        : "border-white/10 bg-white/[0.03] hover:bg-white/[0.07]"
-                    }`}
-                  >
+      {/* Ranked places — horizontal scroll */}
+      <div id="eclipse-spots" className="scroll-mt-24">
+        <h3 className="text-xl font-bold text-white md:text-2xl">{dict.spotsTitle}</h3>
+        <p className="mt-1 text-sm text-white/60">{dict.spotsSubtitle}</p>
+        <ol className="mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] [scrollbar-color:#E6786E_transparent] [scrollbar-width:thin]">
+          {eclipseSpots.map((spot, index) => {
+            const isSelected = spot.id === selectedId
+            return (
+              <li key={spot.id} className="snap-start">
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(spot.id)}
+                  aria-pressed={isSelected}
+                  className={`flex h-full w-44 shrink-0 flex-col gap-2.5 rounded-xl border p-3 text-left transition-colors ${
+                    isSelected
+                      ? "border-[#E6786E]/60 bg-[#E6786E]/15"
+                      : "border-white/10 bg-white/[0.03] hover:bg-white/[0.07]"
+                  }`}
+                >
+                  <div className="flex items-start gap-2">
                     <span
                       className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                         index === 0
@@ -407,29 +409,29 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
                     >
                       {index + 1}
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-semibold text-white">{dict.spots[spot.id].name}</span>
-                      <span className="mt-0.5 flex items-center gap-3 text-xs text-white/55">
-                        <span className="inline-flex items-center gap-1">
-                          <Timer className="h-3 w-3" />
-                          {Math.floor(spot.totalitySeconds / 60)}m {String(spot.totalitySeconds % 60).padStart(2, "0")}s
-                        </span>
-                        <span className="inline-flex items-center gap-1">
-                          <Sun className="h-3 w-3" />
-                          {spot.sunAltitude}°
-                        </span>
-                        <span className="inline-flex items-center gap-1">
-                          <CloudSun className="h-3 w-3" />
-                          <Dots score={spot.climate} label={dict.detailClimate} />
-                        </span>
-                      </span>
+                    <span className="min-h-[2.5rem] flex-1 text-sm font-semibold leading-tight text-white">
+                      {dict.spots[spot.id].name}
                     </span>
-                  </button>
-                </li>
-              )
-            })}
-          </ol>
-        </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5 text-xs text-white/60">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Timer className="h-3.5 w-3.5 text-[#F4B7A8]" />
+                      {Math.floor(spot.totalitySeconds / 60)}m {String(spot.totalitySeconds % 60).padStart(2, "0")}s
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Sun className="h-3.5 w-3.5 text-[#F4B7A8]" />
+                      {spot.sunAltitude}°
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <CloudSun className="h-3.5 w-3.5 text-[#F4B7A8]" />
+                      <Dots score={spot.climate} label={dict.detailClimate} />
+                    </span>
+                  </div>
+                </button>
+              </li>
+            )
+          })}
+        </ol>
       </div>
 
       {/* Detail panel for the selected spot */}
