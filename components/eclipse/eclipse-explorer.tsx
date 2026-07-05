@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, CloudSun, Sun, Timer } from "lucide-react"
+import { ArrowRight, CloudSun, Compass, LocateFixed, MapPin, Sparkles, Sun, Timer } from "lucide-react"
 
+import { compassDirection, computeEclipse, type EclipseResult, formatClock } from "@/lib/eclipse-circumstances"
 import {
   EclipseDictionary,
   EclipseSpot,
@@ -15,10 +16,10 @@ import { Locale, localizeAvailablePath } from "@/lib/i18n"
 import {
   bandPath,
   centerLinePath,
-  CL_X0,
-  CL_X1,
   IBERIA,
   IBIZA,
+  latAt,
+  lonAt,
   MADRID,
   MALLORCA,
   MAP_H,
@@ -72,53 +73,148 @@ function Dots({ score, label }: { score: number; label: string }) {
 }
 
 // ---------------------------------------------------------------------------
-// Shadow clock: auto-sweeping umbra, scrubbable with the pointer
+// Shadow clock: auto-sweeping umbra
 // ---------------------------------------------------------------------------
 
 const SWEEP_LOOP_MS = 14000
 
-function useUmbraFraction(manual: number | null) {
-  const [auto, setAuto] = useState(0.3)
-  const lastFraction = useRef(0.3)
+function useUmbraFraction() {
+  const [fraction, setFraction] = useState(0.3)
 
   useEffect(() => {
-    if (manual !== null) {
-      // Remember the scrub position so the sweep resumes from there
-      lastFraction.current = manual
-      return
-    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return
     }
     let raf = 0
     let start: number | null = null
-    const base = lastFraction.current
     const step = (timestamp: number) => {
       if (start === null) {
         start = timestamp
       }
-      const next = (base + (timestamp - start) / SWEEP_LOOP_MS) % 1
-      lastFraction.current = next
-      setAuto(next)
+      setFraction((0.3 + (timestamp - start) / SWEEP_LOOP_MS) % 1)
       raf = requestAnimationFrame(step)
     }
     raf = requestAnimationFrame(step)
     return () => cancelAnimationFrame(raf)
-  }, [manual])
+  }, [])
 
-  return manual ?? auto
+  return fraction
+}
+
+const fmtDuration = (seconds: number) =>
+  `${Math.floor(seconds / 60)}m ${String(Math.round(seconds) % 60).padStart(2, "0")}s`
+
+type CustomKind = "total" | "edge" | "partial"
+const kindAccent = (kind: CustomKind) =>
+  kind === "total"
+    ? { ring: "border-[#E6786E]/50", pin: "#E6786E", badge: "bg-[#E6786E]" }
+    : kind === "edge"
+      ? { ring: "border-amber-400/50", pin: "#FBBF24", badge: "bg-amber-500/80" }
+      : { ring: "border-sky-400/40", pin: "#60A5FA", badge: "bg-sky-500/80" }
+
+// Computed circumstances panel for a tapped or geolocated point
+function CustomDetail({
+  dict,
+  custom,
+  result,
+}: {
+  dict: EclipseDictionary
+  custom: CustomPoint
+  result: EclipseResult
+}) {
+  const col = kindAccent(result.kind === "none" ? "partial" : result.kind)
+  const c = result.contacts
+  const verdict = !result.visible
+    ? dict.verdictSet
+    : result.kind === "total"
+      ? dict.verdictTotal
+      : result.kind === "edge"
+        ? dict.verdictEdge
+        : dict.verdictPartial
+  const showsTotality = result.kind === "total" || (result.kind === "edge" && result.totalitySeconds > 0)
+  const timeRows: Array<{ label: string; value: number; highlight?: boolean }> = [
+    { label: dict.detailPartial, value: c.c1 },
+    ...(c.c2 != null ? [{ label: dict.detailTotalityBegins, value: c.c2 }] : []),
+    { label: dict.detailMax, value: c.max, highlight: true },
+    ...(c.c3 != null ? [{ label: dict.detailTotalityEnds, value: c.c3 }] : []),
+    { label: dict.checkPartialEnds, value: c.c4 },
+  ]
+
+  return (
+    <div className={`rounded-2xl border ${col.ring} bg-gradient-to-br from-white/[0.04] via-black/30 to-black/40 p-5 md:p-6`}>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-white/50">
+            <MapPin className="h-3.5 w-3.5" />
+            {custom.lat.toFixed(3)}, {custom.lon.toFixed(3)}
+          </div>
+          <h3 className="mt-1 text-2xl font-bold text-white">{verdict}</h3>
+        </div>
+        {result.visible ? (
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span className={`rounded-full ${col.badge} px-3 py-1 font-bold text-white`}>
+              {showsTotality
+                ? `${dict.detailDuration}: ${fmtDuration(result.totalitySeconds)}`
+                : `${dict.labelObscuration}: ${Math.round(result.obscuration * 100)}%`}
+            </span>
+            <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-white/85">
+              {dict.detailAltitude}: {result.altitudeDeg.toFixed(1)}°
+            </span>
+          </div>
+        ) : null}
+      </div>
+
+      {result.visible ? (
+        <>
+          <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {timeRows.map((row) => (
+              <div
+                key={row.label}
+                className={`rounded-xl border px-3 py-3 ${
+                  row.highlight ? "border-[#E6786E]/50 bg-[#E6786E]/15" : "border-white/10 bg-black/30"
+                }`}
+              >
+                <dt className="text-[11px] uppercase tracking-wide text-white/50">{row.label}</dt>
+                <dd className="mt-1 font-mono text-lg font-bold tabular-nums text-white">{formatClock(row.value)}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-white/60">
+            <span className="inline-flex items-center gap-1.5">
+              <Compass className="h-3.5 w-3.5 text-[#F4B7A8]" />
+              {dict.labelDirection}: {compassDirection(result.azimuthDeg)} ({Math.round(result.azimuthDeg)}°)
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Sparkles className="h-3.5 w-3.5 text-[#F4B7A8]" />
+              {dict.labelMagnitude}: {result.magnitude.toFixed(3)}
+            </span>
+          </div>
+        </>
+      ) : (
+        <p className="mt-3 text-sm text-white/70">
+          {dict.detailAltitude}: {result.altitudeDeg.toFixed(1)}° · {dict.detailMax} {formatClock(c.max)}
+        </p>
+      )}
+
+      <p className="mt-4 text-[11px] leading-relaxed text-white/40">{dict.checkNote}</p>
+    </div>
+  )
 }
 
 // ---------------------------------------------------------------------------
-// Explorer (map + ranking + detail)
+// Explorer: one map that both tells the story and checks any location
 // ---------------------------------------------------------------------------
+
+type CustomPoint = { lat: number; lon: number }
 
 export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: EclipseDictionary }) {
   const [selectedId, setSelectedId] = useState<EclipseSpot["id"]>("palencia")
-  const [manualFraction, setManualFraction] = useState<number | null>(null)
+  const [custom, setCustom] = useState<CustomPoint | null>(null)
+  const [locating, setLocating] = useState(false)
+  const [geoError, setGeoError] = useState(false)
   const svgRef = useRef<SVGSVGElement>(null)
 
-  const fraction = useUmbraFraction(manualFraction)
+  const fraction = useUmbraFraction()
   const umbra = umbraPointAt(fraction)
   const clockX = clamp(umbra.x, 56, MAP_W - 56)
 
@@ -126,14 +222,47 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
   const contacts = spotContacts(selected)
   const text = dict.spots[selected.id]
 
-  const scrubTo = (clientX: number) => {
+  const selectSpot = (id: EclipseSpot["id"]) => {
+    setCustom(null)
+    setSelectedId(id)
+  }
+
+  const pickFromMap = (clientX: number, clientY: number) => {
     const svg = svgRef.current
     if (!svg) {
       return
     }
     const rect = svg.getBoundingClientRect()
+    if (!rect.width || !rect.height) {
+      return
+    }
     const x = ((clientX - rect.left) / rect.width) * MAP_W
-    setManualFraction(clamp((x - CL_X0) / (CL_X1 - CL_X0), 0, 1))
+    const y = ((clientY - rect.top) / rect.height) * MAP_H
+    const lat = latAt(y)
+    const lon = lonAt(x)
+    if (Number.isFinite(lat) && Number.isFinite(lon)) {
+      setCustom({ lat, lon })
+    }
+  }
+
+  const locate = () => {
+    if (!navigator.geolocation) {
+      setGeoError(true)
+      return
+    }
+    setLocating(true)
+    setGeoError(false)
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocating(false)
+        setCustom({ lat: pos.coords.latitude, lon: pos.coords.longitude })
+      },
+      () => {
+        setLocating(false)
+        setGeoError(true)
+      },
+      { enableHighAccuracy: false, timeout: 10000 },
+    )
   }
 
   const detailTimes: Array<{ label: string; value: string }> = [
@@ -143,6 +272,9 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
     { label: dict.detailTotalityEnds, value: selected.official?.c3 ?? `~${formatMinutes(contacts.c3)}` },
     { label: dict.detailSunset, value: selected.official?.sunset ?? `~${formatMinutes(contacts.sunset)}` },
   ]
+
+  const customResult = custom ? computeEclipse(custom.lat, custom.lon) : null
+  const pin = custom ? { x: clamp(px(custom.lon), 8, MAP_W - 8), y: clamp(py(custom.lat), 8, MAP_H - 8) } : null
 
   return (
     <div className="space-y-6">
@@ -155,12 +287,10 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
           <svg
             ref={svgRef}
             viewBox={`0 0 ${MAP_W} ${MAP_H}`}
-            className="mt-4 block w-full cursor-crosshair touch-pan-y"
+            className="mt-4 block w-full cursor-crosshair"
             role="img"
             aria-label={dict.mapTitle}
-            onPointerMove={(event) => scrubTo(event.clientX)}
-            onPointerDown={(event) => scrubTo(event.clientX)}
-            onPointerLeave={() => setManualFraction(null)}
+            onClick={(event) => pickFromMap(event.clientX, event.clientY)}
           >
             <defs>
               <linearGradient id="map-band" x1="0" y1="0" x2="1" y2="0.35">
@@ -207,11 +337,14 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
               const cx = px(spot.lon)
               const cy = py(spot.lat)
               const offset = LABEL_OFFSETS[spot.id]
-              const isSelected = spot.id === selectedId
+              const isSelected = !custom && spot.id === selectedId
               return (
                 <g
                   key={spot.id}
-                  onClick={() => setSelectedId(spot.id)}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    selectSpot(spot.id)
+                  }}
                   className="cursor-pointer"
                   role="button"
                   tabIndex={0}
@@ -220,7 +353,7 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
                   onKeyDown={(event) => {
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault()
-                      setSelectedId(spot.id)
+                      selectSpot(spot.id)
                     }
                   }}
                 >
@@ -250,6 +383,23 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
                 </g>
               )
             })}
+
+            {/* Custom / geolocated pin */}
+            {pin && customResult ? (
+              <g pointerEvents="none">
+                <circle cx={pin.x} cy={pin.y} r="15" fill={kindAccent(customResult.kind === "none" ? "partial" : customResult.kind).pin} opacity="0.2">
+                  <animate attributeName="r" values="9;18;9" dur="2.4s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.3;0;0.3" dur="2.4s" repeatCount="indefinite" />
+                </circle>
+                <path
+                  d={`M${pin.x},${pin.y} C${pin.x - 9},${pin.y - 13} ${pin.x - 8},${pin.y - 27} ${pin.x},${pin.y - 27} C${pin.x + 8},${pin.y - 27} ${pin.x + 9},${pin.y - 13} ${pin.x},${pin.y} Z`}
+                  fill={kindAccent(customResult.kind === "none" ? "partial" : customResult.kind).pin}
+                  stroke="white"
+                  strokeWidth="1.2"
+                />
+                <circle cx={pin.x} cy={pin.y - 19} r="4.2" fill="#1a1013" />
+              </g>
+            ) : null}
 
             {/* Traveling umbra with its clock */}
             <g pointerEvents="none">
@@ -291,7 +441,18 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
               {dict.sweepLabel}
             </span>
           </div>
-          <p className="mt-2 text-xs text-[#F4B7A8]/80">{dict.scrubHint}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={locate}
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#E6786E] px-3.5 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#D4695F]"
+            >
+              <LocateFixed className="h-4 w-4" />
+              {locating ? dict.checkLocating : dict.checkUseLocation}
+            </button>
+            <span className="text-xs text-white/55">{dict.checkSubtitle}</span>
+          </div>
+          {geoError ? <p className="mt-2 text-xs text-amber-300/90">{dict.checkGeoError}</p> : null}
           <p className="mt-2 text-[11px] leading-relaxed text-white/40">{dict.mapDisclaimer}</p>
         </div>
       </div>
@@ -302,12 +463,12 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
         <p className="mt-1 text-sm text-white/60">{dict.spotsSubtitle}</p>
         <ol className="mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch] [scrollbar-color:#E6786E_transparent] [scrollbar-width:thin]">
           {eclipseSpots.map((spot, index) => {
-            const isSelected = spot.id === selectedId
+            const isSelected = !custom && spot.id === selectedId
             return (
               <li key={spot.id} className="snap-start">
                 <button
                   type="button"
-                  onClick={() => setSelectedId(spot.id)}
+                  onClick={() => selectSpot(spot.id)}
                   aria-pressed={isSelected}
                   className={`flex h-full w-44 shrink-0 flex-col gap-2.5 rounded-xl border p-3 text-left transition-colors ${
                     isSelected
@@ -352,7 +513,10 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
         </ol>
       </div>
 
-      {/* Detail panel for the selected spot */}
+      {/* Location details: computed for a custom point, curated for a preset spot */}
+      {custom && customResult ? (
+        <CustomDetail dict={dict} custom={custom} result={customResult} />
+      ) : (
       <div className="rounded-2xl border border-[#E6786E]/25 bg-gradient-to-br from-[#E6786E]/10 via-black/30 to-black/40 p-5 md:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -419,6 +583,7 @@ export function EclipseExplorer({ locale, dict }: { locale: Locale; dict: Eclips
         </div>
         {selected.approx ? <p className="mt-3 text-[11px] text-white/40">{dict.approxNote}</p> : null}
       </div>
+      )}
     </div>
   )
 }

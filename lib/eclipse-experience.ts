@@ -208,7 +208,6 @@ export type EclipseDictionary = {
   hubSubtitle: string
   aboutTitle: string
   aboutBody: string
-  checkTitle: string
   checkSubtitle: string
   checkUseLocation: string
   checkLocating: string
@@ -238,7 +237,6 @@ export type EclipseDictionary = {
   bandLabel: string
   centerLabel: string
   sweepLabel: string
-  scrubHint: string
   outsideLabel: string
   mapDisclaimer: string
   spotsTitle: string
@@ -266,7 +264,6 @@ const en: EclipseDictionary = {
   aboutTitle: "What is it?",
   aboutBody:
     "A total solar eclipse — the first visible from mainland Spain in over a century. Near sunset on August 12, 2026, the Moon fully covers the Sun along a path sweeping from Galicia to the Balearic Islands, briefly turning day to twilight. Outside that path, most of Spain sees a deep partial eclipse.",
-  checkTitle: "Will you see it? Check any location",
   checkSubtitle: "Tap the map, use your location or pick a city to get exact times, the Sun's height and whether you are inside totality.",
   checkUseLocation: "Use my location",
   checkLocating: "Locating…",
@@ -296,7 +293,6 @@ const en: EclipseDictionary = {
   bandLabel: "Path of totality (~290 km wide)",
   centerLabel: "Center line — longest totality",
   sweepLabel: "Shadow sweeps west → east, ~20:27 to ~20:32",
-  scrubHint: "Move your finger or cursor across the map to scrub the shadow's clock.",
   outsideLabel: "Madrid — deep partial, no totality",
   mapDisclaimer:
     "Stylized map for orientation. Confirm the exact limits and your municipality's official times on the IGN eclipse table.",
@@ -371,7 +367,6 @@ const es: EclipseDictionary = {
   aboutTitle: "¿Qué es?",
   aboutBody:
     "Un eclipse solar total, el primero visible desde la España peninsular en más de un siglo. Cerca del atardecer del 12 de agosto de 2026, la Luna cubre por completo el Sol a lo largo de una franja que va de Galicia a Baleares y convierte el día en penumbra durante unos segundos. Fuera de esa franja, casi toda España verá un eclipse parcial profundo.",
-  checkTitle: "¿Lo verás? Comprueba cualquier lugar",
   checkSubtitle: "Toca el mapa, usa tu ubicación o elige una ciudad para ver horarios exactos, la altura del Sol y si estás dentro de la totalidad.",
   checkUseLocation: "Usar mi ubicación",
   checkLocating: "Localizando…",
@@ -401,7 +396,6 @@ const es: EclipseDictionary = {
   bandLabel: "Franja de totalidad (~290 km de ancho)",
   centerLabel: "Línea central: totalidad más larga",
   sweepLabel: "La sombra barre de oeste a este, ~20:27 a ~20:32",
-  scrubHint: "Desliza el dedo o el cursor por el mapa para mover el reloj de la sombra.",
   outsideLabel: "Madrid: parcial profundo, sin totalidad",
   mapDisclaimer:
     "Mapa estilizado orientativo. Confirma los límites exactos y los horarios oficiales de tu municipio en la tabla del IGN.",
@@ -477,7 +471,6 @@ const fr: EclipseDictionary = {
   aboutTitle: "Qu'est-ce que c'est ?",
   aboutBody:
     "Une éclipse solaire totale — la première visible depuis l'Espagne continentale depuis plus d'un siècle. Près du coucher du soleil, le 12 août 2026, la Lune couvre entièrement le Soleil le long d'une bande allant de la Galice aux Baléares, transformant brièvement le jour en crépuscule. Ailleurs, la majeure partie de l'Espagne voit une éclipse partielle profonde.",
-  checkTitle: "La verrez-vous ? Testez un lieu",
   checkSubtitle: "Touchez la carte, utilisez votre position ou choisissez une ville pour connaître horaires exacts, hauteur du Soleil et si vous êtes dans la totalité.",
   checkUseLocation: "Utiliser ma position",
   checkLocating: "Localisation…",
@@ -507,7 +500,6 @@ const fr: EclipseDictionary = {
   bandLabel: "Bande de totalité (~290 km de large)",
   centerLabel: "Ligne centrale — totalité la plus longue",
   sweepLabel: "L'ombre balaie d'ouest en est, ~20h27 à ~20h32",
-  scrubHint: "Glissez le doigt ou le curseur sur la carte pour déplacer l'horloge de l'ombre.",
   outsideLabel: "Madrid — partielle profonde, pas de totalité",
   mapDisclaimer:
     "Carte stylisée d'orientation. Confirmez les limites exactes et les horaires officiels de votre commune sur la table de l'IGN.",
@@ -583,7 +575,6 @@ const it: EclipseDictionary = {
   aboutTitle: "Che cos'è?",
   aboutBody:
     "Un'eclissi solare totale — la prima visibile dalla Spagna continentale da oltre un secolo. Verso il tramonto del 12 agosto 2026, la Luna copre completamente il Sole lungo una fascia che va dalla Galizia alle Baleari, trasformando per pochi secondi il giorno in penombra. Fuori da quella fascia, gran parte della Spagna vedrà un'eclissi parziale profonda.",
-  checkTitle: "La vedrai? Controlla un luogo",
   checkSubtitle: "Tocca la mappa, usa la tua posizione o scegli una città per orari esatti, altezza del Sole e se sei dentro la totalità.",
   checkUseLocation: "Usa la mia posizione",
   checkLocating: "Localizzazione…",
@@ -613,7 +604,6 @@ const it: EclipseDictionary = {
   bandLabel: "Fascia di totalità (~290 km di larghezza)",
   centerLabel: "Linea centrale — totalità più lunga",
   sweepLabel: "L'ombra corre da ovest a est, ~20:27 alle ~20:32",
-  scrubHint: "Scorri il dito o il cursore sulla mappa per muovere l'orologio dell'ombra.",
   outsideLabel: "Madrid — parziale profonda, niente totalità",
   mapDisclaimer:
     "Mappa stilizzata orientativa. Conferma i limiti esatti e gli orari ufficiali del tuo comune sulla tabella dell'IGN.",
@@ -689,7 +679,6 @@ const de: EclipseDictionary = {
   aboutTitle: "Was ist das?",
   aboutBody:
     "Eine totale Sonnenfinsternis — die erste seit über einem Jahrhundert vom spanischen Festland aus sichtbar. Kurz vor Sonnenuntergang am 12. August 2026 bedeckt der Mond die Sonne vollständig entlang eines Pfades von Galicien bis zu den Balearen und verwandelt den Tag für Sekunden in Dämmerung. Außerhalb dieses Pfades erlebt der Großteil Spaniens eine tiefe partielle Finsternis.",
-  checkTitle: "Wirst du sie sehen? Ort prüfen",
   checkSubtitle: "Tippe auf die Karte, nutze deinen Standort oder wähle eine Stadt für genaue Zeiten, Sonnenhöhe und ob du in der Totalität bist.",
   checkUseLocation: "Meinen Standort verwenden",
   checkLocating: "Wird lokalisiert…",
@@ -719,7 +708,6 @@ const de: EclipseDictionary = {
   bandLabel: "Totalitätspfad (~290 km breit)",
   centerLabel: "Zentrallinie — längste Totalität",
   sweepLabel: "Der Schatten zieht von West nach Ost, ~20:27 bis ~20:32",
-  scrubHint: "Bewege Finger oder Cursor über die Karte, um die Schatten-Uhr zu steuern.",
   outsideLabel: "Madrid — tiefe partielle Phase, keine Totalität",
   mapDisclaimer:
     "Stilisierte Orientierungskarte. Genaue Grenzen und offizielle Zeiten deiner Gemeinde in der IGN-Tabelle prüfen.",
