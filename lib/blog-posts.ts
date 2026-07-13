@@ -2,10 +2,18 @@ import { Locale } from "@/lib/i18n"
 
 type AuthoredLocale = Exclude<Locale, "pt" | "zh">
 
+export type SectionIcon = "sparkles" | "map-pin" | "map" | "cloud-sun" | "compass" | "shield" | "camera"
+
 export type ArticleSection = {
   heading: string
   paragraphs: string[]
   bullets?: string[]
+  /** Optional heading icon for scannability */
+  icon?: SectionIcon
+  /** "callout" renders the section as a highlighted box (e.g. safety) */
+  variant?: "callout"
+  /** Render bullets as a grid of cards instead of a plain list */
+  bulletsAsCards?: boolean
   table?: {
     caption: string
     headers: string[]
@@ -109,6 +117,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         sections: [
           {
             heading: "Why the August 12, 2026 eclipse matters for Spain",
+            icon: "sparkles",
             paragraphs: [
               "On Wednesday, August 12, 2026, a total solar eclipse will cross Spain from west to east near sunset. Spain's National Geographic Institute (IGN) describes it as the first total solar eclipse visible from the Iberian Peninsula in more than a century.",
               "The path of totality — up to about 294 km wide — runs across much of the northern half of mainland Spain and reaches the Balearic Islands. Provincial capitals in or beside it include A Coruña, Lugo, Oviedo, León, Zamora, Valladolid, Segovia, Burgos, Bilbao, Logroño, Zaragoza, Lleida, Tarragona and València, ending over Palma de Mallorca. Southern Spain — Madrid, Sevilla, Málaga — sees a deep partial eclipse instead.",
@@ -117,6 +126,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Which region gives you the best chance",
+            icon: "map-pin",
             paragraphs: [
               "Use the interactive map and ranking above to compare exact times, totality length and Sun altitude for each base. The short version: the best overall region is the northern Meseta, especially the open plains around Palencia, León, Burgos and the Aranda de Duero–Soria corridor. That combines official IGN eclipse geometry with the IGN's August cloud climatology, where the northern Meseta and the Ebro valley have the most favorable average cloud conditions inside the path and Castile and León keeps the Sun higher than eastern Spain.",
               "No exact field can be declared the winner months in advance. The official national eclipse portal advises that the nearest suitable place is often best when it is already inside totality and has a clear western horizon. The Sun will be low in the west during totality, so an unobstructed western horizon is essential — a ridge, building, trees or haze can hide the most important minute even when the sky above is clear.",
@@ -124,6 +134,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Official observation sites and logistics",
+            icon: "map",
+            bulletsAsCards: true,
             paragraphs: [
               "Use published official sites instead of inventing a roadside viewpoint. Soria has announced preferred serviced areas including San Leonardo, Uxama, the Fortress of Gormaz, Numancia, Almazán, Medinaceli and Borobia. It also identifies center-line alternatives such as Rioseco de Soria, Sierra de Perdices and the Galiana viewpoint, while warning that several natural and mountain locations require extra preparation.",
               "As of May 17, 2026, Aragón lists official sites at the former Calamocha aerodrome, MotorLand in Alcañiz, Javalambre ski station, the Cariñena and Épila industrial areas, Ariza and Monreal del Campo. The national portal says official lists will continue changing, so recheck them before travel.",
@@ -137,6 +149,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "A practical weather and location workflow",
+            icon: "cloud-sun",
+            bulletsAsCards: true,
             paragraphs: [
               "Long-range climate patterns are useful for travel strategy, but they cannot tell you whether one field will be clear on August 12. Use them to choose a region, then switch to current forecasts as the event approaches.",
               "In the final days, compare cloud cover at several levels, visibility, rain risk, wind and haze across your saved locations. Solora can help compare sky and weather conditions, preview the Sun's path for a location and keep alternative spots organized. Official eclipse geometry and contact times should still come from IGN.",
@@ -151,6 +165,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "How Solora can help with eclipse planning",
+            icon: "compass",
+            bulletsAsCards: true,
             paragraphs: [
               "Solora brings the surrounding decisions into one workflow: Sun position and path tools, sunrise and sunset timing, cloud and visibility forecasts, worldwide saved locations, astronomical event tracking, widgets, Apple Watch access and reminders.",
               "For photographers, the useful question is not only when totality happens. It is whether the Sun will clear the local horizon, whether clouds or haze threaten the line of sight, and which backup location gives you a better chance without an impossible last-minute drive.",
@@ -164,6 +180,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Solar eclipse eye safety",
+            icon: "shield",
+            variant: "callout",
             paragraphs: [
               "Except during the brief total phase, it is unsafe to look directly at the Sun without specialized solar viewing protection. NASA recommends viewers that comply with the ISO 12312-2 international standard. Ordinary sunglasses, exposed film and improvised filters are not safe.",
               "If you are inside the path of totality, remove eye protection only when the bright solar surface is completely covered and replace it as soon as the Sun begins to reappear. Children should be supervised. Anyone outside totality must use proper solar protection for the entire event.",
@@ -171,6 +189,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Photography checklist for the eclipse",
+            icon: "camera",
+            bulletsAsCards: true,
             paragraphs: [
               "Use a certified solar filter mounted securely on the front of the lens during every partial phase. Never look through an unfiltered optical viewfinder. Practice attaching and removing the filter before eclipse day so the total phase is not your first attempt.",
               "Keep the setup simple. Totality in Spain will be brief and the low Sun may require a composition that includes the landscape. Test focus, exposure bracketing, interval timing and your widest planned framing on the previous evening from the same site.",
@@ -203,6 +223,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         sections: [
           {
             heading: "Por qué el eclipse del 12 de agosto de 2026 es histórico",
+            icon: "sparkles",
             paragraphs: [
               "El miércoles 12 de agosto de 2026 un eclipse solar total cruzará España de oeste a este cerca del atardecer. El Instituto Geográfico Nacional (IGN) lo describe como el primer eclipse total de Sol visible desde la península Ibérica en más de un siglo.",
               "La franja de totalidad, de hasta unos 294 km de ancho, atraviesa gran parte de la mitad norte peninsular y llega a Baleares. Entre las capitales dentro o junto a ella están A Coruña, Lugo, Oviedo, León, Zamora, Valladolid, Segovia, Burgos, Bilbao, Logroño, Zaragoza, Lleida, Tarragona y València, terminando sobre Palma de Mallorca. La mitad sur —Madrid, Sevilla, Málaga— verá un eclipse parcial profundo.",
@@ -211,6 +232,7 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Qué región te da la mejor oportunidad",
+            icon: "map-pin",
             paragraphs: [
               "Usa el mapa interactivo y el ranking de arriba para comparar horarios exactos, duración de la totalidad y altura del Sol de cada base. En resumen: la mejor región en conjunto es el norte de la Meseta, especialmente las llanuras de Palencia, León, Burgos y el corredor Aranda de Duero–Soria. Esto combina la geometría oficial del IGN con su climatología de nubosidad de agosto, donde el norte de la Meseta y el valle del Ebro presentan las condiciones medias más favorables dentro de la franja y Castilla y León conserva el Sol más alto que el este peninsular.",
               "No se puede declarar ganador a un campo concreto con meses de antelación. El portal oficial estatal recuerda que, si ya estás dentro de la totalidad y tienes horizonte oeste limpio, el lugar más cercano suele ser la mejor opción. La totalidad ocurrirá con el Sol muy bajo hacia el oeste, así que un horizonte occidental despejado es esencial: una montaña, edificios, árboles o calima pueden ocultar el minuto decisivo aunque el cielo superior esté despejado.",
@@ -218,6 +240,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Puntos oficiales de observación y logística",
+            icon: "map",
+            bulletsAsCards: true,
             paragraphs: [
               "Utiliza espacios publicados por las administraciones en vez de improvisar un arcén o un mirador famoso. Soria ha anunciado zonas preferentes con servicios en San Leonardo, Uxama, la Fortaleza de Gormaz, Numancia, Almazán, Medinaceli y Borobia. También identifica alternativas sobre la línea central como Rioseco de Soria, Sierra de Perdices y el Mirador de la Galiana, aunque advierte que varios espacios naturales y de montaña requieren preparación adicional.",
               "A fecha de 17 de mayo de 2026, Aragón publica como puntos oficiales el antiguo aeródromo de Calamocha, MotorLand en Alcañiz, la estación de esquí de Javalambre, los polígonos de Cariñena y Épila, Ariza y Monreal del Campo. El portal estatal avisa de que las listas seguirán actualizándose: compruébalas otra vez antes de viajar.",
@@ -231,6 +255,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Plan meteorológico y de ubicaciones",
+            icon: "cloud-sun",
+            bulletsAsCards: true,
             paragraphs: [
               "La climatología histórica sirve para elegir una región, pero no puede decirte qué campo estará despejado el 12 de agosto. A medida que se acerque el evento, cambia a previsiones actuales y conserva flexibilidad para moverte.",
               "Durante los últimos días compara nubosidad por capas, visibilidad, riesgo de lluvia, viento y calima entre tus ubicaciones guardadas. Solora permite comparar condiciones del cielo y del tiempo, previsualizar la trayectoria del Sol y organizar alternativas. Para geometría y contactos exactos del eclipse, utiliza siempre los datos oficiales del IGN.",
@@ -245,6 +271,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Cómo puede ayudarte Solora a planificar el eclipse",
+            icon: "compass",
+            bulletsAsCards: true,
             paragraphs: [
               "Solora reúne las decisiones que rodean al evento: herramientas de posición y trayectoria solar, horarios de amanecer y atardecer, previsión de nubes y visibilidad, ubicaciones guardadas en todo el mundo, seguimiento de eventos astronómicos, widgets, Apple Watch y recordatorios.",
               "Para fotografía no basta con saber la hora de la totalidad. También necesitas comprobar si el Sol superará el horizonte local, si las nubes o la calima amenazan la línea de visión y qué alternativa mejora tus opciones sin exigir un desplazamiento imposible a última hora.",
@@ -258,6 +286,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Seguridad para observar el eclipse solar",
+            icon: "shield",
+            variant: "callout",
             paragraphs: [
               "Salvo durante la breve fase total, nunca es seguro mirar directamente al Sol sin protección especializada. NASA recomienda visores que cumplan la norma internacional ISO 12312-2. Las gafas de sol, películas expuestas y filtros improvisados no son seguros.",
               "Si estás dentro de la franja de totalidad, retira la protección únicamente cuando la superficie brillante del Sol quede completamente cubierta y vuelve a colocarla en cuanto reaparezca. Los menores deben estar supervisados. Fuera de la totalidad hay que mantener la protección durante todo el eclipse.",
@@ -265,6 +295,8 @@ const manualBlogArticles: BlogArticleDefinition[] = [
           },
           {
             heading: "Checklist de fotografía del eclipse",
+            icon: "camera",
+            bulletsAsCards: true,
             paragraphs: [
               "Utiliza un filtro solar certificado y bien fijado delante del objetivo durante todas las fases parciales. Nunca mires por un visor óptico sin filtrar. Practica cómo colocar y retirar el filtro antes del día del eclipse.",
               "Mantén un equipo sencillo. La totalidad será breve y la baja altura del Sol puede favorecer una composición que incluya el paisaje. Prueba enfoque, bracketing, intervalómetro y encuadre la tarde anterior desde el mismo lugar.",
@@ -299,9 +331,9 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         excerpt: "Préparez l’éclipse solaire totale du 12 août 2026 avec carte de totalité, notes de voyage, stratégie météo et conseils photo.",
         imageAlt: "Planification du trajet de l’éclipse solaire totale d’août 2026",
         sections: [
-          { heading: "Pourquoi cette éclipse compte", paragraphs: ["L’éclipse solaire totale du 12 août 2026 sera l’un des grands rendez-vous du ciel de la décennie pour l’Europe et les destinations voisines.", "Si vous voulez la totalité et pas seulement une phase partielle, la bande de totalité est aussi importante que la météo."] },
-          { heading: "Choisir son lieu d’observation", paragraphs: ["Commencez par la bande de totalité, puis comparez historique nuageux, logistique de voyage et liberté de vous déplacer à la dernière minute.", "Un lieu moins célèbre mais plus fiable côté météo peut être un meilleur choix qu’un spot surchargé."] },
-          { heading: "Priorités photo", paragraphs: ["Structurez votre plan autour des changements d’exposition, d’un trépied stable et d’une séquence simple à exécuter.", "Si c’est votre première totalité, ne laissez pas le matériel vous faire rater l’expérience."] },
+          { heading: "Pourquoi cette éclipse compte", icon: "sparkles", paragraphs: ["L’éclipse solaire totale du 12 août 2026 sera l’un des grands rendez-vous du ciel de la décennie pour l’Europe et les destinations voisines.", "Si vous voulez la totalité et pas seulement une phase partielle, la bande de totalité est aussi importante que la météo."] },
+          { heading: "Choisir son lieu d’observation", icon: "map-pin", paragraphs: ["Commencez par la bande de totalité, puis comparez historique nuageux, logistique de voyage et liberté de vous déplacer à la dernière minute.", "Un lieu moins célèbre mais plus fiable côté météo peut être un meilleur choix qu’un spot surchargé."] },
+          { heading: "Priorités photo", icon: "camera", paragraphs: ["Structurez votre plan autour des changements d’exposition, d’un trépied stable et d’une séquence simple à exécuter.", "Si c’est votre première totalité, ne laissez pas le matériel vous faire rater l’expérience."] },
         ],
         ctaTitle: "Préparez vos journées d’éclipse avec plus de contexte",
         ctaDescription: "Utilisez Solora pour réunir timing du ciel et contexte météo avant votre prochain voyage photo.",
@@ -317,9 +349,9 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         excerpt: "Pianifica l’eclissi solare totale del 12 agosto 2026 con fascia di totalità, note di viaggio, strategia meteo e consigli pratici.",
         imageAlt: "Pianificazione della traiettoria dell’eclissi solare totale di agosto 2026",
         sections: [
-          { heading: "Perché questa eclissi è importante", paragraphs: ["L’eclissi solare totale del 12 agosto 2026 sarà uno dei grandi eventi del cielo del decennio per l’Europa e le destinazioni vicine.", "Se vuoi la totalità e non solo una fase parziale molto profonda, la fascia di totalità conta quanto il meteo."] },
-          { heading: "Come scegliere la località", paragraphs: ["Parti dalla fascia di totalità e poi confronta storico nuvoloso, logistica di viaggio e libertà di spostarti il giorno prima.", "Una località meno famosa ma più affidabile dal punto di vista meteorologico può essere la scelta migliore."] },
-          { heading: "Priorità fotografiche", paragraphs: ["Costruisci il piano su variazioni di esposizione, cavalletto stabile e una sequenza semplice da eseguire senza stress.", "Se è la tua prima totalità, non sacrificare l’esperienza cercando troppi setup diversi."] },
+          { heading: "Perché questa eclissi è importante", icon: "sparkles", paragraphs: ["L’eclissi solare totale del 12 agosto 2026 sarà uno dei grandi eventi del cielo del decennio per l’Europa e le destinazioni vicine.", "Se vuoi la totalità e non solo una fase parziale molto profonda, la fascia di totalità conta quanto il meteo."] },
+          { heading: "Come scegliere la località", icon: "map-pin", paragraphs: ["Parti dalla fascia di totalità e poi confronta storico nuvoloso, logistica di viaggio e libertà di spostarti il giorno prima.", "Una località meno famosa ma più affidabile dal punto di vista meteorologico può essere la scelta migliore."] },
+          { heading: "Priorità fotografiche", icon: "camera", paragraphs: ["Costruisci il piano su variazioni di esposizione, cavalletto stabile e una sequenza semplice da eseguire senza stress.", "Se è la tua prima totalità, non sacrificare l’esperienza cercando troppi setup diversi."] },
         ],
         ctaTitle: "Pianifica i giorni di eclissi con più contesto",
         ctaDescription: "Usa Solora per unire timing del cielo e contesto meteo prima del tuo prossimo viaggio fotografico.",
@@ -335,9 +367,9 @@ const manualBlogArticles: BlogArticleDefinition[] = [
         excerpt: "Plane die totale Sonnenfinsternis am 12. August 2026 mit Totalitätspfad, Reisehinweisen, Wetterstrategie und praktischen Fototipps.",
         imageAlt: "Planung des Pfads der totalen Sonnenfinsternis im August 2026",
         sections: [
-          { heading: "Warum diese Finsternis wichtig ist", paragraphs: ["Die totale Sonnenfinsternis am 12. August 2026 gehört zu den wichtigsten Himmelsereignissen des Jahrzehnts für Europa und nahe Reiseziele.", "Wenn du Totalität statt nur eine tiefe partielle Phase erleben willst, ist die Pfadplanung genauso wichtig wie das Wetter."] },
-          { heading: "So wählst du den Beobachtungsort", paragraphs: ["Beginne mit dem Totalitätspfad und vergleiche dann Wolkenhistorie, Reiseaufwand und Flexibilität für einen kurzfristigen Ortswechsel.", "Ein weniger berühmter Ort mit besseren Wetterchancen kann stärker sein als ein überlaufener Hotspot."] },
-          { heading: "Fotografische Prioritäten", paragraphs: ["Plane rund um Belichtungswechsel, ein stabiles Stativ und eine einfache Sequenz, die du sicher ausführen kannst.", "Wenn es deine erste totale Finsternis ist, opfere das Erlebnis nicht für zu viele Kamerasetups."] },
+          { heading: "Warum diese Finsternis wichtig ist", icon: "sparkles", paragraphs: ["Die totale Sonnenfinsternis am 12. August 2026 gehört zu den wichtigsten Himmelsereignissen des Jahrzehnts für Europa und nahe Reiseziele.", "Wenn du Totalität statt nur eine tiefe partielle Phase erleben willst, ist die Pfadplanung genauso wichtig wie das Wetter."] },
+          { heading: "So wählst du den Beobachtungsort", icon: "map-pin", paragraphs: ["Beginne mit dem Totalitätspfad und vergleiche dann Wolkenhistorie, Reiseaufwand und Flexibilität für einen kurzfristigen Ortswechsel.", "Ein weniger berühmter Ort mit besseren Wetterchancen kann stärker sein als ein überlaufener Hotspot."] },
+          { heading: "Fotografische Prioritäten", icon: "camera", paragraphs: ["Plane rund um Belichtungswechsel, ein stabiles Stativ und eine einfache Sequenz, die du sicher ausführen kannst.", "Wenn es deine erste totale Finsternis ist, opfere das Erlebnis nicht für zu viele Kamerasetups."] },
         ],
         ctaTitle: "Plane Finsternistage mit mehr Kontext",
         ctaDescription: "Nutze Solora, um Himmels-Timing und praktischen Wetterkontext vor deiner nächsten Sky-Reise zu verbinden.",

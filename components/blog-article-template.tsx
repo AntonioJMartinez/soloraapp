@@ -1,6 +1,19 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { ArrowLeft, Clock, Download } from "lucide-react"
+import {
+  ArrowLeft,
+  Camera,
+  Check,
+  Clock,
+  CloudSun,
+  Compass,
+  Download,
+  type LucideIcon,
+  Map as MapIcon,
+  MapPin,
+  ShieldAlert,
+  Sparkles,
+} from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,10 +24,25 @@ import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib
 import { getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
+type SectionIcon = "sparkles" | "map-pin" | "map" | "cloud-sun" | "compass" | "shield" | "camera"
+
+const SECTION_ICONS: Record<SectionIcon, LucideIcon> = {
+  sparkles: Sparkles,
+  "map-pin": MapPin,
+  map: MapIcon,
+  "cloud-sun": CloudSun,
+  compass: Compass,
+  shield: ShieldAlert,
+  camera: Camera,
+}
+
 type ArticleSection = {
   heading: string
   paragraphs: string[]
   bullets?: string[]
+  icon?: SectionIcon
+  variant?: "callout"
+  bulletsAsCards?: boolean
   table?: {
     caption: string
     headers: string[]
@@ -204,20 +232,49 @@ export function BlogArticleTemplate({
 
             <div className="prose prose-invert prose-lg max-w-none">
               <div className="space-y-8 text-white/90 leading-relaxed">
-                {sections.map((section) => (
-                  <section key={section.heading}>
-                    <h2 className="mb-4 text-2xl font-bold text-white md:text-3xl">{section.heading}</h2>
+                {sections.map((section) => {
+                  const Icon = section.icon ? SECTION_ICONS[section.icon] : null
+                  const isCallout = section.variant === "callout"
+                  return (
+                  <section
+                    key={section.heading}
+                    className={isCallout ? "not-prose rounded-2xl border border-amber-400/40 bg-amber-500/[0.08] p-5 md:p-6" : undefined}
+                  >
+                    <h2
+                      className={`mb-4 flex items-center gap-2.5 text-2xl font-bold md:text-3xl ${
+                        isCallout ? "text-amber-100" : "text-white"
+                      }`}
+                    >
+                      {Icon ? (
+                        <Icon className={`h-6 w-6 shrink-0 ${isCallout ? "text-amber-300" : "text-[#E6786E]"}`} />
+                      ) : null}
+                      {section.heading}
+                    </h2>
                     {section.paragraphs.map((paragraph) => (
-                      <p key={paragraph} className="mb-4">
+                      <p key={paragraph} className={`mb-4 ${isCallout ? "text-amber-50/90" : ""}`}>
                         {paragraph}
                       </p>
                     ))}
                     {section.bullets ? (
-                      <ul className="mb-4 list-disc list-inside space-y-2 text-white/80">
-                        {section.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
+                      section.bulletsAsCards ? (
+                        <div className="not-prose mt-4 grid gap-3 sm:grid-cols-2">
+                          {section.bullets.map((bullet) => (
+                            <div
+                              key={bullet}
+                              className="flex gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-3.5 text-sm text-white/80"
+                            >
+                              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#E6786E]" />
+                              <span>{bullet}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <ul className="mb-4 list-disc list-inside space-y-2 text-white/80">
+                          {section.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                      )
                     ) : null}
                     {section.table ? (
                       <div className="my-6 overflow-x-auto rounded-2xl border border-white/10">
@@ -255,7 +312,8 @@ export function BlogArticleTemplate({
                       </div>
                     ) : null}
                   </section>
-                ))}
+                  )
+                })}
               </div>
             </div>
 
