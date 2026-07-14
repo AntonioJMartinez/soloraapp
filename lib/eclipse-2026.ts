@@ -116,6 +116,26 @@ type EclipseLandingStrings = {
       partialNote: string
       appHook: string
     }
+    locate: {
+      button: string
+      locating: string
+      privacy: string
+      inside: string
+      insideBody: string
+      edge: string
+      edgeBody: string
+      outside: string
+      outsideBody: string
+      north: string
+      south: string
+      outOfArea: string
+      outOfAreaBody: string
+      nearest: string
+      denied: string
+      unavailable: string
+      unsupported: string
+      you: string
+    }
   }
   cities: Record<string, CityCopy>
   critical: {
@@ -195,6 +215,26 @@ const en: EclipseLandingStrings = {
       edgeNote: "On the very edge of the path — some northern areas may graze totality. Verify your exact spot with the IGN before committing.",
       partialNote: "Outside the path: a deep partial eclipse only. To experience darkness you must travel into the band.",
       appHook: "Compare weather and horizons for spots like this in Solora.",
+    },
+    locate: {
+      button: "Check my location",
+      locating: "Locating…",
+      privacy: "Your location never leaves your device.",
+      inside: "You're inside the path of totality",
+      insideBody: "Based on the approximate band — confirm your municipality in the official IGN table.",
+      edge: "You're right on the edge of the band",
+      edgeBody: "A few kilometres decide everything here. Verify your exact spot in the official IGN table before eclipse day.",
+      outside: "You're outside the path — deep partial only",
+      outsideBody: "The band of totality is roughly {km} km to the {direction}. To experience darkness, plan a trip into the band.",
+      north: "north",
+      south: "south",
+      outOfArea: "You're outside the map area",
+      outOfAreaBody: "This checker covers Spain and the Balearics. On August 12, 2026 the path of totality crosses northern Spain.",
+      nearest: "Nearest reference city",
+      denied: "Location access was denied. Enable it in your browser settings, or compare the cities manually.",
+      unavailable: "We couldn't determine your location. Please try again.",
+      unsupported: "Your browser doesn't support geolocation. Compare the cities manually.",
+      you: "You",
     },
   },
   cities: {
@@ -384,6 +424,26 @@ const es: EclipseLandingStrings = {
       edgeNote: "En el borde mismo de la franja — algunas zonas del norte podrían rozar la totalidad. Verifica tu punto exacto con el IGN antes de decidir.",
       partialNote: "Fuera de la franja: solo eclipse parcial profundo. Para vivir la oscuridad tienes que desplazarte dentro de la banda.",
       appHook: "Compara meteorología y horizontes de puntos como este en Solora.",
+    },
+    locate: {
+      button: "Comprobar mi ubicación",
+      locating: "Localizando…",
+      privacy: "Tu ubicación no sale de tu dispositivo.",
+      inside: "Estás dentro de la franja de totalidad",
+      insideBody: "Según la franja aproximada — confirma tu municipio en la tabla oficial del IGN.",
+      edge: "Estás justo en el borde de la franja",
+      edgeBody: "Aquí unos pocos kilómetros lo deciden todo. Verifica tu punto exacto en la tabla oficial del IGN antes del eclipse.",
+      outside: "Estás fuera de la franja — solo verás un eclipse parcial",
+      outsideBody: "La franja de totalidad queda a unos {km} km al {direction}. Para vivir la oscuridad, planifica desplazarte dentro de la franja.",
+      north: "norte",
+      south: "sur",
+      outOfArea: "Tu ubicación queda fuera del área del mapa",
+      outOfAreaBody: "Este comprobador cubre España y Baleares. El 12 de agosto de 2026 la franja de totalidad cruza el norte de España.",
+      nearest: "Ciudad de referencia más cercana",
+      denied: "Se denegó el acceso a la ubicación. Actívalo en tu navegador o compara las ciudades manualmente.",
+      unavailable: "No pudimos determinar tu ubicación. Inténtalo de nuevo.",
+      unsupported: "Tu navegador no admite geolocalización. Compara las ciudades manualmente.",
+      you: "Tú",
     },
   },
   cities: {

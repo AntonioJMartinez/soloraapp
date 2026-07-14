@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { LocateFixed } from "lucide-react"
 
 import {
   eclipseCities,
@@ -79,13 +80,91 @@ function labelAttrs(placement: "n" | "s" | "e" | "w") {
   }
 }
 
+/* Latitude of a west→east polyline at a given longitude (null outside its range) */
+function latAtLon(line: Array<[number, number]>, lon: number): number | null {
+  for (let i = 0; i < line.length - 1; i++) {
+    const [lat1, lon1] = line[i]
+    const [lat2, lon2] = line[i + 1]
+    if (lon >= lon1 && lon <= lon2) {
+      const t = (lon - lon1) / (lon2 - lon1)
+      return lat1 + (lat2 - lat1) * t
+    }
+  }
+  return null
+}
+
+function distanceKm(aLat: number, aLon: number, bLat: number, bLon: number) {
+  const dLat = (aLat - bLat) * 111
+  const dLon = (aLon - bLon) * 111 * Math.cos((aLat * Math.PI) / 180)
+  return Math.hypot(dLat, dLon)
+}
+
+/* The illustrative band is approximate; treat ± this margin as "on the edge" */
+const EDGE_MARGIN_DEG = 0.15
+
+type GeoOutcome = "inside" | "edge" | "outside" | "outOfArea"
+
+type GeoResult = {
+  lat: number
+  lon: number
+  outcome: GeoOutcome
+  bandKm?: number
+  bandDirection?: "north" | "south"
+  nearestId?: string
+  nearestKm?: number
+}
+
+function evaluateLocation(lat: number, lon: number): GeoResult {
+  const north = latAtLon(totalityNorthLimit, lon)
+  const south = latAtLon(totalitySouthLimit, lon)
+
+  if (north === null || south === null) {
+    return { lat, lon, outcome: "outOfArea" }
+  }
+
+  let nearestId: string | undefined
+  let nearestKm = Infinity
+  for (const city of eclipseCities) {
+    if (city.kind !== "data") continue
+    const km = distanceKm(lat, lon, city.lat, city.lon)
+    if (km < nearestKm) {
+      nearestKm = km
+      nearestId = city.id
+    }
+  }
+
+  const northGap = north - lat
+  const southGap = lat - south
+
+  if (northGap > 0 && southGap > 0) {
+    const onEdge = Math.min(northGap, southGap) < EDGE_MARGIN_DEG
+    return { lat, lon, outcome: onEdge ? "edge" : "inside", nearestId, nearestKm }
+  }
+
+  if (Math.min(Math.abs(northGap), Math.abs(southGap)) < EDGE_MARGIN_DEG) {
+    return { lat, lon, outcome: "edge", nearestId, nearestKm }
+  }
+
+  const bandDirection = lat > north ? "south" : "north"
+  const bandKm = Math.max(5, Math.round((lat > north ? lat - north : south - lat) * 111))
+  return { lat, lon, outcome: "outside", bandKm, bandDirection, nearestId, nearestKm }
+}
+
+type GeoState =
+  | { status: "idle" }
+  | { status: "locating" }
+  | { status: "error"; kind: "denied" | "unavailable" | "unsupported" }
+  | { status: "done"; result: GeoResult }
+
 type EclipseMapProps = {
   locale: Locale
 }
 
 export function EclipseMap({ locale }: EclipseMapProps) {
   const strings = getEclipseLandingStrings(locale)
+  const locate = strings.map.locate
   const [selectedId, setSelectedId] = useState("burgos")
+  const [geo, setGeo] = useState<GeoState>({ status: "idle" })
   const selected = eclipseCities.find((city) => city.id === selectedId) ?? eclipseCities[0]
   const selectedCopy = strings.cities[selected.id]
 
@@ -96,6 +175,51 @@ export function EclipseMap({ locale }: EclipseMapProps) {
     if (city.kind === "edge") return "#C9A36B"
     return "#FFD9A8"
   }
+
+  const handleLocate = () => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      setGeo({ status: "error", kind: "unsupported" })
+      return
+    }
+
+    setGeo({ status: "locating" })
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const result = evaluateLocation(position.coords.latitude, position.coords.longitude)
+        setGeo({ status: "done", result })
+        if ((result.outcome === "inside" || result.outcome === "edge") && result.nearestId) {
+          setSelectedId(result.nearestId)
+        }
+      },
+      (error) => {
+        setGeo({ status: "error", kind: error.code === error.PERMISSION_DENIED ? "denied" : "unavailable" })
+      },
+      { timeout: 12000, maximumAge: 300000 },
+    )
+  }
+
+  const geoResult = geo.status === "done" ? geo.result : null
+  const nearestCity = geoResult?.nearestId ? eclipseCities.find((city) => city.id === geoResult.nearestId) : null
+  const geoHeadline = geoResult
+    ? { inside: locate.inside, edge: locate.edge, outside: locate.outside, outOfArea: locate.outOfArea }[geoResult.outcome]
+    : null
+  const geoBody = geoResult
+    ? geoResult.outcome === "outside"
+      ? locate.outsideBody
+          .replace("{km}", String(geoResult.bandKm))
+          .replace("{direction}", geoResult.bandDirection === "north" ? locate.north : locate.south)
+      : { inside: locate.insideBody, edge: locate.edgeBody, outOfArea: locate.outOfAreaBody }[geoResult.outcome as Exclude<GeoOutcome, "outside">]
+    : null
+  const geoTone =
+    geoResult?.outcome === "inside"
+      ? "border-[#FFD9A8]/50 bg-[#FFD9A8]/10"
+      : geoResult?.outcome === "edge"
+        ? "border-[#E6786E]/40 bg-[#E6786E]/10"
+        : "border-white/15 bg-white/[0.04]"
+
+  const userPoint = geoResult ? project([geoResult.lat, geoResult.lon]) : null
+  const userOnMap =
+    userPoint !== null && userPoint[0] >= 12 && userPoint[0] <= MAP_W - 12 && userPoint[1] >= 12 && userPoint[1] <= MAP_H - 12
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-start">
@@ -192,6 +316,25 @@ export function EclipseMap({ locale }: EclipseMapProps) {
                   </g>
                 )
               })}
+
+              {/* The visitor's own position */}
+              {userOnMap && userPoint ? (
+                <g aria-label={locate.you}>
+                  <circle cx={userPoint[0]} cy={userPoint[1]} r={14} fill="#7FB5FF" opacity={0.2} />
+                  <circle cx={userPoint[0]} cy={userPoint[1]} r={6} fill="#7FB5FF" stroke="#0B0908" strokeWidth={1.5} />
+                  <text
+                    x={userPoint[0]}
+                    y={userPoint[1] - 20}
+                    textAnchor="middle"
+                    fontSize="19"
+                    fontWeight={700}
+                    fill="#B8D4FF"
+                    style={{ pointerEvents: "none" }}
+                  >
+                    {locate.you}
+                  </text>
+                </g>
+              ) : null}
             </g>
           </svg>
         </div>
@@ -231,6 +374,45 @@ export function EclipseMap({ locale }: EclipseMapProps) {
 
       {/* Detail panel */}
       <div>
+        {/* Geolocation check */}
+        <div className="mb-6">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <button
+              type="button"
+              onClick={handleLocate}
+              disabled={geo.status === "locating"}
+              className="inline-flex items-center gap-2 rounded-full border border-[#FFD9A8]/50 bg-[#FFD9A8]/10 px-5 py-2.5 text-sm font-semibold text-[#FFD9A8] transition-colors hover:bg-[#FFD9A8]/20 disabled:cursor-wait disabled:opacity-60"
+            >
+              <LocateFixed className={cn("h-4 w-4", geo.status === "locating" && "animate-spin")} aria-hidden="true" />
+              {geo.status === "locating" ? locate.locating : locate.button}
+            </button>
+            <span className="text-xs text-white/35">{locate.privacy}</span>
+          </div>
+
+          {geo.status === "error" ? (
+            <p role="status" className="mt-3 rounded-xl border border-[#E6786E]/40 bg-[#E6786E]/10 px-4 py-3 text-sm leading-relaxed text-[#F4B4AE]">
+              {{ denied: locate.denied, unavailable: locate.unavailable, unsupported: locate.unsupported }[geo.kind]}
+            </p>
+          ) : null}
+
+          {geoResult && geoHeadline ? (
+            <div role="status" className={cn("mt-3 rounded-xl border px-4 py-3.5", geoTone)}>
+              <p className="text-sm font-bold text-white">
+                {geoResult.outcome === "inside" ? "✓ " : geoResult.outcome === "outside" ? "✕ " : ""}
+                {geoHeadline}
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-white/70">{geoBody}</p>
+              {(geoResult.outcome === "inside" || geoResult.outcome === "edge") && nearestCity ? (
+                <p className="mt-2 text-xs text-white/50">
+                  {locate.nearest}: <span className="font-semibold text-[#FFD9A8]">{nearestCity.name}</span>
+                  {" · "}
+                  {Math.round(geoResult.nearestKm ?? 0)} km
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+
         <div className="flex flex-wrap gap-2" role="tablist" aria-label={strings.map.heading}>
           {eclipseCities
             .filter((city) => city.kind === "data")
