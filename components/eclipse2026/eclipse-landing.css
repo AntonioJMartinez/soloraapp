@@ -1,0 +1,120 @@
+/* Cinematic styles for the 2026 Spain eclipse landing */
+
+.ecl-star {
+  position: absolute;
+  border-radius: 9999px;
+  background: #fff;
+  animation: ecl-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes ecl-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.ecl-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.ecl-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.ecl-kenburns {
+  animation: ecl-kenburns 24s ease-in-out infinite alternate;
+}
+
+@keyframes ecl-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.ecl-serif {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+.ecl-corona {
+  animation: ecl-corona-pulse 7s ease-in-out infinite;
+}
+
+@keyframes ecl-corona-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.ecl-corona-spin {
+  animation: ecl-corona-spin 60s linear infinite;
+}
+
+@keyframes ecl-corona-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Centerline dashes march west → east, like the travelling shadow */
+.ecl-centerline {
+  animation: ecl-centerline-march 1.6s linear infinite;
+}
+
+@keyframes ecl-centerline-march {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -13;
+  }
+}
+
+.ecl-city {
+  cursor: pointer;
+}
+
+.ecl-city circle {
+  transition:
+    r 0.25s ease,
+    opacity 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecl-star,
+  .ecl-kenburns,
+  .ecl-corona,
+  .ecl-corona-spin,
+  .ecl-centerline {
+    animation: none;
+  }
+
+  .ecl-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

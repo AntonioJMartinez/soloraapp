@@ -1,0 +1,176 @@
+/* Shared styles for the cinematic landing concepts under /concepts */
+
+.concept-star {
+  position: absolute;
+  border-radius: 9999px;
+  background: #fff;
+  animation: concept-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes concept-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.concept-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.concept-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.concept-kenburns {
+  animation: concept-kenburns 24s ease-in-out infinite alternate;
+}
+
+@keyframes concept-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.concept-pan {
+  animation: concept-pan 32s ease-in-out infinite alternate;
+}
+
+@keyframes concept-pan {
+  from {
+    transform: scale(1.18) translateX(-2.5%);
+  }
+  to {
+    transform: scale(1.18) translateX(2.5%);
+  }
+}
+
+.concept-cue {
+  animation: concept-cue 2.2s ease-in-out infinite;
+}
+
+@keyframes concept-cue {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+.concept-serif {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+/* Slow-breathing corona glow behind the eclipse disc */
+.concept-corona {
+  animation: concept-corona-pulse 7s ease-in-out infinite;
+}
+
+@keyframes concept-corona-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.concept-corona-spin {
+  animation: concept-corona-spin 60s linear infinite;
+}
+
+@keyframes concept-corona-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.concept-marquee {
+  animation: concept-marquee 30s linear infinite;
+}
+
+@keyframes concept-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Animated film grain for the Director's Cut concept */
+.concept-grain {
+  position: fixed;
+  inset: -100%;
+  z-index: 54;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
+  animation: concept-grain 1.6s steps(6) infinite;
+}
+
+@keyframes concept-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2%, 3%);
+  }
+  40% {
+    transform: translate(3%, -2%);
+  }
+  60% {
+    transform: translate(-3%, -3%);
+  }
+  80% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-star,
+  .concept-kenburns,
+  .concept-pan,
+  .concept-cue,
+  .concept-corona,
+  .concept-corona-spin,
+  .concept-marquee,
+  .concept-grain {
+    animation: none;
+  }
+
+  .concept-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
