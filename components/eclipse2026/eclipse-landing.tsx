@@ -386,19 +386,9 @@ export function Eclipse2026Landing({
               <div className="absolute inset-0 flex items-center justify-center px-6">
                 <Reveal>
                   <p className="ecl-serif max-w-3xl text-center text-3xl font-light italic leading-snug text-white md:text-5xl">
-                    {locale === "es" ? (
-                      <>
-                        &ldquo;La totalidad no se mira.
-                        <br />
-                        Se vive desde dentro.&rdquo;
-                      </>
-                    ) : (
-                      <>
-                        &ldquo;You don&apos;t watch totality.
-                        <br />
-                        You stand inside it.&rdquo;
-                      </>
-                    )}
+                    {strings.quote.line1}
+                    <br />
+                    {strings.quote.line2}
                   </p>
                 </Reveal>
               </div>
@@ -425,6 +415,31 @@ export function Eclipse2026Landing({
                   </Reveal>
                 ))}
               </div>
+            </div>
+          </section>
+
+          {/* Visibility from the visitor's country */}
+          <section className="border-t border-white/10 py-20 md:py-28">
+            <div className="mx-auto max-w-6xl px-6">
+              <Reveal>
+                <p className="font-mono text-[11px] uppercase tracking-[0.5em] text-[#FFD9A8]/80">{strings.visibility.eyebrow}</p>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight md:text-6xl">{strings.visibility.heading}</h2>
+                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/65">{strings.visibility.body}</p>
+              </Reveal>
+              <Reveal delay={150}>
+                <ul className="mt-10 grid gap-4 md:grid-cols-2">
+                  {strings.visibility.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5 leading-relaxed text-white/80"
+                    >
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFD9A8]" aria-hidden="true" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-7 max-w-3xl text-base leading-relaxed text-[#F4B4AE]">{strings.visibility.travel}</p>
+              </Reveal>
             </div>
           </section>
 
