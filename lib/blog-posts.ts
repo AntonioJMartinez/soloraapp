@@ -55,7 +55,7 @@ export type BlogPostSummary = {
 }
 
 const articleModifiedDates: Partial<Record<string, string>> = {
-  "total-solar-eclipse-august-2026": "2026-07-04",
+  "total-solar-eclipse-august-2026": "2026-07-05",
 }
 
 export const indexableBlogLocales = ["en", "es"] as const

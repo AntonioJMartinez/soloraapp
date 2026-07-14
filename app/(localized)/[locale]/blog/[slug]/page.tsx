@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
+import { Eclipse2026Landing } from "@/components/eclipse2026/eclipse-landing"
 import { blogArticles, getBlogArticle, indexableBlogLocales } from "@/lib/blog-posts"
+import { eclipse2026Slug } from "@/lib/eclipse-2026"
 import { assertLocale, localizedLocales } from "@/lib/i18n"
 import { buildArticleMetadata } from "@/lib/metadata"
 
@@ -46,6 +48,27 @@ export default async function LocalizedArticlePage({
 
   if (!article) {
     notFound()
+  }
+
+  if (article.slug === eclipse2026Slug) {
+    return (
+      <Eclipse2026Landing
+        locale={locale}
+        slug={article.slug}
+        title={article.title}
+        description={article.description}
+        category={article.category}
+        readTime={article.readTime}
+        image={article.image}
+        imageAlt={article.imageAlt}
+        publishedDate={`${article.publishDate}T00:00:00.000Z`}
+        modifiedDate={`${article.modifiedDate}T00:00:00.000Z`}
+        wordCount={article.wordCount}
+        sections={article.sections}
+        faqs={article.faqs}
+        sources={article.sources}
+      />
+    )
   }
 
   return (
