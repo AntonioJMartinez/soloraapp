@@ -1,5 +1,6 @@
 "use client"
 
+import { LOCALE_STORAGE_KEY } from "@/components/locale-auto-redirect"
 import { getAvailableLocalesForPath, localizePath, localeNames, Locale } from "@/lib/i18n"
 
 type LanguageSwitcherProps = {
@@ -36,7 +37,13 @@ export function LanguageSwitcher({ locale, path, label }: LanguageSwitcherProps)
           id="footer-language-select"
           value={locale}
           onChange={(event) => {
-            window.location.assign(localizePath(event.target.value as Locale, path))
+            const nextLocale = event.target.value as Locale
+            try {
+              window.localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale)
+            } catch {
+              // storage blocked — the choice just won't persist across visits
+            }
+            window.location.assign(localizePath(nextLocale, path))
           }}
           className="h-11 w-[190px] appearance-none rounded-full border border-white/15 bg-white/5 py-2 pl-11 pr-10 text-sm text-white outline-none transition-colors hover:bg-white/10 focus:border-[#E6786E] focus:ring-2 focus:ring-[#E6786E]/40"
         >
