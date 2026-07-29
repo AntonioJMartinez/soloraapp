@@ -74,20 +74,24 @@ export function normalizeRoutePath(path: string): string {
 }
 
 export function localizePath(locale: Locale, path = "/"): string {
-  const normalizedPath = normalizeRoutePath(path)
+  const suffixIndex = path.search(/[?#]/)
+  const routePath = suffixIndex === -1 ? path : path.slice(0, suffixIndex)
+  const suffix = suffixIndex === -1 ? "" : path.slice(suffixIndex)
+  const normalizedPath = normalizeRoutePath(routePath)
 
   if (locale === defaultLocale) {
-    return normalizedPath
+    return `${normalizedPath === "/" ? "/" : `${normalizedPath}/`}${suffix}`
   }
 
-  return normalizedPath === "/" ? `/${locale}` : `/${locale}${normalizedPath}`
+  const localizedPath = normalizedPath === "/" ? `/${locale}/` : `/${locale}${normalizedPath}/`
+
+  return `${localizedPath}${suffix}`
 }
 
 export function localizedUrl(locale: Locale, path = "/"): string {
   const localizedPath = localizePath(locale, path)
-  const exportPath = localizedPath === "/" ? localizedPath : `${localizedPath}/`
 
-  return absoluteUrl(exportPath)
+  return absoluteUrl(localizedPath)
 }
 
 export function getAvailableLocalesForPath(path: string): readonly Locale[] {
