@@ -70,16 +70,24 @@ export const ibizaOutline: Array<[number, number]> = [
   [38.92, 1.21], [39.1, 1.5], [38.97, 1.62], [38.86, 1.4],
 ]
 
+/*
+ * Band geometry from the NASA/Espenak SE2026Aug12 path table (18:24–18:32 UT
+ * samples over Iberia), interpolated at map longitudes. Checked against the
+ * IGN capital list: Bilbao/Santander/Vitoria just inside the north limit,
+ * Barcelona/Pamplona/San Sebastián just outside it; Segovia/Cuenca/Valencia
+ * just inside the south limit, Madrid/Santiago/Vigo just outside it; the
+ * centerline runs Luarca → Peñíscola → south of Mallorca.
+ */
 export const totalityCenterline: Array<[number, number]> = [
-  [44.3, -9.9], [43.6, -7.3], [42.9, -5.8], [42.3, -4.2], [41.9, -3.0], [41.4, -1.6], [40.9, -0.3], [40.3, 1.4], [39.8, 2.9], [39.5, 4.6],
+  [45.7, -9.9], [44.7, -8.4], [44.0, -7.2], [43.54, -6.53], [43.37, -6.19], [42.34, -4.2], [41.82, -3.19], [41.16, -1.5], [40.41, 0.4], [39.8, 1.95], [39.41, 2.95], [38.76, 4.6],
 ]
 
 export const totalityNorthLimit: Array<[number, number]> = [
-  [45.6, -9.9], [44.9, -7.3], [44.2, -5.8], [43.7, -4.2], [43.4, -2.9], [42.75, -1.5], [42.15, -0.3], [41.55, 1.4], [41.0, 2.9], [40.7, 4.6],
+  [47.8, -9.9], [47.04, -8.8], [45.8, -7.08], [44.46, -4.95], [43.65, -3.45], [42.91, -2.09], [42.28, -0.58], [41.62, 1.0], [40.98, 2.55], [40.67, 3.3], [40.13, 4.6],
 ]
 
 export const totalitySouthLimit: Array<[number, number]> = [
-  [41.6, -9.9], [41.3, -7.3], [41.2, -5.8], [40.9, -4.2], [40.55, -3.0], [40.05, -1.6], [39.6, -0.3], [38.85, 1.4], [38.4, 2.9], [38.15, 4.6],
+  [43.85, -9.9], [43.61, -9.55], [43.05, -8.6], [42.26, -7.24], [41.56, -5.8], [40.68, -4.02], [40.06, -2.46], [39.21, -0.3], [38.93, 0.4], [38.5, 1.5], [38.28, 2.9], [38.0, 4.6],
 ]
 
 type CityCopy = { why: string; risk: string }
@@ -1503,7 +1511,7 @@ const pt: EclipseLandingStrings = {
       "O extremo nordeste (região de Bragança) fica na borda da faixa — a poucos quilômetros da totalidade",
       "A totalidade plena fica logo do outro lado da fronteira: Galiza e Castela e Leão",
     ],
-    travel: "A viagem mais simples: cruzar a fronteira para Ourense, Zamora ou León — dentro da faixa.",
+    travel: "A viagem mais simples: cruzar a fronteira rumo a Sanabria (Zamora), o leste de Ourense ou León — dentro da faixa.",
   },
   faqHeading: "Perguntas frequentes",
   sourcesHeading: "Fontes oficiais",
