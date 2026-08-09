@@ -43,6 +43,9 @@ jobs:
         run: pnpm run build
         env:
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+
+      - name: Validate exported SEO signals
+        run: pnpm run seo:validate
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
