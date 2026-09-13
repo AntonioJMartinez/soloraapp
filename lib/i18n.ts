@@ -29,6 +29,8 @@ const spanishOnlyPaths = new Set([
   "/fotografiar-eclipse-solar-2026-seguridad",
 ])
 
+const englishOnlyPaths = new Set(["/ios27"])
+
 export const localeNames: Record<Locale, string> = {
   en: "English",
   es: "Español",
@@ -96,6 +98,10 @@ export function localizedUrl(locale: Locale, path = "/"): string {
 
 export function getAvailableLocalesForPath(path: string): readonly Locale[] {
   const normalizedPath = normalizeRoutePath(path)
+
+  if (englishOnlyPaths.has(normalizedPath)) {
+    return ["en"]
+  }
 
   if (normalizedPath === "/blog" || normalizedPath.startsWith("/blog/")) {
     return ["en", "es"]

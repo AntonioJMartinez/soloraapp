@@ -13,6 +13,7 @@ const staticRoutes = [
   "/",
   "/blog",
   "/press-kit",
+  "/ios27",
   ...featurePageSlugs.map((slug) => `/${slug}`),
   ...trackerPageSlugs.map((slug) => `/${slug}`),
   ...infoPageSlugs.map((slug) => `/${slug}`),
