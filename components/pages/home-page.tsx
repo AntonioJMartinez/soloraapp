@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ResponsiveImage } from "@/components/responsive-image"
-import { Locale, localizeAvailablePath, localizePath, localizedUrl } from "@/lib/i18n"
+import { Locale, localizeAvailablePath, localizedUrl } from "@/lib/i18n"
 import { getEvergreenBlogPosts } from "@/lib/blog-posts"
 import { featurePageSlugs, getFeaturePageContent, getHomeContent, getUiDictionary } from "@/lib/marketing-content"
 import { absoluteUrl, siteConfig } from "@/lib/site"
@@ -29,6 +29,19 @@ const onboardingScreens = [
 ]
 
 const featureIcons = [Cloud, Sun, Camera, Moon, Star, Bell, Watch, MapPin, Waves]
+
+const momentImages = [
+  { image: "golden-hour-sunset-photography.png", label: "Golden hour", metric: "18:28" },
+  { image: "moon-phases-night-sky-photography.png", label: "Moonrise", metric: "74%" },
+  { image: "northern-lights-aurora-borealis-photography.png", label: "Aurora", metric: "KP 6" },
+  { image: "milky-way-galaxy-night-sky-photography.png", label: "Milky Way", metric: "02:10" },
+]
+
+const heroSignals = [
+  { label: "Sunset quality", value: "Excellent", icon: Sun },
+  { label: "Moonlight", value: "Low", icon: Moon },
+  { label: "Cloud cover", value: "12%", icon: Cloud },
+]
 
 const eclipseCampaign = {
   en: {
