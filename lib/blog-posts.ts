@@ -1,4 +1,5 @@
 import { Locale } from "@/lib/i18n"
+import { photographyGuides } from "@/lib/photography-guides"
 
 type AuthoredLocale = Exclude<Locale, "pt" | "zh">
 
@@ -54,8 +55,10 @@ export type BlogPostSummary = {
   featured: boolean
 }
 
-const articleModifiedDates: Partial<Record<string, string>> = {
+export const articleModifiedDates: Partial<Record<string, string>> = {
   "total-solar-eclipse-august-2026": "2026-07-05",
+  "golden-hour-photography-guide": "2026-10-06",
+  "weather-patterns-sky-photography": "2026-10-06",
 }
 
 export const indexableBlogLocales = ["en", "es"] as const
@@ -1333,12 +1336,19 @@ const generatedBlogArticles: BlogArticleDefinition[] = generatedArticleSeeds.map
   return article(seed.slug, seed.category, seed.minutes, seed.publishDate, seed.image, seed.featured, locales)
 })
 
-export const blogArticles = [...manualBlogArticles, ...generatedBlogArticles]
+const sunsetGuide = photographyGuides["sunset-quality-prediction-guide"]
+const sunsetArticle = article(
+  "sunset-quality-prediction-guide", "Photography", 5, "2026-10-06",
+  "golden-hour-sunset-photography.png", true,
+  { en: sunsetGuide.en, es: sunsetGuide.es, fr: sunsetGuide.en, it: sunsetGuide.en, de: sunsetGuide.en },
+)
+
+export const blogArticles = [...manualBlogArticles, ...generatedBlogArticles, sunsetArticle]
 
 const evergreenArticleIds = [
-  "astronomical-events-2026",
-  "total-solar-eclipse-august-2026",
-  "aurora-forecast-2026",
+  "sunset-quality-prediction-guide",
+  "golden-hour-photography-guide",
+  "weather-patterns-sky-photography",
 ] as const
 
 const localizedArticleMetadata: Record<string, Record<"pt" | "zh", { title: string; description: string }>> = {
@@ -1546,6 +1556,11 @@ function getGenericCta(locale: Locale) {
 }
 
 function getLocalizedArticleContent(definition: BlogArticleDefinition, locale: Locale): LocalizedBlogArticle {
+  const revised = photographyGuides[definition.slug]
+  if (revised && (locale === "en" || locale === "es")) {
+    return revised[locale]
+  }
+
   if (locale in definition.locales) {
     return definition.locales[locale as AuthoredLocale]
   }
@@ -1609,13 +1624,15 @@ export function getBlogArticle(locale: Locale, slug: string) {
     slug: definition.slug,
     category: categoryLabels[locale][definition.category],
     minutes: definition.minutes,
-    readTime: formatReadTime(locale, definition.minutes),
+    readTime: formatReadTime(locale, photographyGuides[slug] && (locale === "en" || locale === "es")
+      ? Math.max(1, Math.ceil(countArticleWords(localized, locale) / 200)) : definition.minutes),
     publishDate: definition.publishDate,
     modifiedDate: articleModifiedDates[definition.slug] ?? definition.publishDate,
     image: definition.image,
     featured: definition.featured,
     wordCount: countArticleWords(localized, locale),
     ...localized,
+    relatedLinks: localized.relatedLinks.filter((link) => link.href !== `/blog/${slug}`),
   }
 }
 
@@ -1625,7 +1642,7 @@ export function getBlogPosts(locale: Locale): BlogPostSummary[] {
     title: getLocalizedArticleContent(article, locale).title,
     excerpt: getLocalizedArticleContent(article, locale).excerpt,
     category: categoryLabels[locale][article.category],
-    readTime: formatReadTime(locale, article.minutes),
+    readTime: getBlogArticle(locale, article.slug)!.readTime,
     publishDate: article.publishDate,
     image: article.image,
     featured: article.featured,

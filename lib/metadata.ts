@@ -23,6 +23,7 @@ type BasePageMetadataInput = {
 
 type ArticleMetadataInput = BasePageMetadataInput & {
   publishedTime: string
+  modifiedTime?: string
 }
 
 const sharedOtherMetadata = {
@@ -174,6 +175,7 @@ export function buildArticleMetadata(input: ArticleMetadataInput): Metadata {
       ...metadata.openGraph,
       type: "article",
       publishedTime: input.publishedTime,
+      modifiedTime: input.modifiedTime ?? input.publishedTime,
       authors: [siteConfig.author],
     },
   }

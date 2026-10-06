@@ -43,49 +43,49 @@ const heroSignals = [
   { label: "Cloud cover", value: "12%", icon: Cloud },
 ]
 
-const eclipseCampaign = {
-  en: {
-    badge: "August 12, 2026",
-    title: "Plan Spain's total solar eclipse before the western horizon disappears",
-    body: "Totality crosses northern Spain near sunset. Use the guide to compare the path, local times, western-horizon visibility, weather, safety, and photography priorities.",
-    cta: "Plan the 2026 eclipse in Spain",
+const sunsetCampaign = {
+  "en": {
+    "badge": "Sunset photography",
+    "title": "Will the sunset be worth photographing?",
+    "body": "Learn how to read cloud cover, check the horizon and use forecast changes to choose your viewpoint. Start with a practical sunset-quality checklist.",
+    "cta": "Read the sunset prediction guide"
   },
-  es: {
-    badge: "12 de agosto de 2026",
-    title: "Planifica el eclipse solar total de España antes de que el Sol alcance el horizonte",
-    body: "La totalidad cruzará el norte de España cerca del atardecer. Consulta la franja, horarios, visibilidad hacia el oeste, meteorología, seguridad y planificación fotográfica.",
-    cta: "Planificar el eclipse de 2026",
+  "es": {
+    "badge": "Fotografía de atardeceres",
+    "title": "¿Merece la pena salir a fotografiar el atardecer?",
+    "body": "Aprende a interpretar nubes, horizonte y cambios de previsión para elegir un mirador con una lista práctica.",
+    "cta": "Cómo predecir un atardecer"
   },
-  fr: {
-    badge: "12 août 2026",
-    title: "Préparez l'éclipse solaire totale en Espagne près de l'horizon ouest",
-    body: "La totalité traversera le nord de l'Espagne près du coucher du soleil. Consultez la bande, les horaires, la météo, la sécurité et les priorités photo.",
-    cta: "Préparer l'éclipse de 2026",
+  "fr": {
+    "badge": "Photographie au coucher du soleil",
+    "title": "Comment préparer votre prochaine photo au coucher du soleil ?",
+    "body": "Consultez les nuages, l’horizon et la météo avant de choisir un point de vue. Guide disponible en anglais et en espagnol.",
+    "cta": "Lire le guide en anglais"
   },
-  it: {
-    badge: "12 agosto 2026",
-    title: "Pianifica l'eclissi solare totale in Spagna vicino all'orizzonte occidentale",
-    body: "La totalità attraverserà il nord della Spagna vicino al tramonto. Consulta fascia, orari, meteo, sicurezza e priorità fotografiche.",
-    cta: "Pianifica l'eclissi del 2026",
+  "it": {
+    "badge": "Fotografia al tramonto",
+    "title": "Come preparare la prossima fotografia al tramonto?",
+    "body": "Valuta nuvole, orizzonte e meteo prima di scegliere un punto di osservazione. Guida in inglese e spagnolo.",
+    "cta": "Leggi la guida in inglese"
   },
-  de: {
-    badge: "12. August 2026",
-    title: "Plane Spaniens totale Sonnenfinsternis am westlichen Horizont",
-    body: "Die Totalitätszone überquert Nordspanien nahe Sonnenuntergang. Der Guide erklärt Pfad, lokale Zeiten, Wetter, Sicherheit und Fotoplanung.",
-    cta: "Die Finsternis 2026 planen",
+  "de": {
+    "badge": "Sonnenuntergang fotografieren",
+    "title": "Wie planst du dein nächstes Sonnenuntergangsfoto?",
+    "body": "Prüfe Wolken, Horizont und Wetter, bevor du einen Standort auswählst. Der Guide ist auf Englisch und Spanisch verfügbar.",
+    "cta": "Guide auf Englisch lesen"
   },
-  pt: {
-    badge: "12 de agosto de 2026",
-    title: "Planeje o eclipse solar total na Espanha junto ao horizonte oeste",
-    body: "A totalidade cruzará o norte da Espanha perto do pôr do sol. Consulte faixa, horários, clima, segurança e prioridades fotográficas.",
-    cta: "Planejar o eclipse de 2026",
+  "pt": {
+    "badge": "Fotografia ao pôr do sol",
+    "title": "Como planejar sua próxima foto ao pôr do sol?",
+    "body": "Confira nuvens, horizonte e previsão antes de escolher o local. Guia disponível em inglês e espanhol.",
+    "cta": "Ler o guia em inglês"
   },
-  zh: {
-    badge: "2026 年 8 月 12 日",
-    title: "规划西班牙西方低空的日全食",
-    body: "全食带将在日落前横穿西班牙北部。查看路径、当地时间、天气、安全事项与摄影计划。",
-    cta: "规划 2026 年日全食",
-  },
+  "zh": {
+    "badge": "日落摄影",
+    "title": "如何规划下一次日落拍摄？",
+    "body": "选择拍摄地点前，查看云量、地平线和天气变化。指南提供英语和西班牙语版本。",
+    "cta": "阅读英文指南"
+  }
 } satisfies Record<Locale, { badge: string; title: string; body: string; cta: string }>
 
 type HomePageProps = {
@@ -97,7 +97,7 @@ export function HomePage({ locale }: HomePageProps) {
   const content = getHomeContent(locale)
   const ui = getUiDictionary(locale)
   const evergreenPosts = getEvergreenBlogPosts(locale)
-  const eclipse = eclipseCampaign[locale]
+  const sunset = sunsetCampaign[locale]
   const activeOnboardingScreen = onboardingScreens[currentScreen]
 
   useEffect(() => {
@@ -213,13 +213,13 @@ export function HomePage({ locale }: HomePageProps) {
             <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-[#E6786E]/25 bg-gradient-to-r from-[#E6786E]/20 via-white/5 to-purple-500/10 p-6 md:p-10">
               <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
                 <div className="space-y-4">
-                  <Badge className="border-[#E6786E]/30 bg-[#E6786E]/20 text-[#F4B4AE]">{eclipse.badge}</Badge>
-                  <h2 className="max-w-4xl text-3xl font-bold text-white md:text-5xl">{eclipse.title}</h2>
-                  <p className="max-w-3xl text-lg leading-relaxed text-white/75">{eclipse.body}</p>
+                  <Badge className="border-[#E6786E]/30 bg-[#E6786E]/20 text-[#F4B4AE]">{sunset.badge}</Badge>
+                  <h2 className="max-w-4xl text-3xl font-bold text-white md:text-5xl">{sunset.title}</h2>
+                  <p className="max-w-3xl text-lg leading-relaxed text-white/75">{sunset.body}</p>
                 </div>
                 <Button size="lg" className="bg-[#E6786E] text-white hover:bg-[#D4695F]" asChild>
-                  <Link href={localizeAvailablePath(locale, "/blog/total-solar-eclipse-august-2026")}>
-                    {eclipse.cta}
+                  <Link href={localizeAvailablePath(locale, "/blog/sunset-quality-prediction-guide")}>
+                    {sunset.cta}
                     <ChevronRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>

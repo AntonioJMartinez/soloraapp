@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-import { blogArticles } from "@/lib/blog-posts"
+import { articleModifiedDates, blogArticles } from "@/lib/blog-posts"
 import { eclipseGuideSlugs } from "@/lib/eclipse-guides"
 import { buildLanguageAlternates, getAvailableLocalesForPath, localizedUrl } from "@/lib/i18n"
 import { infoPageSlugs } from "@/lib/info-pages"
@@ -29,6 +29,8 @@ const priorityBlogSlugs = new Set([
   "supermoons-2026",
   "golden-hour-photography-guide",
   "moon-phases-photography",
+  "sunset-quality-prediction-guide",
+  "weather-patterns-sky-photography",
 ])
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,7 +39,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.flatMap((route) =>
     getAvailableLocalesForPath(route).map((locale) => ({
       url: localizedUrl(locale, route),
-      lastModified: contentLastModified,
+      lastModified: ["/", "/blog", "/sunrise-sunset-app", "/golden-hour-photography-app"].includes(route)
+        ? new Date("2026-10-06T00:00:00.000Z")
+        : contentLastModified,
       changeFrequency: route === "/" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "/" ? 1 : route === "/blog" ? 0.9 : 0.8,
       alternates: {
@@ -50,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     blogArticles.filter((post) => priorityBlogSlugs.has(post.slug)).map((post) => ({
       url: localizedUrl(locale, `/blog/${post.slug}`),
       lastModified: new Date(
-        post.slug === "total-solar-eclipse-august-2026" ? "2026-07-04" : post.publishDate,
+        articleModifiedDates[post.slug] ?? post.publishDate,
       ),
       changeFrequency: "monthly" as const,
       priority: post.slug === "total-solar-eclipse-august-2026" ? 0.9 : 0.75,

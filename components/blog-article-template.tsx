@@ -206,6 +206,11 @@ export function BlogArticleTemplate({
 
               <h1 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">{title}</h1>
               <p className="text-lg leading-relaxed text-white/80 md:text-xl">{description}</p>
+              <p className="text-sm text-white/60">
+                <Link href={localizeAvailablePath(locale, "/about")} className="underline underline-offset-4 hover:text-white">
+                  {siteConfig.author}
+                </Link>
+              </p>
               {modifiedDate ? (
                 <p className="text-sm text-white/50">
                   {updatedLabel}:{" "}

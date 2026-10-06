@@ -33,6 +33,7 @@ export async function generateMetadata({
     ogImage: `/${article.image}`,
     ogImageAlt: article.imageAlt,
     publishedTime: `${article.publishDate}T00:00:00.000Z`,
+    modifiedTime: `${article.modifiedDate}T00:00:00.000Z`,
     availableLocales: indexableBlogLocales,
   })
 }

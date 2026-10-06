@@ -12,6 +12,20 @@ const sitemap = readFileSync(sitemapPath, "utf8")
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
 const issues = []
 
+const llmsPath = join(exportDirectory, "llms.txt")
+if (!existsSync(llmsPath)) {
+  issues.push("Missing exported llms.txt navigation file")
+} else {
+  const llms = readFileSync(llmsPath, "utf8")
+  for (const match of llms.matchAll(/\]\((https:\/\/www\.solora\.app\/[^)]*)\)/g)) {
+    const { pathname } = new URL(match[1])
+    const target = pathname === "/" ? join(exportDirectory, "index.html") : join(exportDirectory, pathname, "index.html")
+    if (!existsSync(target)) {
+      issues.push(`llms.txt links to missing exported page: ${match[1]}`)
+    }
+  }
+}
+
 for (const url of sitemapUrls) {
   const { pathname } = new URL(url)
   const htmlPath = pathname === "/" ? join(exportDirectory, "index.html") : join(exportDirectory, pathname, "index.html")

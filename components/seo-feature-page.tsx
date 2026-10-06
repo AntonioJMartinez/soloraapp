@@ -192,10 +192,12 @@ export function SeoFeaturePage({
         </section>
 
         <section className="mt-12 grid gap-6 lg:grid-cols-2">
-          <Card className="border-white/10 bg-white/5">
+          <Card className="border-white/10 bg-white/5 text-white">
             <CardContent className="space-y-4 p-6 md:p-8">
               <h2 className="text-2xl font-bold">
-                {copy.whyUse} {primaryKeyword.toLowerCase()}?
+                {slug === "sunrise-sunset-app" && (locale === "en" || locale === "es")
+                  ? locale === "es" ? "¿Por qué planificar con Solora?" : "Why plan sunrise and sunset with Solora?"
+                  : `${copy.whyUse} ${primaryKeyword.toLowerCase()}?`}
               </h2>
               <ul className="space-y-3 text-white/75">
                 {benefits.map((benefit) => (
@@ -205,7 +207,7 @@ export function SeoFeaturePage({
             </CardContent>
           </Card>
 
-          <Card className="border-white/10 bg-white/5">
+          <Card className="border-white/10 bg-white/5 text-white">
             <CardContent className="space-y-4 p-6 md:p-8">
               <h2 className="text-2xl font-bold">{copy.whatYouCanPlan}</h2>
               <ul className="space-y-3 text-white/75">
@@ -217,6 +219,33 @@ export function SeoFeaturePage({
           </Card>
         </section>
 
+        {slug === "sunrise-sunset-app" && (locale === "en" || locale === "es") ? (
+          <section className="mt-12 grid items-center gap-8 rounded-3xl border border-white/10 bg-white/5 p-6 md:grid-cols-[240px_1fr] md:p-8">
+            <figure className="mx-auto max-w-[220px] space-y-3">
+              <ResponsiveImage
+                src="/onboarding-1.jpg"
+                alt={locale === "es" ? "Captura de Solora con valoraciones de amanecer y atardecer y horarios de luz" : "Solora app screenshot showing sunrise and sunset ratings and daylight timing"}
+                width={589}
+                height={1280}
+                sizes="220px"
+                responsiveWidths={[480, 589]}
+                className="h-auto w-full rounded-2xl"
+                loading="lazy"
+              />
+              <figcaption className="text-sm text-white/60">
+                {locale === "es" ? "Captura ilustrativa de la app; no es una previsión actual." : "Illustrative app screenshot; not a current forecast."}
+              </figcaption>
+            </figure>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold">{locale === "es" ? "Consulta la previsión en contexto" : "Read the forecast in context"}</h2>
+              <p className="leading-relaxed text-white/75">{locale === "es"
+                ? "Consulta juntos los horarios solares y las valoraciones de la app. Revisa la ubicación, la fecha y la meteorología antes de decidir dónde fotografiar. Una valoración orienta la planificación; no garantiza el color del cielo ni representa necesariamente una probabilidad."
+                : "Read the solar schedule alongside the app's ratings. Check the location, date and weather before choosing where to photograph. A rating supports planning; it does not guarantee sky color or necessarily represent a probability."}</p>
+              <p className="text-sm text-white/60">{locale === "es" ? "Guía actualizada el 6 de octubre de 2026." : "Guide updated October 6, 2026."}</p>
+            </div>
+          </section>
+        ) : null}
+
         {planningSections.length ? (
           <section className="mt-12 space-y-6">
             <div className="space-y-3">
@@ -224,12 +253,14 @@ export function SeoFeaturePage({
                 {locale === "es" ? "Flujo de planificación" : "Planning workflow"}
               </Badge>
               <h2 className="text-3xl font-bold">
-                {locale === "es" ? `Cómo usar ${primaryKeyword.toLowerCase()} en una sesión real` : `How to use ${primaryKeyword.toLowerCase()} in a real planning session`}
+                {slug === "sunrise-sunset-app" && (locale === "en" || locale === "es")
+                  ? locale === "es" ? "Cómo preparar una sesión al amanecer o al atardecer" : "How to plan a sunrise or sunset session"
+                  : locale === "es" ? `Cómo usar ${primaryKeyword.toLowerCase()} en una sesión real` : `How to use ${primaryKeyword.toLowerCase()} in a real planning session`}
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               {planningSections.map((section) => (
-                <Card key={section.heading} className="border-white/10 bg-white/5">
+                <Card key={section.heading} className="border-white/10 bg-white/5 text-white">
                   <CardContent className="space-y-3 p-6">
                     <h3 className="text-xl font-bold">{section.heading}</h3>
                     <p className="leading-relaxed text-white/75">{section.body}</p>
@@ -249,7 +280,7 @@ export function SeoFeaturePage({
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {faqs.map((faq) => (
-              <Card key={faq.question} className="border-white/10 bg-white/5">
+              <Card key={faq.question} className="border-white/10 bg-white/5 text-white">
                 <CardContent className="space-y-3 p-6">
                   <h3 className="text-xl font-bold">{faq.question}</h3>
                   <p className="leading-relaxed text-white/75">{faq.answer}</p>

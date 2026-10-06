@@ -1,0 +1,43 @@
+# Solora
+
+> Solora is an Apple-platform app for planning sunrise, sunset, golden hour and sky photography. It brings solar timing, weather context, Sun-path maps and AR, saved locations, Moon phases and other sky-planning tools together.
+
+Official website: https://www.solora.app/
+Developer: Antonio Jose Martinez Sanchez
+App Store: https://apps.apple.com/app/id6502008343
+This directory was updated on October 6, 2026. The linked pages are the primary public references; this file is a navigation aid, not a live forecast or API.
+
+## Product and planning tools
+
+- [Sunrise and sunset forecast app](https://www.solora.app/sunrise-sunset-app/): Workflow, capabilities, illustrative app screenshot and forecast limitations.
+- [Golden hour photography app](https://www.solora.app/golden-hour-photography-app/): Plan photographic light around sunrise and sunset.
+- [Sun tracker](https://www.solora.app/sun-tracker-app/): Sun direction, altitude, map paths and augmented reality.
+- [Moon tracker](https://www.solora.app/moon-tracker-app/): Moon-path planning.
+- [Moon phase calendar](https://www.solora.app/moon-phase-calendar-app/): Lunar illumination and photography planning.
+- [Milky Way planner](https://www.solora.app/milky-way-planner/): Night-sky photography planning.
+- [Aurora forecast app](https://www.solora.app/aurora-forecast-app/): Aurora planning with weather and darkness context.
+
+## Photography guides
+
+- [How to predict a colorful sunset](https://www.solora.app/blog/sunset-quality-prediction-guide/): Clouds, horizon, timing and uncertainty; educational rather than a live forecast.
+- [Golden hour photography guide](https://www.solora.app/blog/golden-hour-photography-guide/): Light direction, timing and practical camera starting points.
+- [Cloud cover for sunset photography](https://www.solora.app/blog/weather-patterns-sky-photography/): Read weather variables together and prepare a backup plan.
+
+## Spanish
+
+- [App de amanecer y atardecer](https://www.solora.app/es/sunrise-sunset-app/)
+- [Cómo predecir un atardecer de colores](https://www.solora.app/es/blog/sunset-quality-prediction-guide/)
+- [Fotografía en hora dorada](https://www.solora.app/es/blog/golden-hour-photography-guide/)
+- [Nubosidad para fotografiar el atardecer](https://www.solora.app/es/blog/weather-patterns-sky-photography/)
+
+## Publisher and support
+
+- [About Solora](https://www.solora.app/about/)
+- [Support](https://www.solora.app/support/)
+- [Contact](https://www.solora.app/contact/)
+- [Privacy](https://www.solora.app/privacy/)
+- [Press kit](https://www.solora.app/press-kit/)
+
+## Interpretation
+
+Sunrise and sunset times describe astronomical events. Weather forecasts and quality ratings are estimates and do not guarantee a colorful sky. Website screenshots illustrate the product and are not current conditions for a reader's location. The website guides do not provide a public live-forecast API. Current compatibility, pricing and in-app purchase information should be checked in the App Store listing.

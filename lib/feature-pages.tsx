@@ -44,10 +44,15 @@ export function renderFeaturePage(locale: Locale, slug: FeaturePageSlug) {
       useCases={content.useCases}
       faqs={content.faqs}
       planningSections={content.planningSections}
-      relatedLinks={content.relatedLinks.map((relatedSlug) => ({
+      relatedLinks={[...content.relatedLinks.map((relatedSlug) => ({
         href: `/${relatedSlug}`,
         label: getFeaturePageContent(relatedSlug, locale).primaryKeyword,
-      }))}
+      })), ...(slug === "sunrise-sunset-app" || slug === "golden-hour-photography-app" ? [
+        { href: "/blog/sunset-quality-prediction-guide", label: locale === "es" ? "Cómo predecir un atardecer de colores" : "How to predict a colorful sunset" },
+        { href: "/blog/golden-hour-photography-guide", label: locale === "es" ? "Guía de fotografía en hora dorada" : "Golden hour photography guide" },
+        { href: "/blog/weather-patterns-sky-photography", label: locale === "es" ? "Cómo interpretar la nubosidad" : "Read cloud cover before your shoot" },
+        { href: "/sun-tracker-app", label: locale === "es" ? "Trayectoria solar en mapa y AR" : "Sun-path map and AR planning" },
+      ] : [])]}
     />
   )
 }

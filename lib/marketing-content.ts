@@ -213,13 +213,13 @@ export const uiDictionary: Record<AuthoredLocale, UiDictionary> = {
 
 export const homeContent: Record<AuthoredLocale, HomeContent> = {
   en: {
-    title: "Solora App | Sunrise, Sunset, Moon, Aurora & Eclipse Planner",
+    title: "Sunset & Sunrise Forecast App for Photographers | Solora",
     description:
-      "Download Solora to plan sunrise, sunset, golden hour, moon phases, aurora forecasts, Milky Way visibility, tides and the 2026 Spain eclipse.",
-    heroHeadingLine1: "Plan the sky,",
-    heroHeadingLine2: "perfect the moment",
+      "Plan sunrise, sunset and golden hour with Solora. Compare weather and saved locations, preview the Sun’s path, and plan your next shoot on Apple devices.",
+    heroHeadingLine1: "Plan better sunrises,",
+    heroHeadingLine2: "and sunsets",
     heroBody:
-      "Solora is a sunrise and sunset app, golden hour planner, moon phase calendar, aurora forecast tracker, and Milky Way planning tool built for photographers and sky watchers.",
+      "Solora helps you plan sunrise and sunset photography with forecast conditions, golden hour timing, and Sun-path maps. Compare locations before choosing where and when to shoot.",
     heroSubbody:
       "Check cloud cover, visibility, moonlight, tides, meteor showers, eclipses, and night-sky conditions before you drive, hike, travel, or set up your camera.",
     ratingLabel: "Free on the App Store",
@@ -254,24 +254,24 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
     clustersBadge: "Planning Guides",
     clustersHeading: "Explore the core planning problems Solora solves",
     clustersDescription:
-      "These pages target the practical searches people use before they download an astronomy planning app.",
+      "Learn how timing, weather and the direction of light work together when you plan a photography session.",
     clustersCta: "Explore this guide",
     evergreenBadge: "Evergreen Content",
     evergreenHeading: "Start with the guides that answer the biggest planning questions",
     evergreenDescription:
-      "Homepage links point directly to Solora's strongest evergreen topics to pass authority into high-intent content.",
+      "Start with practical guides to sunset quality, golden hour and cloud cover before your next shoot.",
     evergreenCta: "Read the guide",
     downloadHeading: "Never miss a good sky moment",
-    downloadBody: "Download now and start planning with the best AI forecasts.",
+    downloadBody: "Plan your next sunrise or sunset with timing, weather and location context.",
   },
   es: {
-    title: "Solora App | Amanecer, atardecer, luna, auroras y eclipses",
+    title: "App de previsión de amanecer y atardecer | Solora",
     description:
-      "Descarga Solora para planificar amanecer, atardecer, hora dorada, fases lunares, auroras, Vía Láctea, mareas y el eclipse 2026.",
-    heroHeadingLine1: "Planifica el cielo,",
-    heroHeadingLine2: "perfecciona el momento",
+      "Planifica amanecer, atardecer y hora dorada con Solora. Compara meteorología y ubicaciones y consulta la trayectoria solar antes de fotografiar.",
+    heroHeadingLine1: "Planifica el amanecer,",
+    heroHeadingLine2: "y el atardecer",
     heroBody:
-      "Solora es una app de amanecer y atardecer, planificador de hora dorada, calendario lunar, previsión de auroras y herramienta de planificación de la Vía Láctea pensada para fotógrafos y observadores del cielo.",
+      "Solora te ayuda a preparar fotos al amanecer y al atardecer con previsiones meteorológicas, horarios de hora dorada y mapas de trayectoria solar. Compara lugares antes de decidir dónde fotografiar.",
     heroSubbody:
       "Consulta nubosidad, visibilidad, luz lunar, mareas, lluvias de meteoros, eclipses y condiciones nocturnas antes de conducir, caminar, viajar o montar tu cámara.",
     ratingLabel: "Gratis en App Store",
@@ -314,7 +314,7 @@ export const homeContent: Record<AuthoredLocale, HomeContent> = {
       "La portada enlaza directamente a los temas evergreen más fuertes de Solora para reforzar el contenido de alta intención.",
     evergreenCta: "Leer la guía",
     downloadHeading: "No vuelvas a perderte un gran cielo",
-    downloadBody: "Descárgala ahora y empieza a planificar con las mejores previsiones basadas en IA.",
+    downloadBody: "Prepara tu próximo amanecer o atardecer con horarios, meteorología y contexto de ubicación.",
   },
   fr: {
     title: "Solora | App de lever, coucher, phases lunaires et aurores",
@@ -688,63 +688,157 @@ export const pressKitContent: Record<AuthoredLocale, PressKitContent> = {
 export const featurePageContent: Record<FeaturePageSlug, Record<AuthoredLocale, FeaturePageContent>> = {
   "sunrise-sunset-app": {
     en: {
-      title: "Sunrise & Sunset App for Photography Planning",
-      description: "Use Solora to plan sunrise and sunset photography with timing, cloud cover, visibility, weather, and location comparisons before you travel.",
-      eyebrow: "Sunrise & Sunset Planning",
-      primaryKeyword: "Sunrise & Sunset App",
-      heroAlt: "Solora sunrise and sunset forecast screen",
-      benefits: [
-        "See sunrise, sunset, dawn, dusk, and changing daylight at your chosen location.",
-        "Preview the Sun's direction, altitude, and path on a map or in AR for location scouting.",
-        "Check cloud cover, visibility, and weather so you do not rely on time alone.",
-        "Compare multiple locations when one horizon looks weak and another looks promising.",
+      "title": "Sunset Prediction & Sunrise Forecast App | Solora",
+      "description": "Plan sunrise and sunset photography with Solora: check forecast conditions, golden hour timing, Sun-path maps and saved locations on Apple devices.",
+      "eyebrow": "Sunrise and sunset forecasting",
+      "primaryKeyword": "Sunrise & Sunset Forecast App",
+      "heroAlt": "Solora app preview showing a location map and forecast rating",
+      "benefits": [
+            "Check sunrise, sunset, dawn and dusk for your chosen location and date.",
+            "Combine cloud cover, visibility and local weather with your photography timing.",
+            "Preview the Sun’s direction, altitude and path on a map or in AR before scouting a viewpoint.",
+            "Compare saved locations and plan golden hour alongside Moon, aurora and night-sky conditions."
       ],
-      useCases: [
-        "Landscape photography at sunrise or sunset.",
-        "Travel planning for dawn viewpoints and sunset lookouts.",
-        "Daily outdoor planning when light quality matters.",
+      "useCases": [
+            "Decide when to leave for a sunrise shoot or sunset landscape.",
+            "Scout light direction for a coastline, mountain foreground or city skyline.",
+            "Compare nearby viewpoints when cloud or a blocked horizon changes your plan.",
+            "Keep timing and forecast context close at hand on iPhone, iPad, Mac and Apple Watch."
       ],
-      faqs: [
-        { question: "What makes a good sunrise or sunset app?", answer: "A useful app combines exact timing with forecast context like cloud cover, visibility, and horizon conditions. Solora is built around that planning workflow." },
-        { question: "Can Solora help me compare locations?", answer: "Yes. Solora is designed for tracking and comparing favorite spots so you can quickly switch between locations before deciding where to shoot." },
-        { question: "Is Solora only for photographers?", answer: "No. Photographers are a core audience, but hikers, travelers, sailors, and outdoor planners also benefit from accurate dawn and dusk planning." },
+      "planningSections": [
+            {
+                  "heading": "1. Choose the location and the moment",
+                  "body": "Start with the place you will actually photograph, not just the nearest city. Check the date, local time and sunrise or sunset window. Allow time for travel, access and setup; a calculated sunset does not include the time you need to walk to the viewpoint."
+            },
+            {
+                  "heading": "2. Read weather alongside the timing",
+                  "body": "A sunset time tells you when the Sun reaches the horizon; it does not tell you how colorful the sky will be. Review cloud cover, visibility and weather throughout your session. Forecast conditions can change, so revisit the plan close to departure rather than treating an earlier summary as a guarantee."
+            },
+            {
+                  "heading": "3. Preview direction and horizon",
+                  "body": "Use the Sun-path map or AR view to place the Sun relative to your subject. Check whether you want side light, a silhouette or an alignment. Mountains, buildings and trees can block your visible horizon before the listed sunset time, so confirm the actual line of sight at the location."
+            },
+            {
+                  "heading": "4. Compare a practical backup",
+                  "body": "Switch between saved locations to compare timing and weather context. A nearby spot with an open horizon can be a better backup than a long last-minute drive. Choose a second composition as well as a second location so you can respond to the light you see on arrival."
+            },
+            {
+                  "heading": "Sunset prediction has limits",
+                  "body": "Astronomical timing and weather-based judgments answer different questions. The clock can be predictable while clouds and visibility remain uncertain. Use forecast summaries to support your decision, not as a promise of vivid color. This page explains the workflow; it does not display a live forecast for your location."
+            },
+            {
+                  "heading": "One workflow across Apple devices",
+                  "body": "Solora brings sunrise and sunset planning together with golden hour, Moon phases, Sun-path scouting and saved locations. It is available on iPhone, iPad, Mac and Apple Watch. Download from the App Store to check current device requirements and in-app purchase details."
+            }
       ],
-      planningSections: [
-        { heading: "Predict the sunset, then qualify it", body: "A sunset time alone does not tell you whether the sky will be worth photographing. Solora pairs sunset, civil twilight, cloud cover, visibility and local weather so you can judge the quality of the light before leaving." },
-        { heading: "Plan the direction of the light", body: "For coastal views, mountains, skylines and eclipse locations, direction matters as much as time. Use the solar path and horizon context to understand where the Sun will sit relative to your subject." },
-        { heading: "Compare locations before committing", body: "If one viewpoint has a blocked horizon or poor clouds, another nearby place may still work. Solora is built around saved locations and quick comparisons so you can choose the strongest option." },
+      "faqs": [
+            {
+                  "question": "Does a sunset forecast tell me the time or the quality of the light?",
+                  "answer": "These are different measurements. Sunrise and sunset times describe solar events; weather and cloud context help you judge the likely light. Solora combines timing with forecast summaries and planning tools so you can make a more informed decision."
+            },
+            {
+                  "question": "Can Solora guarantee a colorful sunrise or sunset?",
+                  "answer": "No. Weather and local horizon conditions can change. Use forecasts to choose a shooting window, check conditions again before leaving, and keep a backup plan."
+            },
+            {
+                  "question": "Can I preview the direction of the sunset?",
+                  "answer": "Yes. Solora includes Sun-path map and AR tools to help you understand the direction and altitude of the Sun relative to your location and subject."
+            },
+            {
+                  "question": "Can I compare different locations?",
+                  "answer": "Yes. Save locations and switch between them to compare timing and weather context before choosing a viewpoint."
+            },
+            {
+                  "question": "Which devices can I use?",
+                  "answer": "Solora is available on iPhone, iPad, Mac and Apple Watch. See the App Store listing for current compatibility and purchase details."
+            },
+            {
+                  "question": "Is the forecast on this page live?",
+                  "answer": "No. The screenshots illustrate the app. Open Solora for location-specific information and check the date and current conditions before planning your session."
+            }
       ],
-      relatedLinks: ["golden-hour-photography-app", "moon-phase-calendar-app", "aurora-forecast-app"],
-    },
+      "relatedLinks": [
+            "golden-hour-photography-app",
+            "moon-phase-calendar-app",
+            "milky-way-planner"
+      ]
+},
     es: {
-      title: "App de amanecer y atardecer para planificación fotográfica",
-      description: "Usa Solora para planificar fotos al amanecer y al atardecer con horarios, nubosidad, visibilidad, tiempo y comparación entre ubicaciones.",
-      eyebrow: "Planificación de amanecer y atardecer",
-      primaryKeyword: "App de amanecer y atardecer",
-      heroAlt: "Pantalla de previsión de amanecer y atardecer en Solora",
-      benefits: [
-        "Consulta amanecer, atardecer, alba, ocaso y la variación de luz de tu ubicación.",
-        "Previsualiza dirección, altura y trayectoria del Sol en mapa o AR para explorar ubicaciones.",
-        "Comprueba nubosidad, visibilidad y tiempo para no depender solo de la hora.",
-        "Compara varias ubicaciones cuando un horizonte falla y otro promete.",
+      "title": "App de predicción de atardeceres y amaneceres | Solora",
+      "description": "Planifica fotos al amanecer y al atardecer con Solora: meteorología, hora dorada, trayectoria solar y comparación de ubicaciones en dispositivos Apple.",
+      "eyebrow": "Previsión de amanecer y atardecer",
+      "primaryKeyword": "App de previsión de amanecer y atardecer",
+      "heroAlt": "Vista de Solora con mapa de ubicación y valoración de previsión",
+      "benefits": [
+            "Consulta amanecer, puesta de sol, alba y ocaso de tu ubicación y fecha.",
+            "Combina nubosidad, visibilidad y meteorología con los horarios de tu sesión.",
+            "Previsualiza dirección, altura y trayectoria solar en mapa o AR.",
+            "Compara lugares guardados y planifica hora dorada, luna y cielo nocturno."
       ],
-      useCases: [
-        "Fotografía de paisaje al amanecer o atardecer.",
-        "Planificación de viajes para miradores al alba y sunset spots.",
-        "Planificación diaria al aire libre cuando la calidad de luz importa.",
+      "useCases": [
+            "Decidir cuándo salir para fotografiar el amanecer o el atardecer.",
+            "Explorar la dirección de la luz en costa, montaña y ciudad.",
+            "Comparar miradores cuando cambian las nubes o el horizonte está bloqueado.",
+            "Consultar horarios y contexto en iPhone, iPad, Mac y Apple Watch."
       ],
-      faqs: [
-        { question: "¿Qué hace buena a una app de amanecer y atardecer?", answer: "Una buena app combina horarios exactos con contexto de previsión como nubosidad, visibilidad y condiciones del horizonte. Solora está pensada para ese flujo de planificación." },
-        { question: "¿Puede Solora ayudarme a comparar ubicaciones?", answer: "Sí. Solora está diseñada para seguir y comparar lugares favoritos antes de decidir dónde fotografiar." },
-        { question: "¿Solora es solo para fotógrafos?", answer: "No. Los fotógrafos son el público principal, pero senderistas, viajeros y planificadores outdoor también se benefician." },
+      "planningSections": [
+            {
+                  "heading": "1. Elige ubicación y momento",
+                  "body": "Empieza por el lugar donde vas a fotografiar, no solo la ciudad más cercana. Comprueba fecha, hora local y ventana de amanecer o atardecer. Reserva tiempo para desplazarte, acceder y montar el equipo: el horario solar no incluye la caminata al mirador."
+            },
+            {
+                  "heading": "2. Interpreta la meteorología junto al horario",
+                  "body": "La puesta de sol indica cuándo alcanza el horizonte, pero no cuánto color tendrá el cielo. Revisa nubosidad, visibilidad y meteorología durante la sesión. Consulta de nuevo la previsión antes de salir; un resumen anterior no garantiza las condiciones que encontrarás."
+            },
+            {
+                  "heading": "3. Comprueba dirección y horizonte",
+                  "body": "Usa mapa de trayectoria solar o AR para situar el Sol respecto al sujeto. Decide si buscas luz lateral, silueta o alineación. Montañas, edificios y árboles pueden ocultarlo antes de la hora calculada: comprueba la línea de visión real desde el mirador."
+            },
+            {
+                  "heading": "4. Compara una alternativa viable",
+                  "body": "Cambia entre ubicaciones guardadas para comparar horarios y contexto meteorológico. Un lugar cercano con horizonte abierto puede ser mejor alternativa que un desplazamiento largo de última hora. Prepara también otro encuadre para adaptar la sesión a la luz real."
+            },
+            {
+                  "heading": "La predicción del atardecer tiene límites",
+                  "body": "El horario astronómico y una valoración meteorológica responden a preguntas diferentes. La hora puede ser predecible mientras cambian nubes y visibilidad. Usa los resúmenes como apoyo, no como garantía de color. Esta página explica el flujo de trabajo y no muestra una previsión en directo."
+            },
+            {
+                  "heading": "Planificación en dispositivos Apple",
+                  "body": "Solora reúne amanecer, atardecer, hora dorada, fases lunares, trayectoria solar y ubicaciones guardadas. Está disponible para iPhone, iPad, Mac y Apple Watch. Consulta en App Store los requisitos actuales y los detalles de compras dentro de la app."
+            }
       ],
-      planningSections: [
-        { heading: "Predice el atardecer y valida si merece la pena", body: "La hora del atardecer no basta para saber si habrá una buena foto. Solora combina puesta de Sol, crepúsculo civil, nubosidad, visibilidad y meteorología local para evaluar la calidad de la luz antes de salir." },
-        { heading: "Planifica la dirección de la luz", body: "En costa, montaña, skylines y ubicaciones de eclipse, la dirección importa tanto como la hora. La trayectoria solar y el contexto del horizonte ayudan a saber dónde estará el Sol respecto al sujeto." },
-        { heading: "Compara ubicaciones antes de decidir", body: "Si un mirador tiene horizonte bloqueado o nubes malas, otro lugar cercano puede funcionar. Solora permite guardar ubicaciones y compararlas rápido para elegir la mejor opción." },
+      "faqs": [
+            {
+                  "question": "¿Una previsión de atardecer indica la hora o la calidad de la luz?",
+                  "answer": "Son datos distintos. El horario describe un evento solar; las nubes y la meteorología ayudan a valorar la luz. Solora combina horarios, resúmenes de previsión y herramientas de planificación."
+            },
+            {
+                  "question": "¿Solora garantiza un amanecer o atardecer de colores?",
+                  "answer": "No. La meteorología y las condiciones del horizonte pueden cambiar. Revisa la previsión antes de salir y prepara una alternativa."
+            },
+            {
+                  "question": "¿Puedo ver la dirección de la puesta de sol?",
+                  "answer": "Sí. Los mapas de trayectoria solar y la vista AR ayudan a situar dirección y altura del Sol respecto a tu ubicación y sujeto."
+            },
+            {
+                  "question": "¿Puedo comparar ubicaciones?",
+                  "answer": "Sí. Guarda lugares y cambia entre ellos para comparar horarios y contexto meteorológico antes de elegir."
+            },
+            {
+                  "question": "¿Qué dispositivos admite?",
+                  "answer": "Solora está disponible para iPhone, iPad, Mac y Apple Watch. Consulta en App Store la compatibilidad actual y los detalles de compra."
+            },
+            {
+                  "question": "¿La previsión de esta página está en directo?",
+                  "answer": "No. Las capturas ilustran la app. Abre Solora para consultar información de tu ubicación y revisa fecha y condiciones actuales."
+            }
       ],
-      relatedLinks: ["golden-hour-photography-app", "moon-phase-calendar-app", "aurora-forecast-app"],
-    },
+      "relatedLinks": [
+            "golden-hour-photography-app",
+            "moon-phase-calendar-app",
+            "milky-way-planner"
+      ]
+},
     fr: {
       title: "App de lever et coucher du soleil pour la planification photo",
       description: "Utilisez Solora pour planifier des photos de lever et coucher du soleil avec horaires, nuages, visibilité, météo et comparaison de lieux.",
