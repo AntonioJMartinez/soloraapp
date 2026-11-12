@@ -1,4 +1,6 @@
 import type { LocalizedBlogArticle } from "@/lib/blog-posts"
+import type { Locale } from "@/lib/i18n"
+import { sunsetGuideTranslations } from "@/lib/sunset-guide-translations"
 
 const sources = [
   { href: "https://www.noaa.gov/jetstream/clouds/color-of-clouds", label: "NOAA: The Color of Clouds" },
@@ -37,7 +39,7 @@ function guide(
   }
 }
 
-export const photographyGuides: Record<string, Record<"en" | "es", LocalizedBlogArticle>> = {
+const localizedGuides = {
   "sunset-quality-prediction-guide": {
     en: guide("en", {
       title: "How to Predict a Colorful Sunset: Clouds, Light and Timing",
@@ -65,8 +67,11 @@ export const photographyGuides: Record<string, Record<"en" | "es", LocalizedBlog
         ] },
         { heading: "Choose a scene, not just a score", paragraphs: [
           "Imagine two candidate viewpoints: one faces the sunset but has a ridge blocking the horizon; another has open water and a shorter journey. Even if the first forecast looks more promising, the second may give you more time to react and a clearer composition. This is an illustrative decision, not a live forecast for either location.",
-          "Use Solora's Sun-path map or AR view to understand where the light will fall relative to your subject. Compare saved locations together with their weather context. Decide whether you want a silhouette toward the Sun, side-lit terrain or clouds above a foreground: each can work under different conditions.",
-        ] },
+          "Compare nearby areas on the sunset quality map in Solora Premium, then use the Sun-path map or AR view to understand where the light will fall relative to your subject. Compare saved locations together with their weather context. Decide whether you want a silhouette toward the Sun, side-lit terrain or clouds above a foreground: each can work under different conditions.",
+        ], table: { caption: "Two viewpoints for the same evening", headers: ["Viewpoint", "Western horizon", "Composition"], rows: [
+          ["Ridge", "Terrain blocks the view", "Silhouette or side light"],
+          ["Lakeshore", "Open view", "Reflections and illuminated clouds"],
+        ] } },
         { heading: "Stay flexible around sunset and twilight", paragraphs: [
           "Arrive before the Sun reaches the horizon so you can compose while there is still usable light. If conditions and access allow, keep watching into twilight rather than packing away at the listed sunset time. The strongest photograph may come from changing cloud light or a quieter scene after the Sun has disappeared.",
           "The US Naval Observatory defines evening civil twilight as ending when the Sun's center is six degrees below the horizon. That is an astronomical boundary, not a guarantee of visible color. Local cloud, terrain and your subject determine what you can actually photograph.",
@@ -108,8 +113,11 @@ export const photographyGuides: Record<string, Record<"en" | "es", LocalizedBlog
         ] },
         { heading: "Elige una escena, no solo una puntuación", paragraphs: [
           "Imagina dos miradores: uno apunta hacia la puesta de sol, pero una cresta tapa el horizonte; el otro tiene vista abierta al agua y está más cerca. Aunque la previsión del primero parezca mejor, el segundo puede darte más margen para reaccionar y una composición más limpia. Es un ejemplo de decisión, no una previsión actual para esos lugares.",
-          "Utiliza el mapa de trayectoria solar o la vista AR de Solora para situar la luz respecto al sujeto. Compara tus ubicaciones guardadas con su contexto meteorológico. Una silueta, una ladera iluminada de lado y unas nubes sobre el primer plano pueden requerir condiciones distintas.",
-        ] },
+          "Compara zonas cercanas con el mapa de calidad del atardecer de Solora Premium y usa la trayectoria solar o la vista AR para situar la luz respecto al sujeto. Compara tus ubicaciones guardadas con su contexto meteorológico. Una silueta, una ladera iluminada de lado y unas nubes sobre el primer plano pueden requerir condiciones distintas.",
+        ], table: { caption: "Dos miradores para la misma tarde", headers: ["Mirador", "Horizonte oeste", "Encuadre"], rows: [
+          ["Cresta", "El relieve bloquea la vista", "Silueta o luz lateral"],
+          ["Orilla del lago", "Vista despejada", "Reflejos y nubes iluminadas"],
+        ] } },
         { heading: "Deja margen para el crepúsculo", paragraphs: [
           "Llega antes de la puesta de sol para componer mientras queda luz. Si el acceso y las condiciones lo permiten, observa también el crepúsculo. La mejor imagen puede surgir después de que el Sol desaparezca, cuando cambia la luz de las nubes o se simplifica la escena.",
           "El Observatorio Naval de Estados Unidos sitúa el final del crepúsculo civil vespertino cuando el centro del Sol está seis grados bajo el horizonte. Es un límite astronómico, no una garantía de color: las nubes, el relieve y el sujeto condicionan la fotografía.",
@@ -125,6 +133,11 @@ export const photographyGuides: Record<string, Record<"en" | "es", LocalizedBlog
         { question: "¿Sirve también para el amanecer?", answer: "Sí, pero revisa el horizonte oriental y prepara el equipo antes del amanecer. La previsión, el acceso y la dirección de la luz siguen siendo esenciales." },
       ],
     }),
+    fr: { ...sunsetGuideTranslations.fr, sources },
+    it: { ...sunsetGuideTranslations.it, sources },
+    de: { ...sunsetGuideTranslations.de, sources },
+    pt: { ...sunsetGuideTranslations.pt, sources },
+    zh: { ...sunsetGuideTranslations.zh, sources },
   },
   "golden-hour-photography-guide": {
     en: guide("en", {
@@ -277,3 +290,6 @@ export const photographyGuides: Record<string, Record<"en" | "es", LocalizedBlog
     }),
   },
 }
+
+export const sunsetGuide = localizedGuides["sunset-quality-prediction-guide"]
+export const photographyGuides: Record<string, Partial<Record<Locale, LocalizedBlogArticle>>> = localizedGuides

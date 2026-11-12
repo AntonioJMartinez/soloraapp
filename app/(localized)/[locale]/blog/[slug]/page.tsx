@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 
 import { BlogArticleTemplate } from "@/components/blog-article-template"
 import { Eclipse2026Landing } from "@/components/eclipse2026/eclipse-landing"
-import { blogArticles, getBlogArticle, indexableBlogLocales } from "@/lib/blog-posts"
+import { blogArticles, getBlogArticle } from "@/lib/blog-posts"
 import { eclipse2026Slug } from "@/lib/eclipse-2026"
 import { assertLocale, localizedLocales } from "@/lib/i18n"
 import { buildArticleMetadata } from "@/lib/metadata"
@@ -34,7 +34,6 @@ export async function generateMetadata({
     ogImageAlt: article.imageAlt,
     publishedTime: `${article.publishDate}T00:00:00.000Z`,
     modifiedTime: `${article.modifiedDate}T00:00:00.000Z`,
-    availableLocales: indexableBlogLocales,
   })
 }
 

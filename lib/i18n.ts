@@ -12,7 +12,6 @@ const bilingualEnglishSpanishPaths = new Set([
   "/contact",
   "/privacy",
   "/support",
-  "/sunrise-sunset-app",
   "/golden-hour-photography-app",
   "/moon-phase-calendar-app",
   "/aurora-forecast-app",
@@ -101,6 +100,10 @@ export function getAvailableLocalesForPath(path: string): readonly Locale[] {
 
   if (englishOnlyPaths.has(normalizedPath)) {
     return ["en"]
+  }
+
+  if (normalizedPath === "/blog/sunset-quality-prediction-guide") {
+    return locales
   }
 
   if (normalizedPath === "/blog" || normalizedPath.startsWith("/blog/")) {

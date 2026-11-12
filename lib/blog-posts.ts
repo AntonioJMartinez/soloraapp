@@ -1,5 +1,5 @@
 import { Locale } from "@/lib/i18n"
-import { photographyGuides } from "@/lib/photography-guides"
+import { photographyGuides, sunsetGuide } from "@/lib/photography-guides"
 
 type AuthoredLocale = Exclude<Locale, "pt" | "zh">
 
@@ -59,9 +59,8 @@ export const articleModifiedDates: Partial<Record<string, string>> = {
   "total-solar-eclipse-august-2026": "2026-07-05",
   "golden-hour-photography-guide": "2026-10-06",
   "weather-patterns-sky-photography": "2026-10-06",
+  "sunset-quality-prediction-guide": "2026-11-08",
 }
-
-export const indexableBlogLocales = ["en", "es"] as const
 
 const readTimeLabel: Record<Locale, string> = {
   en: "min read",
@@ -1336,11 +1335,10 @@ const generatedBlogArticles: BlogArticleDefinition[] = generatedArticleSeeds.map
   return article(seed.slug, seed.category, seed.minutes, seed.publishDate, seed.image, seed.featured, locales)
 })
 
-const sunsetGuide = photographyGuides["sunset-quality-prediction-guide"]
 const sunsetArticle = article(
   "sunset-quality-prediction-guide", "Photography", 5, "2026-10-06",
   "golden-hour-sunset-photography.png", true,
-  { en: sunsetGuide.en, es: sunsetGuide.es, fr: sunsetGuide.en, it: sunsetGuide.en, de: sunsetGuide.en },
+  sunsetGuide,
 )
 
 export const blogArticles = [...manualBlogArticles, ...generatedBlogArticles, sunsetArticle]
@@ -1557,8 +1555,9 @@ function getGenericCta(locale: Locale) {
 
 function getLocalizedArticleContent(definition: BlogArticleDefinition, locale: Locale): LocalizedBlogArticle {
   const revised = photographyGuides[definition.slug]
-  if (revised && (locale === "en" || locale === "es")) {
-    return revised[locale]
+  const translation = revised?.[locale]
+  if (translation) {
+    return translation
   }
 
   if (locale in definition.locales) {
@@ -1624,7 +1623,7 @@ export function getBlogArticle(locale: Locale, slug: string) {
     slug: definition.slug,
     category: categoryLabels[locale][definition.category],
     minutes: definition.minutes,
-    readTime: formatReadTime(locale, photographyGuides[slug] && (locale === "en" || locale === "es")
+    readTime: formatReadTime(locale, photographyGuides[slug]?.[locale]
       ? Math.max(1, Math.ceil(countArticleWords(localized, locale) / 200)) : definition.minutes),
     publishDate: definition.publishDate,
     modifiedDate: articleModifiedDates[definition.slug] ?? definition.publishDate,

@@ -39,9 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.flatMap((route) =>
     getAvailableLocalesForPath(route).map((locale) => ({
       url: localizedUrl(locale, route),
-      lastModified: ["/", "/blog", "/sunrise-sunset-app", "/golden-hour-photography-app"].includes(route)
-        ? new Date("2026-10-06T00:00:00.000Z")
-        : contentLastModified,
+      lastModified: route === "/sunrise-sunset-app"
+        ? new Date("2026-11-08")
+        : ["/", "/blog", "/golden-hour-photography-app"].includes(route)
+          ? new Date("2026-10-06")
+          : contentLastModified,
       changeFrequency: route === "/" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "/" ? 1 : route === "/blog" ? 0.9 : 0.8,
       alternates: {
@@ -50,19 +52,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   )
 
-  const blogEntries = (["en", "es"] as const).flatMap((locale) =>
-    blogArticles.filter((post) => priorityBlogSlugs.has(post.slug)).map((post) => ({
-      url: localizedUrl(locale, `/blog/${post.slug}`),
-      lastModified: new Date(
-        articleModifiedDates[post.slug] ?? post.publishDate,
-      ),
+  const blogEntries = blogArticles.filter((post) => priorityBlogSlugs.has(post.slug)).flatMap((post) => {
+    const route = `/blog/${post.slug}`
+    const availableLocales = getAvailableLocalesForPath(route)
+    return availableLocales.map((locale) => ({
+      url: localizedUrl(locale, route),
+      lastModified: new Date(articleModifiedDates[post.slug] ?? post.publishDate),
       changeFrequency: "monthly" as const,
       priority: post.slug === "total-solar-eclipse-august-2026" ? 0.9 : 0.75,
       alternates: {
-        languages: buildLanguageAlternates(`/blog/${post.slug}`, ["en", "es"]),
+        languages: buildLanguageAlternates(route, availableLocales),
       },
-    })),
-  )
+    }))
+  })
 
   const eclipseGuideEntries = eclipseGuideSlugs.map((slug) => ({
     url: localizedUrl("es", `/${slug}`),
